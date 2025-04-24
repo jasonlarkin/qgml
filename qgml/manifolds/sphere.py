@@ -1,46 +1,48 @@
 import numpy as np
 from typing import Tuple
 
-class FuzzySphereManifold:
-    """Generates points on a fuzzy 2-sphere (S²) embedded in R³."""
+class SphereManifold:
+    """Represents a sphere manifold, potentially with noise.
+
+    Generates points uniformly distributed on the surface of a D-dimensional
+    sphere embedded in D dimensions (e.g., a 2-sphere in 3D space).
+    Noise can be added to simulate a 'fuzzy' sphere.
+    """
     
-    def __init__(self, noise: float = 0.1):
-        """Initialize fuzzy sphere manifold.
-        
+    def __init__(self, dimension: int = 3, noise: float = 0.0):
+        """Initialize the sphere manifold.
+
         Args:
-            noise: Standard deviation of Gaussian noise to add
+            dimension: The embedding dimension (D). The sphere is (D-1)-dimensional.
+            noise: standard deviation of Gaussian noise to add to points.
         """
         self.noise = noise
+        self.embedding_dim = dimension
+        if dimension < 2:
+            raise ValueError("Sphere dimension must be at least 2 for embedding")
         
-    def generate_points(self, n_points: int) -> np.ndarray:
-        """Generate points on a fuzzy sphere.
-        
+    def sample(self, n_points: int) -> np.ndarray:
+        """Sample points from the potentially noisy sphere.
+
         Args:
-            n_points: Number of points to generate
-            
+            n_points: number of points to sample.
+
         Returns:
-            Array of shape (n_points, 3) containing points on fuzzy sphere
+            Array of shape (n_points, D) containing sampled points.
         """
-        # Generate random angles
-        theta = np.random.uniform(0, np.pi, n_points)    # polar angle
-        phi = np.random.uniform(0, 2*np.pi, n_points)    # azimuthal angle
-        
-        # Convert to Cartesian coordinates (unit sphere)
-        x = np.sin(theta) * np.cos(phi)
-        y = np.sin(theta) * np.sin(phi)
-        z = np.cos(theta)
-        
-        # Stack into (n_points, 3) array
-        points = np.stack([x, y, z], axis=1)
-        
-        # Add Gaussian noise
+        # generate points uniformly on the unit sphere surface
+        points = np.random.randn(n_points, self.embedding_dim)
+        points /= np.linalg.norm(points, axis=1)[:, np.newaxis]
+
+        # add Gaussian noise if specified
         if self.noise > 0:
-            # Add noise in all directions
-            noise = np.random.normal(0, self.noise, (n_points, 3))
-            points = points + noise
-            
-            # Renormalize to approximately unit radius
-            norms = np.linalg.norm(points, axis=1, keepdims=True)
-            points = points / norms
-        
-        return points 
+            noise_vec = np.random.normal(0, self.noise, points.shape)
+            points += noise_vec
+            # NOTE: renormalization after adding noise was removed to keep fuzziness
+            # points /= np.linalg.norm(points, axis=1)[:, np.newaxis]
+
+        return points
+
+    def generate_points(self, n_points: int) -> np.ndarray:
+        """Alias for sample method for compatibility."""
+        return self.sample(n_points)

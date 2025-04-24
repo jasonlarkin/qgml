@@ -3,7 +3,7 @@ import torch
 import matplotlib.pyplot as plt
 from pathlib import Path
 from qgml.manifolds import LineManifold
-from qgml.quantum.matrix_trainer import MatrixConfigurationTrainer, train_matrix_configuration
+from qgml.quantum.matrix_trainer import MatrixConfigurationTrainer
 
 def plot_training_history(history, output_dir):
     """Plot detailed training history."""
@@ -38,84 +38,34 @@ def plot_training_history(history, output_dir):
     plt.close()
 
 def main():
-    # Create output directory
+    # Generate test data
+    manifold = LineManifold(noise=0.1)
+    points = manifold.generate_points(200)
+    points_tensor = torch.tensor(points, dtype=torch.float32)
+    
+    # Setup output directory
     output_dir = Path("output")
     output_dir.mkdir(exist_ok=True)
     
-    # Generate simple manifold data
-    manifold = LineManifold(noise=0.01)
-    points = manifold.generate_points(100)  # 100 points on a 1D line
-    
-    print(f"\nGenerated {len(points)} points on a 1D line manifold")
-    print(f"Point shape: {points.shape}")
-    print(f"First few points:\n{points[:5]}")
-    
-    # Train matrix configuration with improved parameters
-    N = 8  # Increased Hilbert space dimension
-    trainer, history = train_matrix_configuration(
-        points,
+    # Initialize trainer
+    N = 16  # Hilbert space dimension
+    D = points.shape[1]  # Embedding dimension
+    trainer = MatrixConfigurationTrainer(
         N=N,
-        n_epochs=200,
-        batch_size=32,
-        learning_rate=5e-4,
+        D=D,
+        device="cuda" if torch.cuda.is_available() else "cpu",
         commutation_penalty=0.1
     )
     
-    # Plot detailed training history
+    # Train matrix configuration
+    history = trainer.train_matrix_configuration(
+        points=points_tensor,
+        n_epochs=200,
+        batch_size=32
+    )
+    
+    # Plot training history
     plot_training_history(history, output_dir)
-    
-    # Compute and analyze reconstructed points
-    X = torch.tensor(points, dtype=torch.float32)
-    with torch.no_grad():
-        reconstructed = []
-        metrics = []
-        for x in X:
-            point = trainer.compute_point_cloud(x)
-            reconstructed.append(point.numpy())
-            
-            # Compute quantum metric
-            g = trainer.compute_quantum_metric(x)
-            eigenvals = torch.linalg.eigvalsh(g)
-            metrics.append(eigenvals.numpy())
-            
-        reconstructed = np.array(reconstructed)
-        metrics = np.array(metrics)
-    
-    # Plot original vs reconstructed points
-    plt.figure(figsize=(12, 4))
-    
-    plt.subplot(121)
-    plt.scatter(points[:, 0], points[:, 1], label='Original', alpha=0.6)
-    plt.scatter(reconstructed[:, 0], reconstructed[:, 1], label='Reconstructed', alpha=0.6)
-    plt.title('Original vs Reconstructed Points')
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.legend()
-    
-    # Plot quantum metrics
-    plt.subplot(122)
-    plt.plot(np.sort(metrics.mean(axis=0))[::-1], 'o-')
-    plt.title('Average Quantum Metric Eigenvalues')
-    plt.xlabel('Index')
-    plt.ylabel('Eigenvalue')
-    plt.yscale('log')
-    
-    plt.tight_layout()
-    plt.savefig(output_dir / 'matrix_trainer_analysis.png')
-    plt.close()
-    
-    # Print final metrics
-    print("\nTraining Results:")
-    print(f"Final total loss: {history['total_loss'][-1]:.4f}")
-    print(f"Final reconstruction error: {history['reconstruction_error'][-1]:.4f}")
-    print(f"Final commutation norm: {history['commutation_norms'][-1]:.4f}")
-    
-    # Analyze quantum metrics
-    avg_metrics = metrics.mean(axis=0)
-    sorted_eigenvals = np.sort(avg_metrics)[::-1]
-    print("\nQuantum Metric Analysis:")
-    print(f"Eigenvalue spectrum: {sorted_eigenvals}")
-    print(f"Largest gap at index: {np.argmax(np.diff(sorted_eigenvals))}")
 
 if __name__ == "__main__":
     main() 

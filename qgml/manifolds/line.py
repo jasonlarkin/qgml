@@ -16,22 +16,22 @@ class LineManifold:
         """Generate points on a straight line.
         
         Args:
-            n_points: Number of points to generate
+            n_points: number of points to generate
             
         Returns:
             Array of shape (n_points, 3) containing the generated points
         """
-        # Generate points on a straight line
+        # generate points on a straight line
         t = np.linspace(0, 10, n_points)  # Use larger range
         
-        # Create points along the line (1,1,1)
+        # create points along the line (1,1,1)
         points = np.column_stack((t, t, t))
         
-        # Add noise if specified
+        # add noise if specified
         if self.noise > 0:
-            # Add noise perpendicular to the line
+            # add noise perpendicular to the line
             noise = np.random.normal(0, self.noise, (n_points, 3))
-            # Project noise onto plane perpendicular to (1,1,1)
+            # project noise onto plane perpendicular to (1,1,1)
             noise = noise - np.sum(noise * np.array([1,1,1]), axis=1)[:, np.newaxis] * np.array([1,1,1]) / 3
             points += noise
         
