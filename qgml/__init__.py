@@ -1,33 +1,10 @@
-"""
-QGML - Quantum Cognition for Machine Learning Library
-"""
+"""QGML: Quantum Cognition for Machine Learning"""
 
-__version__ = "0.1.0"
+# This file makes the 'qgml' directory a Python package.
 
-# Removed dimension_estimation imports as the directory was deleted
-# from .dimension_estimation import (
-#     CorrelationDimensionEstimator,
-#     BaseDimensionEstimator
-# )
+# Optionally expose key classes/functions at the top level
+# from .matrix_trainer import MatrixConfigurationTrainer
+# from .dimension_estimator import DimensionEstimator
+# from .manifolds import SphereManifold, CircleManifold
 
-# Import core classes from quantum module
-from .quantum import MatrixConfigurationTrainer, DimensionEstimator
-
-# Import available manifolds
-from .manifolds import SphereManifold, SpiralManifold, LineManifold, HypercubeManifold # Assuming Line and HyperCube exist
-
-__all__ = [
-    # Dimension Estimation related exports removed
-    # 'CorrelationDimensionEstimator',
-    # 'BaseDimensionEstimator',
-
-    # Quantum module exports
-    'MatrixConfigurationTrainer',
-    'DimensionEstimator',
-
-    # Manifolds exports
-    'SphereManifold',
-    'SpiralManifold',
-    'LineManifold',
-    'HypercubeManifold'
-] 
+# __all__ = ['MatrixConfigurationTrainer', 'DimensionEstimator', 'SphereManifold', 'CircleManifold'] 

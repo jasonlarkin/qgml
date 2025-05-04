@@ -1,5 +1,5 @@
 import numpy as np
-from typing import Tuple
+from typing import Tuple, Optional
 
 class SphereManifold:
     """Represents a sphere manifold, potentially with noise.
@@ -43,6 +43,39 @@ class SphereManifold:
 
         return points
 
-    def generate_points(self, n_points: int) -> np.ndarray:
-        """Alias for sample method for compatibility."""
-        return self.sample(n_points)
+    def generate_points(self, n_points: int, np_seed: Optional[int] = None) -> np.ndarray:
+        """Generate points uniformly distributed on the sphere surface.
+
+        Args:
+            n_points: Number of points to generate.
+            np_seed: Optional seed for NumPy RNG used during point generation.
+                     If None, the global numpy RNG state is used.
+
+        Returns:
+            Array of points with shape (n_points, dimension).
+        """
+        
+        # manage NumPy RNG state locally
+        original_np_rng_state = None
+        if np_seed is not None:
+            original_np_rng_state = np.random.get_state()
+            np.random.seed(np_seed)
+
+        try:
+            # Generate points from a normal distribution
+            points = np.random.randn(n_points, self.embedding_dim)
+            
+            # Normalize points to lie on the sphere surface
+            norms = np.linalg.norm(points, axis=1, keepdims=True)
+            points /= norms
+            
+            # Add Gaussian noise if specified
+            if self.noise > 0:
+                noise_samples = np.random.randn(n_points, self.embedding_dim) * self.noise
+                points += noise_samples
+        finally:
+            # Restore original NumPy RNG state if it was changed
+            if original_np_rng_state is not None:
+                np.random.set_state(original_np_rng_state)
+                
+        return points

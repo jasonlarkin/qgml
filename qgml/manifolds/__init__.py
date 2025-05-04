@@ -1,4 +1,4 @@
-# Define base class here if not defined elsewhere
+# define base class here if not defined elsewhere
 class Manifold:
     """Base class for manifolds."""
     def __init__(self, dimension, intrinsic_dimension):
