@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/experimental_results/gpu_performance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p># GPU Test Suite for Optimizer Comparison Research</p>
+<p>## Overview</p>
+<p>This GPU test suite is designed to validate our revolutionary discoveries about optimizer behavior using GPU acceleration. It’s specifically designed for environments like Google Colab where you can access powerful GPUs for efficient experimentation.</p>
+<p>## Key Discoveries to Validate</p>
+<p>### 1. <strong>Quantum Weight Crossover Point (≈1.15)</strong>
+- <strong>Low quantum weights (0.0-1.15)</strong>: ADAM dominates
+- <strong>High quantum weights (1.15+)</strong>: SGD becomes superior
+- <strong>Why</strong>: Quantum effects create rugged landscapes where SGD’s stability wins</p>
+<p>### 2. <strong>Dimensionality Crossover Point (D ≥ 20)</strong>
+- <strong>Low dimensions (D &lt; 20)</strong>: Follows quantum weight crossover
+- <strong>High dimensions (D ≥ 20)</strong>: ADAM ALWAYS WINS regardless of quantum weight
+- <strong>Why</strong>: High-dimensional spaces favor ADAM’s adaptive learning rates</p>
+<p>### 3. <strong>Universal Optimizer Selection Rule</strong>
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">IF</span> <span class="pre">D</span> <span class="pre">&gt;=</span> <span class="pre">20:</span> <span class="pre">Use</span> <span class="pre">ADAM</span> <span class="pre">(High-dimensional</span> <span class="pre">advantage)</span>
+<span class="pre">ELSE</span> <span class="pre">IF</span> <span class="pre">quantum_weight</span> <span class="pre">&gt;</span> <span class="pre">1.15:</span> <span class="pre">Use</span> <span class="pre">SGD</span> <span class="pre">(Quantum</span> <span class="pre">complexity</span> <span class="pre">advantage)</span>
+<span class="pre">ELSE:</span> <span class="pre">Use</span> <span class="pre">ADAM</span> <span class="pre">(Classical</span> <span class="pre">advantage)</span>
+<span class="pre">`</span></code></p>
+<p>## GPU Test Scripts</p>
+<p>### <strong>`gpu_master_test_suite.py`</strong> - Master Orchestrator
+<strong>Purpose</strong>: Runs all tests with a single command
+<strong>Usage</strong>:
+<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>bash
+# Run full test suite
+python gpu_master_test_suite.py –mode full</p>
+<p># Run specific tests
+python gpu_master_test_suite.py –mode convergence
+python gpu_master_test_suite.py –mode dimensionality
+python gpu_master_test_suite.py –mode batch_size
+python gpu_master_test_suite.py –mode quick
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>### <strong>`gpu_convergence_testing.py`</strong> - Convergence Analysis
+<strong>Purpose</strong>: Tests convergence with longer training (1000+ epochs) and lower learning rates
+<strong>Tests</strong>:
+- Low-dimensional convergence (N=3, D=3, 2000 epochs)
+- High-dimensional convergence (N=16, D=40, 1000 epochs)
+- Learning rate sensitivity (0.0001, 0.0005, 0.001, 0.005)
+- Quantum weight crossover validation (fine-grained around 1.15)</p>
+<p><strong>Expected Outcomes</strong>:
+- True convergence behavior (not just convergence speed)
+- Optimal learning rates for each problem type
+- Validation of quantum weight crossover point</p>
+<p>### <strong>`gpu_dimensionality_crossover.py`</strong> - Dimensionality Crossover
+<strong>Purpose</strong>: Validates the dimensionality crossover point (D ≥ 20)
+<strong>Tests</strong>:
+- Test scenarios: D=3, 10, 15, 18, 20, 25, 30, 40, 50
+- Matrix dimensions: N=3, 8, 12, 16, 20, 24, 32
+- Quantum weights: 0.0, 0.5, 1.0, 1.5, 2.0, 3.0</p>
+<p><strong>Expected Outcomes</strong>:
+- ADAM always wins at D ≥ 20 regardless of quantum weight
+- Low-dimensional scenarios follow quantum weight crossover
+- Matrix dimension N effects on crossover behavior</p>
+<p>### <strong>`gpu_batch_size_effects.py`</strong> - Batch Size Analysis
+<strong>Purpose</strong>: Tests how batch sizes affect optimizer performance
+<strong>Tests</strong>:
+- Low-dimensional batch sizes: 50, 100, 250, 500, 1000
+- High-dimensional batch sizes: 50, 100, 250, 500
+- Memory vs performance trade-offs</p>
+<p><strong>Expected Outcomes</strong>:
+- Optimal batch sizes for each problem type
+- Performance vs memory trade-offs quantified
+- Batch size effects on convergence stability</p>
+<p>## Getting Started in Colab</p>
+<p>### 1. <strong>Setup Environment</strong>
+<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+# Enable GPU
+# Runtime → Change runtime type → GPU</p>
+<p># Install dependencies
+!pip install torch torchvision torchaudio
+!pip install numpy matplotlib seaborn
+<a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>### 2. <strong>Clone Repositories</strong>
+<a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>bash
+# Clone the repositories
+!git clone <a class="reference external" href="https://github.com/jasonlarkin/qcml.git">https://github.com/jasonlarkin/qcml.git</a>
+!git clone <a class="reference external" href="https://github.com/jasonlarkin/finance.git">https://github.com/jasonlarkin/finance.git</a></p>
+<p># Navigate to qcml
+cd qcml
+<a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p>### 3. <strong>Run Quick Validation</strong>
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">#</span> <span class="pre">Quick</span> <span class="pre">test</span> <span class="pre">of</span> <span class="pre">our</span> <span class="pre">key</span> <span class="pre">discoveries</span>
+<span class="pre">python</span> <span class="pre">gpu_master_test_suite.py</span> <span class="pre">--mode</span> <span class="pre">quick</span>
+<span class="pre">`</span></code></p>
+<p>### 4. <strong>Run Full Test Suite</strong>
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">#</span> <span class="pre">Comprehensive</span> <span class="pre">testing</span> <span class="pre">(takes</span> <span class="pre">several</span> <span class="pre">hours)</span>
+<span class="pre">python</span> <span class="pre">gpu_master_test_suite.py</span> <span class="pre">--mode</span> <span class="pre">full</span>
+<span class="pre">`</span></code></p>
+<p>## Test Parameters</p>
+<p>### <strong>Convergence Testing</strong>
+- <strong>Epochs</strong>: 600-2000 (depending on problem complexity)
+- <strong>Learning Rates</strong>: 0.0001, 0.0005, 0.001, 0.005
+- <strong>Quantum Weights</strong>: 0.0, 0.5, 1.0, 1.5, 2.0, 3.0
+- <strong>Matrix Dimensions</strong>: N=3, 8, 12, 16, 20, 24, 32
+- <strong>Ambient Dimensions</strong>: D=3, 10, 15, 18, 20, 25, 30, 40, 50</p>
+<p>### <strong>Batch Size Testing</strong>
+- <strong>Batch Sizes</strong>: 50, 100, 250, 500, 1000, 1500
+- <strong>Data Points</strong>: 1000-3000 (depending on scenario)
+- <strong>Focus</strong>: Memory vs performance trade-offs</p>
+<p>## Expected Results</p>
+<p>### <strong>Low-Dimensional Problems (D &lt; 20)</strong>
+- <strong>Quantum weight 0.0-1.15</strong>: ADAM wins by 3.4% - 28.5%
+- <strong>Quantum weight 1.15+</strong>: SGD wins by up to 41.9%
+- <strong>Convergence</strong>: Smooth, stable training curves</p>
+<p>### <strong>High-Dimensional Problems (D ≥ 20)</strong>
+- <strong>All quantum weights</strong>: ADAM wins by 20-33%
+- <strong>Convergence</strong>: May require lower learning rates
+- <strong>Memory</strong>: Higher GPU memory usage</p>
+<p>### <strong>Convergence Behavior</strong>
+- <strong>SGD</strong>: Stable, consistent convergence
+- <strong>ADAM</strong>: Faster initial convergence, may oscillate at high quantum weights
+- <strong>Final Performance</strong>: Should reach true minima, not just convergence speed differences</p>
+<p>## Analysis and Validation</p>
+<p>### <strong>What to Look For</strong>
+1. <strong>Convergence</strong>: Loss curves should flatten out, not just decrease
+2. <strong>Crossover Points</strong>: Clear transitions in optimizer superiority
+3. <strong>Stability</strong>: Final epochs should show minimal variation
+4. <strong>Performance Gaps</strong>: Quantified differences between optimizers</p>
+<p>### <strong>Validation Criteria</strong>
+- <strong>Quantum Weight Crossover</strong>: SGD wins at QW &gt; 1.15
+- <strong>Dimensionality Crossover</strong>: ADAM wins at D ≥ 20
+- <strong>Convergence</strong>: All tests reach stable minima
+- <strong>Reproducibility</strong>: Results consistent across multiple runs</p>
+<p>## Results Organization</p>
+<p>### <strong>Output Structure</strong>
+<a href="#id25"><span class="problematic" id="id26">``</span></a>`
+test_results/
+├── gpu_convergence_testing/
+│ ├── low_dimensional_convergence_*.npz
+│ ├── high_dimensional_convergence_*.npz
+│ ├── learning_rate_sensitivity_*.npz
+│ └── quantum_weight_crossover_*.npz
+├── gpu_dimensionality_crossover/
+│ ├── dimensionality_crossover_*.npz
+│ └── matrix_scaling_*.npz
+├── gpu_batch_size_effects/
+│ ├── low_dimensional_batch_sizes_*.npz
+│ ├── high_dimensional_batch_sizes_*.npz
+│ └── memory_performance_tradeoffs_*.npz
+└── gpu_master_suite/</p>
+<blockquote>
+<div><p>├── master_suite_summary_*.txt
+└── test_suite_status.txt</p>
+</div></blockquote>
+<p><a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a></p>
+<p>### <strong>Data Format</strong>
+- <strong>`.npz` files</strong>: Compressed numpy arrays with training histories
+- <strong>`.txt` files</strong>: Human-readable summaries and analysis
+- <strong>Timestamps</strong>: All files include timestamps for tracking</p>
+<p>## Troubleshooting</p>
+<p>### <strong>Common Issues</strong>
+1. <strong>CUDA Out of Memory</strong>: Reduce batch sizes or matrix dimensions
+2. <strong>Slow Convergence</strong>: Lower learning rates, increase epochs
+3. <strong>Unstable Training</strong>: Check quantum weights, reduce learning rates
+4. <strong>Import Errors</strong>: Ensure QCML framework is properly installed</p>
+<p>### <strong>Performance Tips</strong>
+- <strong>GPU Memory</strong>: Monitor with <cite>nvidia-smi</cite>
+- <strong>Batch Processing</strong>: Use smaller batch sizes for high-dimensional problems
+- <strong>Learning Rates</strong>: Start with lower LRs for high-dimensional scenarios
+- <strong>Progress Monitoring</strong>: Scripts show progress every 100-200 epochs</p>
+<p>## Success Metrics</p>
+<p>### <strong>Technical Goals</strong>
+- GPU acceleration working efficiently
+- All tests completing without errors
+- Results saved in organized format
+- Comprehensive parameter space explored</p>
+<p>### <strong>Research Goals</strong>
+- Quantum weight crossover validated
+- Dimensionality crossover confirmed
+- Convergence behavior understood
+- Optimal hyperparameters identified</p>
+<p>### <strong>Deliverables</strong>
+- Comprehensive test results
+- Validated optimizer selection rules
+- Research paper-ready findings
+- Reproducible experimental framework</p>
+<p>## Next Steps</p>
+<p>After running the GPU test suite:</p>
+<ol class="arabic simple">
+<li><p><strong>Analyze Results</strong>: Review all output files and summaries</p></li>
+<li><p><strong>Validate Discoveries</strong>: Confirm crossover points and behavior</p></li>
+<li><p><strong>Optimize Parameters</strong>: Identify best hyperparameters for each scenario</p></li>
+<li><p><strong>Document Findings</strong>: Update research notes and prepare publications</p></li>
+<li><p><strong>Extend Research</strong>: Explore additional manifolds and problem types</p></li>
+</ol>
+<p>—</p>
+<p><a href="#id31"><span class="problematic" id="id32">**</span></a>Happy GPU-accelerated research! **</p>
+<p><em>This test suite represents months of research and debugging to understand optimizer behavior in quantum-inspired optimization problems.</em></p>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

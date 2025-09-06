@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QGML Installation Guide &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QGML Quickstart Guide" href="quickstart.html" />
+    <link rel="prev" title="Quantum Geometric Machine Learning (QGML) Documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QGML Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#method-1-pip-installation-recommended">Method 1: pip Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-2-conda-installation">Method 2: conda Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-3-uv-installation-fast">Method 3: uv Installation (Fast)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-4-source-installation">Method 4: Source Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-management">Dependency Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development-dependencies">Development Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backend-configuration">Backend Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytorch-backend-default">PyTorch Backend (Default)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jax-backend-optional">JAX Backend (Optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-hardware-backend-optional">Quantum Hardware Backend (Optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-verification">Installation Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-verification">Basic Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comprehensive-verification">Comprehensive Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-installation-issues">Common Installation Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-environment">Virtual Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-installation">Docker Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">QGML Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qgml-installation-guide">
+<h1>QGML Installation Guide<a class="headerlink" href="#qgml-installation-guide" title="Link to this heading"></a></h1>
+<p>This guide provides comprehensive installation instructions for the Quantum Geometric Machine Learning (QGML) framework.</p>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<section id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Link to this heading"></a></h3>
+<p><strong>Minimum Requirements</strong>:
+- CPU: 2+ cores, 2.0+ GHz
+- RAM: 8 GB
+- Storage: 2 GB free space</p>
+<p><strong>Recommended Requirements</strong>:
+- CPU: 4+ cores, 3.0+ GHz
+- RAM: 16+ GB
+- GPU: NVIDIA GPU with CUDA support (optional)
+- Storage: 5+ GB free space</p>
+</section>
+<section id="software-requirements">
+<h3>Software Requirements<a class="headerlink" href="#software-requirements" title="Link to this heading"></a></h3>
+<p><strong>Python Version</strong>:
+- Python 3.8 or higher
+- Python 3.9-3.11 recommended</p>
+<p><strong>Operating Systems</strong>:
+- Linux (Ubuntu 18.04+, CentOS 7+)
+- macOS (10.14+)
+- Windows (10+)</p>
+</section>
+</section>
+<section id="installation-methods">
+<h2>Installation Methods<a class="headerlink" href="#installation-methods" title="Link to this heading"></a></h2>
+<section id="method-1-pip-installation-recommended">
+<h3>Method 1: pip Installation (Recommended)<a class="headerlink" href="#method-1-pip-installation-recommended" title="Link to this heading"></a></h3>
+<p><strong>Basic Installation</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install qgml</p>
+</div></blockquote>
+<p><strong>Development Installation</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install -e .</p>
+</div></blockquote>
+<p><strong>With GPU Support</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Install PyTorch with CUDA support
+pip install torch torchvision torchaudio –index-url <a class="reference external" href="https://download.pytorch.org/whl/cu118">https://download.pytorch.org/whl/cu118</a></p>
+<p># Install QGML
+pip install qgml</p>
+</div></blockquote>
+</section>
+<section id="method-2-conda-installation">
+<h3>Method 2: conda Installation<a class="headerlink" href="#method-2-conda-installation" title="Link to this heading"></a></h3>
+<p><strong>Create conda environment</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>conda create -n qgml python=3.9
+conda activate qgml</p>
+</div></blockquote>
+<p><strong>Install dependencies</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install numpy scipy matplotlib seaborn
+pip install qgml</p>
+</div></blockquote>
+</section>
+<section id="method-3-uv-installation-fast">
+<h3>Method 3: uv Installation (Fast)<a class="headerlink" href="#method-3-uv-installation-fast" title="Link to this heading"></a></h3>
+<p><strong>Install uv</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>curl -LsSf <a class="reference external" href="https://astral.sh/uv/install.sh">https://astral.sh/uv/install.sh</a> | sh</p>
+</div></blockquote>
+<p><strong>Install QGML</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>uv add qgml</p>
+</div></blockquote>
+<p><strong>With development dependencies</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>uv add qgml[dev]</p>
+</div></blockquote>
+</section>
+<section id="method-4-source-installation">
+<h3>Method 4: Source Installation<a class="headerlink" href="#method-4-source-installation" title="Link to this heading"></a></h3>
+<p><strong>Clone repository</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>git clone <a class="reference external" href="https://github.com/your-org/qgml.git">https://github.com/your-org/qgml.git</a>
+cd qgml</p>
+</div></blockquote>
+<p><strong>Install in development mode</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install -e .</p>
+</div></blockquote>
+<p><strong>Install with all dependencies</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install -e “.[dev,test,docs]”</p>
+</div></blockquote>
+</section>
+</section>
+<section id="dependency-management">
+<h2>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading"></a></h2>
+<section id="core-dependencies">
+<h3>Core Dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading"></a></h3>
+<p><strong>Required Dependencies</strong>:
+- PyTorch &gt;= 1.12.0
+- NumPy &gt;= 1.21.0
+- SciPy &gt;= 1.7.0
+- Matplotlib &gt;= 3.5.0</p>
+<p><strong>Optional Dependencies</strong>:
+- JAX &gt;= 0.3.0 (for JAX backend)
+- Qiskit &gt;= 0.40.0 (for quantum hardware)
+- Seaborn &gt;= 0.11.0 (for advanced plotting)</p>
+</section>
+<section id="development-dependencies">
+<h3>Development Dependencies<a class="headerlink" href="#development-dependencies" title="Link to this heading"></a></h3>
+<p><strong>Testing</strong>:
+- pytest &gt;= 6.0.0
+- pytest-cov &gt;= 3.0.0
+- pytest-xdist &gt;= 2.0.0</p>
+<p><strong>Documentation</strong>:
+- Sphinx &gt;= 4.0.0
+- sphinx-rtd-theme &gt;= 1.0.0
+- myst-parser &gt;= 0.17.0</p>
+<p><strong>Code Quality</strong>:
+- black &gt;= 22.0.0
+- flake8 &gt;= 4.0.0
+- mypy &gt;= 0.950</p>
+</section>
+</section>
+<section id="backend-configuration">
+<h2>Backend Configuration<a class="headerlink" href="#backend-configuration" title="Link to this heading"></a></h2>
+<section id="pytorch-backend-default">
+<h3>PyTorch Backend (Default)<a class="headerlink" href="#pytorch-backend-default" title="Link to this heading"></a></h3>
+<p><strong>Installation</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># CPU only
+pip install torch torchvision torchaudio</p>
+<p># GPU support (CUDA 11.8)
+pip install torch torchvision torchaudio –index-url <a class="reference external" href="https://download.pytorch.org/whl/cu118">https://download.pytorch.org/whl/cu118</a></p>
+<p># GPU support (CUDA 12.1)
+pip install torch torchvision torchaudio –index-url <a class="reference external" href="https://download.pytorch.org/whl/cu121">https://download.pytorch.org/whl/cu121</a></p>
+</div></blockquote>
+<p><strong>Verification</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p>import torch
+print(f”PyTorch version: {torch.__version__}”)
+print(f”CUDA available: {torch.cuda.is_available()}”)
+if torch.cuda.is_available():</p>
+<blockquote>
+<div><p>print(f”CUDA version: {torch.version.cuda}”)
+print(f”GPU count: {torch.cuda.device_count()}”)</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="jax-backend-optional">
+<h3>JAX Backend (Optional)<a class="headerlink" href="#jax-backend-optional" title="Link to this heading"></a></h3>
+<p><strong>Installation</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># CPU only
+pip install jax jaxlib</p>
+<p># GPU support
+pip install jax[cuda] -f <a class="reference external" href="https://storage.googleapis.com/jax-releases/jax_cuda_releases.html">https://storage.googleapis.com/jax-releases/jax_cuda_releases.html</a></p>
+</div></blockquote>
+<p><strong>Verification</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p>import jax
+print(f”JAX version: {jax.__version__}”)
+print(f”JAX devices: {jax.devices()}”)</p>
+</div></blockquote>
+</section>
+<section id="quantum-hardware-backend-optional">
+<h3>Quantum Hardware Backend (Optional)<a class="headerlink" href="#quantum-hardware-backend-optional" title="Link to this heading"></a></h3>
+<p><strong>Qiskit Installation</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pip install qiskit qiskit-aer</p>
+</div></blockquote>
+<p><strong>Verification</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p>import qiskit
+print(f”Qiskit version: {qiskit.__version__}”)</p>
+</div></blockquote>
+</section>
+</section>
+<section id="installation-verification">
+<h2>Installation Verification<a class="headerlink" href="#installation-verification" title="Link to this heading"></a></h2>
+<section id="basic-verification">
+<h3>Basic Verification<a class="headerlink" href="#basic-verification" title="Link to this heading"></a></h3>
+<p><strong>Test QGML installation</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p>import qgml
+print(f”QGML version: {qgml.__version__}”)</p>
+</div></blockquote>
+<p><strong>Test backend functionality</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p>from qgml import set_backend, get_backend</p>
+<p># Test PyTorch backend
+set_backend(‘pytorch’)
+print(f”Current backend: {get_backend()}”)</p>
+<p># Test JAX backend (if available)
+try:</p>
+<blockquote>
+<div><p>set_backend(‘jax’)
+print(f”JAX backend: {get_backend()}”)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>except ImportError:</dt><dd><p>print(“JAX backend not available”)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Test basic functionality</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p>from qgml.learning.supervised_trainer import SupervisedMatrixTrainer
+import torch</p>
+<p># Create trainer
+trainer = SupervisedMatrixTrainer(N=8, D=3)</p>
+<p># Generate test data
+X = torch.randn(50, 3)
+y = torch.randn(50)</p>
+<p># Test training
+history = trainer.fit(X, y, n_epochs=10)
+print(“Training completed successfully!”)</p>
+</div></blockquote>
+</section>
+<section id="comprehensive-verification">
+<h3>Comprehensive Verification<a class="headerlink" href="#comprehensive-verification" title="Link to this heading"></a></h3>
+<p><strong>Run test suite</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>pytest tests/ -v</p>
+</div></blockquote>
+<p><strong>Run specific tests</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Test core functionality
+pytest tests/test_integration/test_trainer_integration.py -v</p>
+<p># Test backend functionality
+pytest tests/test_backend/ -v</p>
+<p># Test with coverage
+pytest –cov=qgml –cov-report=html</p>
+</div></blockquote>
+<p><strong>Run examples</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Run quickstart example
+python examples/quickstart.py</p>
+<p># Run comprehensive example
+python examples/comprehensive_demo.py</p>
+</div></blockquote>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-installation-issues">
+<h3>Common Installation Issues<a class="headerlink" href="#common-installation-issues" title="Link to this heading"></a></h3>
+<p><strong>PyTorch Installation Issues</strong>:</p>
+<p><em>Problem</em>: CUDA version mismatch
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check CUDA version
+nvidia-smi</p>
+<p># Install matching PyTorch version
+pip install torch torchvision torchaudio –index-url <a class="reference external" href="https://download.pytorch.org/whl/cu118">https://download.pytorch.org/whl/cu118</a></p>
+</div></blockquote>
+<p><em>Problem</em>: Import errors
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Reinstall PyTorch
+pip uninstall torch torchvision torchaudio
+pip install torch torchvision torchaudio</p>
+</div></blockquote>
+<p><strong>JAX Installation Issues</strong>:</p>
+<p><em>Problem</em>: JAX not working with GPU
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Reinstall JAX with CUDA support
+pip uninstall jax jaxlib
+pip install jax[cuda] -f <a class="reference external" href="https://storage.googleapis.com/jax-releases/jax_cuda_releases.html">https://storage.googleapis.com/jax-releases/jax_cuda_releases.html</a></p>
+</div></blockquote>
+<p><strong>QGML Installation Issues</strong>:</p>
+<p><em>Problem</em>: Module not found
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check Python path
+python -c “import sys; print(sys.path)”</p>
+<p># Reinstall in development mode
+pip install -e .</p>
+</div></blockquote>
+<p><em>Problem</em>: Backend errors
+.. code-block:: python</p>
+<blockquote>
+<div><p># Check backend configuration
+from qgml import get_backend
+print(f”Current backend: {get_backend()}”)</p>
+<p># Reset backend
+from qgml import set_backend
+set_backend(‘pytorch’)</p>
+</div></blockquote>
+</section>
+<section id="performance-issues">
+<h3>Performance Issues<a class="headerlink" href="#performance-issues" title="Link to this heading"></a></h3>
+<p><strong>Memory Issues</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p># Check available memory
+import psutil
+print(f”Available memory: {psutil.virtual_memory().available / 1024**3:.1f} GB”)</p>
+<p># Reduce batch size for large models
+trainer = SupervisedMatrixTrainer(N=8, D=3, batch_size=16)</p>
+</div></blockquote>
+<p><strong>GPU Issues</strong>:
+.. code-block:: python</p>
+<blockquote>
+<div><p># Check GPU availability
+import torch
+if torch.cuda.is_available():</p>
+<blockquote>
+<div><p>print(f”GPU: {torch.cuda.get_device_name()}”)
+print(f”GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.1f} GB”)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>else:</dt><dd><p>print(“GPU not available”)</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading"></a></h2>
+<section id="virtual-environment">
+<h3>Virtual Environment<a class="headerlink" href="#virtual-environment" title="Link to this heading"></a></h3>
+<p><strong>Using venv</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>python -m venv qgml_env
+source qgml_env/bin/activate  # Linux/macOS
+# qgml_envScriptsactivate  # Windows
+pip install qgml</p>
+</div></blockquote>
+<p><strong>Using conda</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>conda create -n qgml python=3.9
+conda activate qgml
+pip install qgml</p>
+</div></blockquote>
+<p><strong>Using uv</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>uv venv qgml_env
+source qgml_env/bin/activate
+uv add qgml</p>
+</div></blockquote>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h3>
+<p><strong>CUDA Configuration</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>export CUDA_VISIBLE_DEVICES=0  # Use specific GPU
+export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128  # Memory management</p>
+</div></blockquote>
+<p><strong>JAX Configuration</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>export JAX_PLATFORM_NAME=gpu  # Force GPU usage
+export XLA_PYTHON_CLIENT_MEM_FRACTION=0.8  # Memory fraction</p>
+</div></blockquote>
+<p><strong>QGML Configuration</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>export QGML_BACKEND=pytorch  # Default backend
+export QGML_DEVICE=cuda  # Default device</p>
+</div></blockquote>
+</section>
+</section>
+<section id="docker-installation">
+<h2>Docker Installation<a class="headerlink" href="#docker-installation" title="Link to this heading"></a></h2>
+<p><strong>Dockerfile</strong>:
+.. code-block:: dockerfile</p>
+<blockquote>
+<div><p>FROM python:3.9-slim</p>
+<p># Install system dependencies
+RUN apt-get update &amp;&amp; apt-get install -y </p>
+<blockquote>
+<div><p>build-essential git &amp;&amp; rm -rf /var/lib/apt/lists/*</p>
+</div></blockquote>
+<p># Install QGML
+COPY . /app
+WORKDIR /app
+RUN pip install -e .</p>
+<p># Set environment variables
+ENV QGML_BACKEND=pytorch</p>
+<p>CMD [“python”, “-c”, “import qgml; print(‘QGML installed successfully!’)”]</p>
+</div></blockquote>
+<p><strong>Build and run</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>docker build -t qgml .
+docker run -it qgml</p>
+</div></blockquote>
+<p><strong>With GPU support</strong>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>docker run –gpus all -it qgml</p>
+</div></blockquote>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation:</p>
+<ol class="arabic simple">
+<li><p><strong>Read the Quickstart Guide</strong>: <a class="reference internal" href="quickstart.html"><span class="doc">QGML Quickstart Guide</span></a></p></li>
+<li><p><strong>Explore Basic Concepts</strong>: <span class="xref std std-doc">basic_concepts</span></p></li>
+<li><p><strong>Run Examples</strong>: Check the <cite>examples/</cite> directory</p></li>
+<li><p><strong>Read the API Documentation</strong>: <a class="reference internal" href="../api/core.html"><span class="doc">Core QGML Framework</span></a></p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="quickstart.html"><span class="doc">QGML Quickstart Guide</span></a> - Quickstart tutorial</p></li>
+<li><p><span class="xref std std-doc">basic_concepts</span> - Basic QGML concepts</p></li>
+<li><p><a class="reference internal" href="../api/core.html"><span class="doc">Core QGML Framework</span></a> - Core API documentation</p></li>
+<li><p><a class="reference internal" href="../testing/index.html"><span class="doc">QGML Testing and Validation Guide</span></a> - Testing documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Quantum Geometric Machine Learning (QGML) Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="QGML Quickstart Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

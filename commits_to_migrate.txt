@@ -1,0 +1,20 @@
+# Commits to migrate from old repos to QGML
+# Format: commit_hash repo_path date description
+
+# Phase 1: Initial PyTorch Implementation (April 2025)
+be53748 old_repos/qcml_orig 2025-04-13 "Initial commit: Quantum Computing Machine Learning library"
+e07010d old_repos/qcml_orig 2025-04-13 "Update QCMLDimensionEstimator to use MatrixConfigurationTrainer"
+
+# Phase 2: Performance and Documentation (April 2025)
+35c0f94 old_repos/qcml_orig 2025-04-24 "Updated with latest figure 1, supplementary figure 1 and 2 results"
+283e25f old_repos/qcml_orig 2025-04-25 "Vectorized version with better performance on CPU"
+
+# Phase 3: Repository Cleanup (May 2025)
+1ae8853 old_repos/qcml 2025-05-04 "Cleaned MatrixTrainer and DimensionEstimator and put into new repo"
+b2f32e2 old_repos/qcml 2025-05-04 "Added other tests from Supp section"
+
+# Phase 4: JAX Implementation (September 2025)
+3fad8b7 old_repos/qcml 2025-09-06 "Add JAX implementation of QCML matrix trainer"
+d92b706 old_repos/qcml 2025-09-09 "Add JAX implementation and comparison scripts"
+c591420 old_repos/qcml 2025-09-09 "Add comprehensive GPU testing suite"
+

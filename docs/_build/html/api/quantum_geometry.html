@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Geometry Trainer API &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "macros": {"ket": ["|#1\\rangle", 1], "bra": ["\\langle#1|", 1], "braket": ["\\langle#1|#2\\rangle", 2], "tr": "\\text{Tr}", "argmin": "\\text{argmin}", "argmax": "\\text{argmax}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Topological Analysis API" href="topological_analysis.html" />
+    <link rel="prev" title="Core QGML Framework" href="core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core QGML Framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantum Geometry Trainer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core-classes">Core Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quantumgeometrytrainer">QuantumGeometryTrainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-foundation">Mathematical Foundation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#error-hamiltonian">Error Hamiltonian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-fluctuations">Quantum Fluctuations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enhanced-loss-function">Enhanced Loss Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-laplacian">Matrix Laplacian</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#key-methods">Key Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-quantum-operations">Core Quantum Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_quantum_fluctuations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_matrix_laplacian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_eigenmaps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#topological-analysis">Topological Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_berry_curvature_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_chern_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.detect_quantum_phase_transitions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-information">Quantum Information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_von_neumann_entropy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_entanglement_entropy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.compute_quantum_fisher_information_matrix()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comprehensive-analysis">Comprehensive Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">QuantumGeometryTrainer.analyze_complete_quantum_geometry()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-quantum-geometry-analysis">Basic Quantum Geometry Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#berry-curvature-field-computation">Berry Curvature Field Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intrinsic-dimension-estimation">Intrinsic Dimension Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-quantum-geometric-analysis">Complete Quantum Geometric Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#computational-complexity">Computational Complexity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-requirements">Memory Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimization-tips">Optimization Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quantum Geometry Trainer API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/quantum_geometry.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quantum-geometry-trainer-api">
+<h1>Quantum Geometry Trainer API<a class="headerlink" href="#quantum-geometry-trainer-api" title="Link to this heading"></a></h1>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumGeometryTrainer</span></code> is the flagship class that integrates all advanced quantum geometric features for comprehensive data analysis.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The quantum geometry trainer extends the base framework with sophisticated topological and quantum information analysis capabilities:</p>
+<ul class="simple">
+<li><p><strong>Matrix Laplacian computation</strong> for spectral analysis</p></li>
+<li><p><strong>Quantum fluctuation control</strong> with variance-based regularization</p></li>
+<li><p><strong>Eigenmap analysis</strong> for dimension reduction</p></li>
+<li><p><strong>Berry curvature fields</strong> over parameter space</p></li>
+<li><p><strong>Chern number calculation</strong> for topological invariants</p></li>
+<li><p><strong>Quantum information measures</strong> (entropy, Fisher information, coherence)</p></li>
+</ul>
+</section>
+<section id="core-classes">
+<h2>Core Classes<a class="headerlink" href="#core-classes" title="Link to this heading"></a></h2>
+<section id="quantumgeometrytrainer">
+<h3>QuantumGeometryTrainer<a class="headerlink" href="#quantumgeometrytrainer" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qgml.geometry.quantum_geometry_trainer.</span></span><span class="sig-name descname"><span class="pre">QuantumGeometryTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluctuation_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topology_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_eigenmaps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer" title="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseQuantumMatrixTrainer</span></code></a></p>
+<p>Advanced QMML trainer with quantum geometric structures.</p>
+<p>Extends the base framework with:
+- Matrix Laplacian: Δ = Σₐ [Xₐ, [Xₐ, ·]]
+- Quantum fluctuation control: σ²(x) analysis
+- Eigenmap analysis and dimension reduction
+- Topological invariant computation
+- Advanced loss functions with geometric terms</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fluctuation_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topology_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_eigenmaps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize quantum geometry trainer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – Hilbert space dimension</p></li>
+<li><p><strong>D</strong> – Feature space dimension</p></li>
+<li><p><strong>fluctuation_weight</strong> – Weight for quantum fluctuation terms</p></li>
+<li><p><strong>topology_weight</strong> – Weight for topological penalty</p></li>
+<li><p><strong>n_eigenmaps</strong> – Number of eigenmaps to compute (None = all)</p></li>
+<li><p><strong>**kwargs</strong> – Additional base class arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.invalidate_geometry_cache">
+<span class="sig-name descname"><span class="pre">invalidate_geometry_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.invalidate_geometry_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.invalidate_geometry_cache" title="Link to this definition"></a></dt>
+<dd><p>Invalidate cached geometric structures when operators change.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_matrix_laplacian">
+<span class="sig-name descname"><span class="pre">compute_matrix_laplacian</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_matrix_laplacian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_matrix_laplacian" title="Link to this definition"></a></dt>
+<dd><p>Compute matrix Laplacian: Δ = Σₐ [Xₐ, [Xₐ, ·]]</p>
+<p>The matrix Laplacian encodes the quantum geometric structure
+and is used for spectral analysis and dimension estimation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matrix Laplacian as (N²×N²) tensor representing the operator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_eigenmaps">
+<span class="sig-name descname"><span class="pre">compute_eigenmaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_eigenmaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_eigenmaps" title="Link to this definition"></a></dt>
+<dd><p>Compute eigenmaps of the matrix Laplacian.</p>
+<p>Eigenmaps provide a spectral decomposition of the quantum geometry
+and are used for dimension reduction and topological analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>eigenvalues: Real eigenvalues sorted ascending, shape (n_modes,)</p></li>
+<li><p>eigenmaps: Eigenmap matrices, shape (n_modes, N, N)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (eigenvalues, eigenmaps)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fluctuations">
+<span class="sig-name descname"><span class="pre">compute_quantum_fluctuations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_quantum_fluctuations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fluctuations" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum fluctuations σ²(x) = Σₐ (⟨Xₐ²⟩ - ⟨Xₐ⟩²).</p>
+<p>Quantum fluctuations measure the quantum uncertainty in the
+encoding and are crucial for the quantum geometric loss function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>total_variance: Total quantum fluctuation σ²(x)</p></li>
+<li><p>individual_variances: Per-operator variances σₐ²(x)</p></li>
+<li><p>expectations: Operator expectations ⟨Xₐ⟩</p></li>
+<li><p>ground_state_energy: 2λ(x) = σ²(x) + d²(x)</p></li>
+<li><p>displacement_error: d²(x) = ||⟨X⟩ - x||²</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with fluctuation analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_geometry_loss">
+<span class="sig-name descname"><span class="pre">compute_quantum_geometry_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_quantum_geometry_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_geometry_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum geometry loss: L = Σᵢ [d²(xᵢ) + w·σ²(xᵢ)] + λ·topology.</p>
+<p>This extends the basic QCML loss with quantum fluctuation control
+and topological constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> – Batch of input points, shape (batch_size, D)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with loss components</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl">
+<span class="sig-name descname"><span class="pre">estimate_intrinsic_dimension_weyl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl" title="Link to this definition"></a></dt>
+<dd><p>Estimate intrinsic dimension using Weyl’s law: N(λ) ~ λ^(d/2).</p>
+<p>This provides a quantum geometric approach to dimension estimation
+based on the eigenvalue density of the matrix Laplacian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lambda_max</strong> – Maximum eigenvalue to consider (None = auto)</p></li>
+<li><p><strong>n_points</strong> – Number of points for eigenvalue counting</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with dimension estimation results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_commutation_penalty">
+<span class="sig-name descname"><span class="pre">compute_commutation_penalty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_commutation_penalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_commutation_penalty" title="Link to this definition"></a></dt>
+<dd><p>Enhanced commutation penalty including geometric terms.</p>
+<p>Extends the base commutation penalty with additional geometric
+constraints for smoother quantum geometry.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_quantum_geometry">
+<span class="sig-name descname"><span class="pre">analyze_quantum_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_berry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.analyze_quantum_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_quantum_geometry" title="Link to this definition"></a></dt>
+<dd><p>Comprehensive quantum geometric analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Sample points for analysis</p></li>
+<li><p><strong>compute_berry</strong> – Whether to compute Berry curvature (expensive)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with complete geometric analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_berry_curvature_field">
+<span class="sig-name descname"><span class="pre">compute_berry_curvature_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_grid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_berry_curvature_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_berry_curvature_field" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry curvature field using topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_grid</strong> – Grid of parameter points, shape (N_x, N_y, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for curvature</p></li>
+<li><p><strong>nu</strong> – Parameter directions for curvature</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry curvature field, shape (N_x, N_y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_chern_number">
+<span class="sig-name descname"><span class="pre">compute_chern_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closed_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_chern_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_chern_number" title="Link to this definition"></a></dt>
+<dd><p>Compute Chern number using topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>closed_path</strong> – Points defining closed path, shape (N_points, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for integration</p></li>
+<li><p><strong>nu</strong> – Parameter directions for integration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Chern number (topological invariant)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.detect_quantum_phase_transitions">
+<span class="sig-name descname"><span class="pre">detect_quantum_phase_transitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.detect_quantum_phase_transitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.detect_quantum_phase_transitions" title="Link to this definition"></a></dt>
+<dd><p>Detect quantum phase transitions using topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_path</strong> – Path through parameter space</p></li>
+<li><p><strong>threshold</strong> – Threshold for detecting transitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with transition analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fisher_information_matrix">
+<span class="sig-name descname"><span class="pre">compute_quantum_fisher_information_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_quantum_fisher_information_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fisher_information_matrix" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum Fisher information matrix using quantum info analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Parameter point</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Fisher information matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_von_neumann_entropy">
+<span class="sig-name descname"><span class="pre">compute_von_neumann_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_von_neumann_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_von_neumann_entropy" title="Link to this definition"></a></dt>
+<dd><p>Compute von Neumann entropy of ground state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Parameter point</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Von Neumann entropy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_entanglement_entropy">
+<span class="sig-name descname"><span class="pre">compute_entanglement_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subsystem_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_entanglement_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_entanglement_entropy" title="Link to this definition"></a></dt>
+<dd><p>Compute entanglement entropy between subsystems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Parameter point</p></li>
+<li><p><strong>subsystem_dims</strong> – Bipartition dimensions (auto-detected if None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Entanglement entropy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_complete_quantum_geometry">
+<span class="sig-name descname"><span class="pre">analyze_complete_quantum_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_topology</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_information</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.analyze_complete_quantum_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_complete_quantum_geometry" title="Link to this definition"></a></dt>
+<dd><p>Complete quantum geometric analysis combining all advanced features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Sample points for analysis</p></li>
+<li><p><strong>compute_topology</strong> – Whether to compute topological properties</p></li>
+<li><p><strong>compute_information</strong> – Whether to compute quantum information measures</p></li>
+<li><p><strong>output_dir</strong> – Directory for saving visualizations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Comprehensive analysis dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass - returns quantum geometry embedding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantum geometric embedding (expectations + fluctuation info)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_loss">
+<span class="sig-name descname"><span class="pre">compute_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum geometry loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> – Batch of training points</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Total quantum geometry loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="mathematical-foundation">
+<h2>Mathematical Foundation<a class="headerlink" href="#mathematical-foundation" title="Link to this heading"></a></h2>
+<section id="error-hamiltonian">
+<h3>Error Hamiltonian<a class="headerlink" href="#error-hamiltonian" title="Link to this heading"></a></h3>
+<p>The core mathematical object is the error Hamiltonian:</p>
+<div class="math notranslate nohighlight">
+\[H(x) = \frac{1}{2} \sum_{k=1}^{D} (A_k - x_k I)^2\]</div>
+<p>where:
+- <span class="math notranslate nohighlight">\(A_k\)</span> are the learned Hermitian feature operators
+- <span class="math notranslate nohighlight">\(x_k\)</span> are the components of the input data point
+- <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix</p>
+<p>The ground state <span class="math notranslate nohighlight">\(|\psi_0(x)\rangle\)</span> minimizes this Hamiltonian and encodes the classical data in quantum form.</p>
+</section>
+<section id="quantum-fluctuations">
+<h3>Quantum Fluctuations<a class="headerlink" href="#quantum-fluctuations" title="Link to this heading"></a></h3>
+<p>Quantum fluctuations measure the uncertainty in the quantum encoding:</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2(x) = \sum_k \sigma_k^2(x), \quad \sigma_k^2(x) = \langle \psi_0 | A_k^2 | \psi_0 \rangle - \langle \psi_0 | A_k | \psi_0 \rangle^2\]</div>
+</section>
+<section id="enhanced-loss-function">
+<h3>Enhanced Loss Function<a class="headerlink" href="#enhanced-loss-function" title="Link to this heading"></a></h3>
+<p>The quantum geometric loss combines displacement and fluctuation terms:</p>
+<div class="math notranslate nohighlight">
+\[L = \sum_i \left[ d^2(x_i) + w \cdot \sigma^2(x_i) \right] + \lambda \cdot P_{\text{topology}}\]</div>
+<p>where:
+- <span class="math notranslate nohighlight">\(d^2(x) = \|\langle A \rangle - x\|^2\)</span> is the reconstruction error
+- <span class="math notranslate nohighlight">\(\sigma^2(x)\)</span> controls quantum fluctuations
+- <span class="math notranslate nohighlight">\(P_{\text{topology}}\)</span> is a topological penalty term</p>
+</section>
+<section id="matrix-laplacian">
+<h3>Matrix Laplacian<a class="headerlink" href="#matrix-laplacian" title="Link to this heading"></a></h3>
+<p>The matrix Laplacian encodes the quantum geometric structure:</p>
+<div class="math notranslate nohighlight">
+\[\Delta = \sum_k [A_k, [A_k, \cdot]]\]</div>
+<p>Its eigendecomposition provides eigenmaps for dimension reduction and topological analysis.</p>
+</section>
+</section>
+<section id="key-methods">
+<h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading"></a></h2>
+<section id="core-quantum-operations">
+<h3>Core Quantum Operations<a class="headerlink" href="#core-quantum-operations" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_quantum_fluctuations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_quantum_fluctuations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum fluctuations σ²(x) = Σₐ (⟨Xₐ²⟩ - ⟨Xₐ⟩²).</p>
+<p>Quantum fluctuations measure the quantum uncertainty in the
+encoding and are crucial for the quantum geometric loss function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>total_variance: Total quantum fluctuation σ²(x)</p></li>
+<li><p>individual_variances: Per-operator variances σₐ²(x)</p></li>
+<li><p>expectations: Operator expectations ⟨Xₐ⟩</p></li>
+<li><p>ground_state_energy: 2λ(x) = σ²(x) + d²(x)</p></li>
+<li><p>displacement_error: d²(x) = ||⟨X⟩ - x||²</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with fluctuation analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_matrix_laplacian</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_matrix_laplacian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Compute matrix Laplacian: Δ = Σₐ [Xₐ, [Xₐ, ·]]</p>
+<p>The matrix Laplacian encodes the quantum geometric structure
+and is used for spectral analysis and dimension estimation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matrix Laplacian as (N²×N²) tensor representing the operator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_eigenmaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_eigenmaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Compute eigenmaps of the matrix Laplacian.</p>
+<p>Eigenmaps provide a spectral decomposition of the quantum geometry
+and are used for dimension reduction and topological analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>eigenvalues: Real eigenvalues sorted ascending, shape (n_modes,)</p></li>
+<li><p>eigenmaps: Eigenmap matrices, shape (n_modes, N, N)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (eigenvalues, eigenmaps)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">estimate_intrinsic_dimension_weyl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Estimate intrinsic dimension using Weyl’s law: N(λ) ~ λ^(d/2).</p>
+<p>This provides a quantum geometric approach to dimension estimation
+based on the eigenvalue density of the matrix Laplacian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lambda_max</strong> – Maximum eigenvalue to consider (None = auto)</p></li>
+<li><p><strong>n_points</strong> – Number of points for eigenvalue counting</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with dimension estimation results</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="topological-analysis">
+<h3>Topological Analysis<a class="headerlink" href="#topological-analysis" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_berry_curvature_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_grid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_berry_curvature_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry curvature field using topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_grid</strong> – Grid of parameter points, shape (N_x, N_y, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for curvature</p></li>
+<li><p><strong>nu</strong> – Parameter directions for curvature</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry curvature field, shape (N_x, N_y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_chern_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closed_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_chern_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Compute Chern number using topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>closed_path</strong> – Points defining closed path, shape (N_points, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for integration</p></li>
+<li><p><strong>nu</strong> – Parameter directions for integration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Chern number (topological invariant)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">detect_quantum_phase_transitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.detect_quantum_phase_transitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Detect quantum phase transitions using topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_path</strong> – Path through parameter space</p></li>
+<li><p><strong>threshold</strong> – Threshold for detecting transitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with transition analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="quantum-information">
+<h3>Quantum Information<a class="headerlink" href="#quantum-information" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_von_neumann_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_von_neumann_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd><p>Compute von Neumann entropy of ground state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Parameter point</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Von Neumann entropy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_entanglement_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subsystem_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_entanglement_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd><p>Compute entanglement entropy between subsystems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Parameter point</p></li>
+<li><p><strong>subsystem_dims</strong> – Bipartition dimensions (auto-detected if None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Entanglement entropy</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">compute_quantum_fisher_information_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.compute_quantum_fisher_information_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum Fisher information matrix using quantum info analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Parameter point</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Fisher information matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="comprehensive-analysis">
+<h3>Comprehensive Analysis<a class="headerlink" href="#comprehensive-analysis" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-prename descclassname"><span class="pre">QuantumGeometryTrainer.</span></span><span class="sig-name descname"><span class="pre">analyze_complete_quantum_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_topology</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_information</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/geometry/quantum_geometry_trainer.html#QuantumGeometryTrainer.analyze_complete_quantum_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd><p>Complete quantum geometric analysis combining all advanced features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Sample points for analysis</p></li>
+<li><p><strong>compute_topology</strong> – Whether to compute topological properties</p></li>
+<li><p><strong>compute_information</strong> – Whether to compute quantum information measures</p></li>
+<li><p><strong>output_dir</strong> – Directory for saving visualizations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Comprehensive analysis dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="basic-quantum-geometry-analysis">
+<h3>Basic Quantum Geometry Analysis<a class="headerlink" href="#basic-quantum-geometry-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.geometry.quantum_geometry_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumGeometryTrainer</span>
+
+<span class="c1"># Initialize trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">fluctuation_weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">topology_weight</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="c1"># Sample data point</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">])</span>
+
+<span class="c1"># Analyze quantum fluctuations</span>
+<span class="n">fluctuations</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_quantum_fluctuations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total variance: </span><span class="si">{</span><span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;total_variance&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Displacement error: </span><span class="si">{</span><span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;displacement_error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="berry-curvature-field-computation">
+<h3>Berry Curvature Field Computation<a class="headerlink" href="#berry-curvature-field-computation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 2D parameter grid</span>
+<span class="n">n_grid</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x_range</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">)</span>
+<span class="n">y_range</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+
+<span class="n">grid_points</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_grid</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">grid_points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+<span class="n">grid_points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y</span>
+
+<span class="c1"># Compute Berry curvature field</span>
+<span class="n">curvature_field</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_berry_curvature_field</span><span class="p">(</span><span class="n">grid_points</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">curvature_field</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Berry Curvature Ω₁₂&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Berry Curvature Field&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="intrinsic-dimension-estimation">
+<h3>Intrinsic Dimension Estimation<a class="headerlink" href="#intrinsic-dimension-estimation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute eigenmaps of matrix Laplacian</span>
+<span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenmaps</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_eigenmaps</span><span class="p">()</span>
+
+<span class="c1"># Estimate intrinsic dimension using Weyl&#39;s law</span>
+<span class="n">dim_results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">estimate_intrinsic_dimension_weyl</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated intrinsic dimension: </span><span class="si">{</span><span class="n">dim_results</span><span class="p">[</span><span class="s1">&#39;estimated_dimension&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confidence: </span><span class="si">{</span><span class="n">dim_results</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-quantum-geometric-analysis">
+<h3>Complete Quantum Geometric Analysis<a class="headerlink" href="#complete-quantum-geometric-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate sample manifold data</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+<span class="n">manifold_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_points</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_points</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Comprehensive analysis</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">analyze_complete_quantum_geometry</span><span class="p">(</span>
+    <span class="n">manifold_data</span><span class="p">,</span>
+    <span class="n">compute_topology</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">compute_information</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;geometry_analysis&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract key insights</span>
+<span class="n">topology</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;topology&#39;</span><span class="p">]</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;quantum_information&#39;</span><span class="p">]</span>
+<span class="n">insights</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;insights&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Topological Properties:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Berry curvature: </span><span class="si">{</span><span class="n">topology</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sample_berry_curvature&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;N/A&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Quantum metric trace: </span><span class="si">{</span><span class="n">topology</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;quantum_metric_trace&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;N/A&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quantum Information:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Von Neumann entropy: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;von_neumann_entropy&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Information capacity: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;capacity_measures&#39;</span><span class="p">][</span><span class="s1">&#39;information_capacity&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Geometric Insights:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">insights</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<section id="computational-complexity">
+<h3>Computational Complexity<a class="headerlink" href="#computational-complexity" title="Link to this heading"></a></h3>
+<p>The computational complexity of key operations:</p>
+<ul class="simple">
+<li><p><strong>Ground state computation</strong>: <span class="math notranslate nohighlight">\(O(N^3)\)</span> per eigendecomposition</p></li>
+<li><p><strong>Berry curvature field</strong>: <span class="math notranslate nohighlight">\(O(G^2 \cdot N^3)\)</span> for <span class="math notranslate nohighlight">\(G \times G\)</span> grid</p></li>
+<li><p><strong>Matrix Laplacian eigenmaps</strong>: <span class="math notranslate nohighlight">\(O(N^6)\)</span> for full eigendecomposition</p></li>
+<li><p><strong>Quantum Fisher information</strong>: <span class="math notranslate nohighlight">\(O(D^2 \cdot N^3)\)</span> for <span class="math notranslate nohighlight">\(D\)</span> parameters</p></li>
+</ul>
+</section>
+<section id="memory-requirements">
+<h3>Memory Requirements<a class="headerlink" href="#memory-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Feature operators</strong>: <span class="math notranslate nohighlight">\(D \cdot N^2\)</span> complex numbers</p></li>
+<li><p><strong>Matrix Laplacian</strong>: <span class="math notranslate nohighlight">\(N^4\)</span> complex numbers (can be large!)</p></li>
+<li><p><strong>Eigenmap cache</strong>: <span class="math notranslate nohighlight">\(n_{\text{modes}} \cdot N^2\)</span> complex numbers</p></li>
+</ul>
+</section>
+<section id="optimization-tips">
+<h3>Optimization Tips<a class="headerlink" href="#optimization-tips" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Limit eigenmap computation</strong>: Set <code class="docutils literal notranslate"><span class="pre">n_eigenmaps</span></code> to reduce memory usage</p></li>
+<li><p><strong>Use caching</strong>: Enable geometry caching for repeated analysis</p></li>
+<li><p><strong>Batch processing</strong>: Process multiple points together when possible</p></li>
+<li><p><strong>GPU acceleration</strong>: Move computations to GPU for larger problems</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memory-efficient configuration</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># Keep moderate for memory</span>
+    <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">n_eigenmaps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># Limit eigenmap computation</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="topological_analysis.html"><span class="doc">Topological Analysis API</span></a> - Detailed topological analysis methods</p></li>
+<li><p><a class="reference internal" href="quantum_information.html"><span class="doc">Quantum Information Analysis API</span></a> - Quantum information measures</p></li>
+<li><p><span class="xref std std-doc">../math/quantum_matrix_geometry</span> - Mathematical foundations</p></li>
+<li><p><span class="xref std std-doc">../advanced/berry_curvature</span> - Berry curvature computation details</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core.html" class="btn btn-neutral float-left" title="Core QGML Framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="topological_analysis.html" class="btn btn-neutral float-right" title="Topological Analysis API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

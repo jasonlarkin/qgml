@@ -1,0 +1,236 @@
+/* Custom CSS for QMML Documentation */
+
+/* Color scheme inspired by quantum physics */
+:root {
+    --qmml-primary: #2c3e50;
+    --qmml-secondary: #3498db;
+    --qmml-accent: #e74c3c;
+    --qmml-success: #27ae60;
+    --qmml-warning: #f39c12;
+    --qmml-quantum: #9b59b6;
+    --qmml-light: #ecf0f1;
+    --qmml-dark: #2c3e50;
+}
+
+/* Custom headers with quantum-inspired styling */
+.rst-content h1 {
+    color: var(--qmml-primary);
+    border-bottom: 3px solid var(--qmml-secondary);
+    padding-bottom: 0.5rem;
+}
+
+.rst-content h2 {
+    color: var(--qmml-secondary);
+    border-left: 4px solid var(--qmml-quantum);
+    padding-left: 1rem;
+}
+
+.rst-content h3 {
+    color: var(--qmml-quantum);
+}
+
+/* Math equations styling */
+.math {
+    color: var(--qmml-primary);
+    font-size: 1.1em;
+}
+
+/* Code blocks with quantum theme */
+.highlight {
+    border-left: 4px solid var(--qmml-secondary);
+    border-radius: 4px;
+}
+
+.highlight-python .highlight {
+    background: #f8f9fa;
+}
+
+/* API documentation styling */
+.py.class {
+    border: 1px solid var(--qmml-light);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.py.method {
+    border-left: 3px solid var(--qmml-quantum);
+    padding-left: 1rem;
+    margin: 0.5rem 0;
+}
+
+/* Custom admonitions */
+.admonition.note {
+    border-left: 4px solid var(--qmml-secondary);
+}
+
+.admonition.warning {
+    border-left: 4px solid var(--qmml-warning);
+}
+
+.admonition.tip {
+    border-left: 4px solid var(--qmml-success);
+}
+
+/* Navigation improvements */
+.wy-menu-vertical a {
+    color: #ffffff !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.wy-menu-vertical a:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Improve sidebar text contrast */
+.wy-menu-vertical li.current > a {
+    color: #ffffff !important;
+    background-color: rgba(255,255,255,0.15) !important;
+}
+
+.wy-menu-vertical li.toctree-l1 > a {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.wy-menu-vertical li.toctree-l2 > a {
+    color: #e8e8e8 !important;
+    font-weight: 500;
+}
+
+.wy-menu-vertical li.toctree-l3 > a {
+    color: #d0d0d0 !important;
+    font-weight: 400;
+}
+
+/* Section headers in sidebar */
+.wy-menu-vertical .caption {
+    color: #ffffff !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Tables */
+.rst-content table.docutils {
+    border-collapse: collapse;
+    border: 1px solid var(--qmml-light);
+}
+
+.rst-content table.docutils th {
+    background-color: var(--qmml-secondary);
+    color: white;
+    padding: 0.75rem;
+}
+
+.rst-content table.docutils td {
+    padding: 0.5rem;
+    border: 1px solid var(--qmml-light);
+}
+
+/* Quantum-inspired elements */
+.quantum-highlight {
+    background: linear-gradient(45deg, rgba(155, 89, 182, 0.1), rgba(52, 152, 219, 0.1));
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    border-left: 3px solid var(--qmml-quantum);
+}
+
+/* Mathematical notation improvements */
+.rst-content .math-display {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--qmml-light);
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+/* Code documentation styling */
+.sig {
+    background: var(--qmml-light);
+    border-radius: 4px;
+    padding: 0.5rem;
+    border-left: 3px solid var(--qmml-secondary);
+}
+
+.sig-name {
+    color: var(--qmml-primary);
+    font-weight: bold;
+}
+
+/* Performance indicators */
+.complexity-note {
+    background: rgba(241, 196, 15, 0.1);
+    border: 1px solid var(--qmml-warning);
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin: 1rem 0;
+}
+
+.memory-note {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid var(--qmml-accent);
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin: 1rem 0;
+}
+
+/* Example boxes */
+.example-box {
+    background: rgba(39, 174, 96, 0.1);
+    border: 1px solid var(--qmml-success);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.example-box h4 {
+    color: var(--qmml-success);
+    margin-top: 0;
+}
+
+/* Interactive elements */
+.interactive-demo {
+    border: 2px dashed var(--qmml-secondary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    background: rgba(52, 152, 219, 0.05);
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+    .rst-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .rst-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .py.class {
+        padding: 0.5rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --qmml-light: #34495e;
+        --qmml-dark: #ecf0f1;
+    }
+    
+    .rst-content {
+        color: var(--qmml-dark);
+    }
+    
+    .highlight-python .highlight {
+        background: #2c3e50;
+    }
+}

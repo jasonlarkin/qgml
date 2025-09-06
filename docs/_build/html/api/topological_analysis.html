@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topological Analysis API &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "macros": {"ket": ["|#1\\rangle", 1], "bra": ["\\langle#1|", 1], "braket": ["\\langle#1|#2\\rangle", 2], "tr": "\\text{Tr}", "argmin": "\\text{argmin}", "argmax": "\\text{argmax}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quantum Information Analysis API" href="quantum_information.html" />
+    <link rel="prev" title="Quantum Geometry Trainer API" href="quantum_geometry.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Topological Analysis API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-background">Mathematical Background</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#berry-connection-and-curvature">Berry Connection and Curvature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chern-numbers">Chern Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-metric-tensor">Quantum Metric Tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#core-classes">Core Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#topologicalanalyzer">TopologicalAnalyzer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#key-methods">Key Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Berry Connection and Curvature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.compute_berry_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.compute_berry_curvature_2d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.compute_berry_curvature_field()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#topological-invariants">Topological Invariants</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.compute_chern_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.compute_topological_charge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#geometric-analysis">Geometric Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.compute_quantum_metric_tensor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.detect_quantum_phase_transitions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comprehensive-analysis">Comprehensive Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.analyze_topological_properties()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">TopologicalAnalyzer.visualize_topology()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-berry-curvature-computation">Basic Berry Curvature Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#berry-curvature-field-visualization">Berry Curvature Field Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chern-number-calculation">Chern Number Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-phase-transition-detection">Quantum Phase Transition Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-metric-tensor-analysis">Quantum Metric Tensor Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topological-charge-computation">Topological Charge Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comprehensive-topological-analysis">Comprehensive Topological Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-and-numerical-considerations">Performance and Numerical Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#computational-complexity">Computational Complexity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numerical-stability">Numerical Stability</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#custom-phase-transition-indicators">Custom Phase Transition Indicators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-scale-topological-analysis">Multi-Scale Topological Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Topological Analysis API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/topological_analysis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="topological-analysis-api">
+<h1>Topological Analysis API<a class="headerlink" href="#topological-analysis-api" title="Link to this heading"></a></h1>
+<p>The topological analysis module provides advanced tools for computing topological invariants and analyzing quantum phase transitions in parameter space.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Topological analysis in QGML enables:</p>
+<ul class="simple">
+<li><p><strong>Berry curvature computation</strong> over parameter manifolds</p></li>
+<li><p><strong>Chern number calculation</strong> for topological classification</p></li>
+<li><p><strong>Quantum phase transition detection</strong> via geometric indicators</p></li>
+<li><p><strong>Quantum metric tensor analysis</strong> for geometric properties</p></li>
+<li><p><strong>Topological charge and winding number</strong> computation</p></li>
+</ul>
+</section>
+<section id="mathematical-background">
+<h2>Mathematical Background<a class="headerlink" href="#mathematical-background" title="Link to this heading"></a></h2>
+<section id="berry-connection-and-curvature">
+<h3>Berry Connection and Curvature<a class="headerlink" href="#berry-connection-and-curvature" title="Link to this heading"></a></h3>
+<p>The Berry connection encodes how quantum states change with parameters:</p>
+<div class="math notranslate nohighlight">
+\[A_\mu(x) = i \langle \psi_0(x) | \partial_\mu \psi_0(x) \rangle\]</div>
+<p>The Berry curvature is the field strength of this connection:</p>
+<div class="math notranslate nohighlight">
+\[\Omega_{\mu\nu}(x) = \partial_\mu A_\nu - \partial_\nu A_\mu\]</div>
+<p>For numerical computation, we use the plaquette method with Wilson loops:</p>
+<div class="math notranslate nohighlight">
+\[\Omega_{\mu\nu} = \frac{1}{\epsilon^2} \text{Im} \ln \left( \frac{\langle \psi_{00} | \psi_{10} \rangle \langle \psi_{10} | \psi_{11} \rangle \langle \psi_{11} | \psi_{01} \rangle \langle \psi_{01} | \psi_{00} \rangle}{|\langle \psi_{00} | \psi_{10} \rangle||\langle \psi_{10} | \psi_{11} \rangle||\langle \psi_{11} | \psi_{01} \rangle||\langle \psi_{01} | \psi_{00} \rangle|} \right)\]</div>
+</section>
+<section id="chern-numbers">
+<h3>Chern Numbers<a class="headerlink" href="#chern-numbers" title="Link to this heading"></a></h3>
+<p>The first Chern number is a topological invariant:</p>
+<div class="math notranslate nohighlight">
+\[c_1 = \frac{1}{2\pi} \oint_{S^2} \Omega_{\mu\nu} dx^\mu \wedge dx^\nu\]</div>
+<p>For discrete computation over a closed path:</p>
+<div class="math notranslate nohighlight">
+\[c_1 \approx \frac{1}{2\pi} \sum_{\text{plaquettes}} \Omega_{\mu\nu} \Delta x^\mu \Delta x^\nu\]</div>
+</section>
+<section id="quantum-metric-tensor">
+<h3>Quantum Metric Tensor<a class="headerlink" href="#quantum-metric-tensor" title="Link to this heading"></a></h3>
+<p>The quantum metric tensor measures geometric distances in parameter space:</p>
+<div class="math notranslate nohighlight">
+\[g_{\mu\nu} = \text{Re} \langle \partial_\mu \psi | \partial_\nu \psi \rangle - \text{Re} \langle \partial_\mu \psi | \psi \rangle \text{Re} \langle \psi | \partial_\nu \psi \rangle\]</div>
+</section>
+</section>
+<section id="core-classes">
+<h2>Core Classes<a class="headerlink" href="#core-classes" title="Link to this heading"></a></h2>
+<section id="topologicalanalyzer">
+<h3>TopologicalAnalyzer<a class="headerlink" href="#topologicalanalyzer" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qgml.topology.topological_analyzer.</span></span><span class="sig-name descname"><span class="pre">TopologicalAnalyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_trainer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Advanced topological analysis for quantum geometric systems.</p>
+<p>Provides tools for analyzing the topological properties of quantum
+matrix machine learning models, including Berry curvature fields,
+Chern numbers, and quantum phase transitions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_trainer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize topological analyzer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quantum_trainer</strong> – Any quantum matrix trainer with ground state computation</p></li>
+<li><p><strong>epsilon</strong> – Finite difference step size for derivatives</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_connection">
+<span class="sig-name descname"><span class="pre">compute_berry_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.complex128</span></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_berry_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_connection" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry connection A_μ = i⟨ψ|∂_μ|ψ⟩ in given direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Parameter point of shape (D,)</p></li>
+<li><p><strong>direction</strong> – Derivative direction (0 to D-1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry connection component A_μ(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_curvature_2d">
+<span class="sig-name descname"><span class="pre">compute_berry_curvature_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_berry_curvature_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_curvature_2d" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry curvature Ω_μν = ∂_μ A_ν - ∂_ν A_μ for 2D parameter space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Parameter point of shape (D,) with D &gt;= 2</p></li>
+<li><p><strong>mu</strong> – Parameter directions for curvature computation</p></li>
+<li><p><strong>nu</strong> – Parameter directions for curvature computation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry curvature Ω_μν(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_curvature_field">
+<span class="sig-name descname"><span class="pre">compute_berry_curvature_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_grid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_berry_curvature_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_curvature_field" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry curvature field over a 2D grid of parameter points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_grid</strong> – Grid of parameter points, shape (N_x, N_y, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for curvature</p></li>
+<li><p><strong>nu</strong> – Parameter directions for curvature</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry curvature field, shape (N_x, N_y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_chern_number">
+<span class="sig-name descname"><span class="pre">compute_chern_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closed_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_chern_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_chern_number" title="Link to this definition"></a></dt>
+<dd><p>Compute first Chern number c₁ = (1/2π) ∮ Ω_μν dS over closed surface.</p>
+<p>For a closed path in 2D parameter space, this computes the integral
+of Berry curvature over the enclosed area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>closed_path</strong> – Points defining closed path, shape (N_points, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for integration</p></li>
+<li><p><strong>nu</strong> – Parameter directions for integration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Chern number (topological invariant)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_quantum_metric_tensor">
+<span class="sig-name descname"><span class="pre">compute_quantum_metric_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_quantum_metric_tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_quantum_metric_tensor" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum metric tensor g_μν = Re⟨∂_μψ|∂_νψ⟩ - Re⟨∂_μψ|ψ⟩Re⟨ψ|∂_νψ⟩.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Parameter point of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantum metric tensor, shape (D, D)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.detect_quantum_phase_transitions">
+<span class="sig-name descname"><span class="pre">detect_quantum_phase_transitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.detect_quantum_phase_transitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.detect_quantum_phase_transitions" title="Link to this definition"></a></dt>
+<dd><p>Detect quantum phase transitions along a parameter path.</p>
+<p>Phase transitions are identified by:
+1. Sudden changes in Berry curvature
+2. Eigenvalue gap closings in the Hamiltonian
+3. Discontinuities in quantum metric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_path</strong> – Path through parameter space, shape (N_points, D)</p></li>
+<li><p><strong>threshold</strong> – Threshold for detecting transitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with transition analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_topological_charge">
+<span class="sig-name descname"><span class="pre">compute_topological_charge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_circle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_topological_charge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_topological_charge" title="Link to this definition"></a></dt>
+<dd><p>Compute topological charge by integrating Berry curvature around a circle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_center</strong> – Center point for circular integration</p></li>
+<li><p><strong>radius</strong> – Radius of integration circle</p></li>
+<li><p><strong>n_circle</strong> – Number of points on circle</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Topological charge (winding number)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.analyze_topological_properties">
+<span class="sig-name descname"><span class="pre">analyze_topological_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_transitions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.analyze_topological_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.analyze_topological_properties" title="Link to this definition"></a></dt>
+<dd><p>Comprehensive topological analysis of quantum geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Sample points for analysis, shape (N_points, D)</p></li>
+<li><p><strong>compute_field</strong> – Whether to compute Berry curvature field</p></li>
+<li><p><strong>compute_transitions</strong> – Whether to analyze phase transitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with complete topological analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.topology.topological_analyzer.TopologicalAnalyzer.visualize_topology">
+<span class="sig-name descname"><span class="pre">visualize_topology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.visualize_topology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.topology.topological_analyzer.TopologicalAnalyzer.visualize_topology" title="Link to this definition"></a></dt>
+<dd><p>Create visualizations of topological properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>analysis_results</strong> – Results from analyze_topological_properties</p></li>
+<li><p><strong>output_dir</strong> – Directory to save plots (None = display only)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="key-methods">
+<h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Berry Connection and Curvature<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">compute_berry_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.complex128</span></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_berry_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry connection A_μ = i⟨ψ|∂_μ|ψ⟩ in given direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Parameter point of shape (D,)</p></li>
+<li><p><strong>direction</strong> – Derivative direction (0 to D-1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry connection component A_μ(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">compute_berry_curvature_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_berry_curvature_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry curvature Ω_μν = ∂_μ A_ν - ∂_ν A_μ for 2D parameter space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Parameter point of shape (D,) with D &gt;= 2</p></li>
+<li><p><strong>mu</strong> – Parameter directions for curvature computation</p></li>
+<li><p><strong>nu</strong> – Parameter directions for curvature computation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry curvature Ω_μν(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">compute_berry_curvature_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_grid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_berry_curvature_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Compute Berry curvature field over a 2D grid of parameter points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_grid</strong> – Grid of parameter points, shape (N_x, N_y, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for curvature</p></li>
+<li><p><strong>nu</strong> – Parameter directions for curvature</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Berry curvature field, shape (N_x, N_y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="topological-invariants">
+<h3>Topological Invariants<a class="headerlink" href="#topological-invariants" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">compute_chern_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closed_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_chern_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>Compute first Chern number c₁ = (1/2π) ∮ Ω_μν dS over closed surface.</p>
+<p>For a closed path in 2D parameter space, this computes the integral
+of Berry curvature over the enclosed area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>closed_path</strong> – Points defining closed path, shape (N_points, D)</p></li>
+<li><p><strong>mu</strong> – Parameter directions for integration</p></li>
+<li><p><strong>nu</strong> – Parameter directions for integration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Chern number (topological invariant)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">compute_topological_charge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_circle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_topological_charge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Compute topological charge by integrating Berry curvature around a circle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_center</strong> – Center point for circular integration</p></li>
+<li><p><strong>radius</strong> – Radius of integration circle</p></li>
+<li><p><strong>n_circle</strong> – Number of points on circle</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Topological charge (winding number)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="geometric-analysis">
+<h3>Geometric Analysis<a class="headerlink" href="#geometric-analysis" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">compute_quantum_metric_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.compute_quantum_metric_tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum metric tensor g_μν = Re⟨∂_μψ|∂_νψ⟩ - Re⟨∂_μψ|ψ⟩Re⟨ψ|∂_νψ⟩.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Parameter point of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantum metric tensor, shape (D, D)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">detect_quantum_phase_transitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.detect_quantum_phase_transitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd><p>Detect quantum phase transitions along a parameter path.</p>
+<p>Phase transitions are identified by:
+1. Sudden changes in Berry curvature
+2. Eigenvalue gap closings in the Hamiltonian
+3. Discontinuities in quantum metric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter_path</strong> – Path through parameter space, shape (N_points, D)</p></li>
+<li><p><strong>threshold</strong> – Threshold for detecting transitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with transition analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="comprehensive-analysis">
+<h3>Comprehensive Analysis<a class="headerlink" href="#comprehensive-analysis" title="Link to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">analyze_topological_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_transitions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.analyze_topological_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd><p>Comprehensive topological analysis of quantum geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Sample points for analysis, shape (N_points, D)</p></li>
+<li><p><strong>compute_field</strong> – Whether to compute Berry curvature field</p></li>
+<li><p><strong>compute_transitions</strong> – Whether to analyze phase transitions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with complete topological analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-prename descclassname"><span class="pre">TopologicalAnalyzer.</span></span><span class="sig-name descname"><span class="pre">visualize_topology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/qgml/topology/topological_analyzer.html#TopologicalAnalyzer.visualize_topology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd><p>Create visualizations of topological properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>analysis_results</strong> – Results from analyze_topological_properties</p></li>
+<li><p><strong>output_dir</strong> – Directory to save plots (None = display only)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="basic-berry-curvature-computation">
+<h3>Basic Berry Curvature Computation<a class="headerlink" href="#basic-berry-curvature-computation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.geometry.quantum_geometry_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumGeometryTrainer</span>
+
+<span class="c1"># Create trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">topological_analyzer</span>
+
+<span class="c1"># Compute Berry curvature at a point</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">])</span>
+<span class="n">berry_curvature</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Berry curvature Ω₁₂ = </span><span class="si">{</span><span class="n">berry_curvature</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="berry-curvature-field-visualization">
+<h3>Berry Curvature Field Visualization<a class="headerlink" href="#berry-curvature-field-visualization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create parameter grid</span>
+<span class="n">n_grid</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">x_range</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">)</span>
+<span class="n">y_range</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+
+<span class="n">grid_points</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_grid</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">grid_points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+<span class="n">grid_points</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y</span>
+
+<span class="c1"># Compute Berry curvature field</span>
+<span class="n">curvature_field</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_field</span><span class="p">(</span><span class="n">grid_points</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualization</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">curvature_field</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+               <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+               <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Parameter x₁&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Parameter x₂&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Berry Curvature Field Ω₁₂(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Berry Curvature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="chern-number-calculation">
+<h3>Chern Number Calculation<a class="headerlink" href="#chern-number-calculation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a closed path (circle)</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">circular_path</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">circular_path</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+<span class="n">circular_path</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+
+<span class="c1"># Compute Chern number</span>
+<span class="n">chern_number</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_chern_number</span><span class="p">(</span><span class="n">circular_path</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chern number c₁ = </span><span class="si">{</span><span class="n">chern_number</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Theoretical expectation for simple systems</span>
+<span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">chern_number</span> <span class="o">-</span> <span class="nb">round</span><span class="p">(</span><span class="n">chern_number</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topological class: integer Chern number = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">chern_number</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Non-trivial topological structure detected&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quantum-phase-transition-detection">
+<h3>Quantum Phase Transition Detection<a class="headerlink" href="#quantum-phase-transition-detection" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create parameter path through potential phase transition</span>
+<span class="n">n_steps</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">parameter_path</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_steps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Linear path from (-1, 0) to (1, 0)</span>
+<span class="n">parameter_path</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_steps</span><span class="p">)</span>
+<span class="n">parameter_path</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="c1"># Detect phase transitions</span>
+<span class="n">transitions</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">detect_quantum_phase_transitions</span><span class="p">(</span>
+    <span class="n">parameter_path</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;transitions&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> phase transitions:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">transition_type</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;transitions&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. At step </span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">transition_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot analysis</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Energy gaps</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;energy_gaps&#39;</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Energy Gap Along Path&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ΔE = E₁ - E₀&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Berry curvature</span>
+<span class="k">if</span> <span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;berry_curvatures&#39;</span><span class="p">]:</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;berry_curvatures&#39;</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Berry Curvature Along Path&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ω₁₂&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Mark transitions</span>
+<span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;transitions&#39;</span><span class="p">]:</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;berry_curvatures&#39;</span><span class="p">]:</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="quantum-metric-tensor-analysis">
+<h3>Quantum Metric Tensor Analysis<a class="headerlink" href="#quantum-metric-tensor-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute quantum metric at a point</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+<span class="n">metric_tensor</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_quantum_metric_tensor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quantum Metric Tensor g_μν:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metric_tensor</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+<span class="c1"># Analyze geometric properties</span>
+<span class="n">eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">metric_tensor</span><span class="p">)</span>
+<span class="n">trace</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">metric_tensor</span><span class="p">)</span>
+<span class="n">determinant</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">metric_tensor</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Geometric Properties:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Trace: </span><span class="si">{</span><span class="n">trace</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Determinant: </span><span class="si">{</span><span class="n">determinant</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Eigenvalues: </span><span class="si">{</span><span class="n">eigenvals</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Condition number indicates metric quality</span>
+<span class="n">condition_number</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Condition number: </span><span class="si">{</span><span class="n">condition_number</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">condition_number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  → Well-conditioned metric&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  → Ill-conditioned metric (potential numerical issues)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="topological-charge-computation">
+<h3>Topological Charge Computation<a class="headerlink" href="#topological-charge-computation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute topological charge around a point</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">topological_charge</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_topological_charge</span><span class="p">(</span>
+    <span class="n">center</span><span class="p">,</span>
+    <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+    <span class="n">n_circle</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topological charge: </span><span class="si">{</span><span class="n">topological_charge</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Interpretation</span>
+<span class="n">charge_rounded</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">topological_charge</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">topological_charge</span> <span class="o">-</span> <span class="n">charge_rounded</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">charge_rounded</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  → Topologically trivial region&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  → Topological defect with charge </span><span class="si">{</span><span class="n">charge_rounded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  → Complex topological structure&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="comprehensive-topological-analysis">
+<h3>Comprehensive Topological Analysis<a class="headerlink" href="#comprehensive-topological-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate sample data (2D manifold)</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+<span class="n">manifold_points</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span>
+    <span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Full topological analysis</span>
+<span class="n">topo_analysis</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">analyze_topological_properties</span><span class="p">(</span>
+    <span class="n">manifold_points</span><span class="p">,</span>
+    <span class="n">compute_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">compute_transitions</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Topological Analysis Results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Parameter dimension: </span><span class="si">{</span><span class="n">topo_analysis</span><span class="p">[</span><span class="s1">&#39;parameter_dimension&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Sample Berry curvature: </span><span class="si">{</span><span class="n">topo_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sample_berry_curvature&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;N/A&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s1">&#39;field_statistics&#39;</span> <span class="ow">in</span> <span class="n">topo_analysis</span><span class="p">:</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">topo_analysis</span><span class="p">[</span><span class="s1">&#39;field_statistics&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Berry curvature field statistics:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Mean: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Std:  </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Range: [</span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s1">&#39;phase_transitions&#39;</span> <span class="ow">in</span> <span class="n">topo_analysis</span><span class="p">:</span>
+    <span class="n">n_trans</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">topo_analysis</span><span class="p">[</span><span class="s1">&#39;phase_transitions&#39;</span><span class="p">][</span><span class="s1">&#39;transitions&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Detected phase transitions: </span><span class="si">{</span><span class="n">n_trans</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize results</span>
+<span class="n">analyzer</span><span class="o">.</span><span class="n">visualize_topology</span><span class="p">(</span><span class="n">topo_analysis</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;topology_analysis&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-and-numerical-considerations">
+<h2>Performance and Numerical Considerations<a class="headerlink" href="#performance-and-numerical-considerations" title="Link to this heading"></a></h2>
+<section id="computational-complexity">
+<h3>Computational Complexity<a class="headerlink" href="#computational-complexity" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Berry curvature (single point)</strong>: <span class="math notranslate nohighlight">\(O(N^3)\)</span> - 4 eigendecompositions</p></li>
+<li><p><strong>Berry curvature field</strong>: <span class="math notranslate nohighlight">\(O(G^2 \cdot N^3)\)</span> for <span class="math notranslate nohighlight">\(G \times G\)</span> grid</p></li>
+<li><p><strong>Chern number</strong>: <span class="math notranslate nohighlight">\(O(P \cdot G^2 \cdot N^3)\)</span> for path with <span class="math notranslate nohighlight">\(P\)</span> points</p></li>
+<li><p><strong>Quantum metric tensor</strong>: <span class="math notranslate nohighlight">\(O(D^2 \cdot N^3)\)</span> for <span class="math notranslate nohighlight">\(D\)</span> parameters</p></li>
+</ul>
+</section>
+<section id="numerical-stability">
+<h3>Numerical Stability<a class="headerlink" href="#numerical-stability" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Finite difference step size</strong>: Choose <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> carefully
+- Too large: Inaccurate derivatives
+- Too small: Numerical noise dominance</p></li>
+<li><p><strong>Phase unwrapping</strong>: Berry curvature computed via Wilson loop phases
+- Automatic phase unwrapping in plaquette method
+- Robust against branch cuts</p></li>
+<li><p><strong>Eigenvalue degeneracies</strong>: Handle near-degenerate ground states
+- Use consistent phase conventions
+- Monitor eigenvalue gaps</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Robust parameter choices</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">TopologicalAnalyzer</span><span class="p">(</span>
+    <span class="n">trainer</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-4</span>  <span class="c1"># Good balance for most systems</span>
+<span class="p">)</span>
+
+<span class="c1"># Check numerical quality</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+<span class="n">eigenvals</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_eigensystem</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">gap</span> <span class="o">=</span> <span class="n">eigenvals</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">eigenvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">gap</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Near-degenerate ground state&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Consider increasing system size or changing parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-usage">
+<h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Link to this heading"></a></h2>
+<section id="custom-phase-transition-indicators">
+<h3>Custom Phase Transition Indicators<a class="headerlink" href="#custom-phase-transition-indicators" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Custom transition detection with multiple indicators</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_custom_transitions</span><span class="p">(</span><span class="n">analyzer</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enhanced transition detection with custom criteria.&quot;&quot;&quot;</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;positions&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;strengths&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Multiple indicators</span>
+        <span class="n">berry_prev</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_2d</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">berry_curr</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_2d</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">berry_next</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_2d</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Curvature discontinuity</span>
+        <span class="n">berry_jump</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">berry_next</span> <span class="o">-</span> <span class="n">berry_prev</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">berry_jump</span> <span class="o">&gt;</span> <span class="n">thresholds</span><span class="p">[</span><span class="s1">&#39;berry&#39;</span><span class="p">]:</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;types&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;berry_discontinuity&#39;</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;strengths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">berry_jump</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-scale-topological-analysis">
+<h3>Multi-Scale Topological Analysis<a class="headerlink" href="#multi-scale-topological-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multi_scale_topology</span><span class="p">(</span><span class="n">analyzer</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">scales</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze topology at multiple length scales.&quot;&quot;&quot;</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">scales</span><span class="p">:</span>
+        <span class="c1"># Generate circular path at this scale</span>
+        <span class="n">n_pts</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">50</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span>
+        <span class="n">angles</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_pts</span><span class="p">)</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pts</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">path</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+        <span class="n">path</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+
+        <span class="c1"># Compute topological invariants</span>
+        <span class="n">chern</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_chern_number</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">charge</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_topological_charge</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="n">scale</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;chern_number&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">chern</span><span class="p">),</span>
+            <span class="s1">&#39;topological_charge&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">charge</span><span class="p">)</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Usage</span>
+<span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">multi_topo</span> <span class="o">=</span> <span class="n">multi_scale_topology</span><span class="p">(</span><span class="n">analyzer</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">scales</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">scale</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">multi_topo</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scale </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s2">: Chern=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;chern_number&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;Charge=</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;topological_charge&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="quantum_geometry.html"><span class="doc">Quantum Geometry Trainer API</span></a> - Main quantum geometry trainer</p></li>
+<li><p><a class="reference internal" href="quantum_information.html"><span class="doc">Quantum Information Analysis API</span></a> - Quantum information measures</p></li>
+<li><p><span class="xref std std-doc">../advanced/berry_curvature</span> - Detailed Berry curvature theory</p></li>
+<li><p><span class="xref std std-doc">../advanced/chern_numbers</span> - Topological invariant computation</p></li>
+<li><p><span class="xref std std-doc">../math/topological_invariants</span> - Mathematical background</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quantum_geometry.html" class="btn btn-neutral float-left" title="Quantum Geometry Trainer API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quantum_information.html" class="btn btn-neutral float-right" title="Quantum Information Analysis API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

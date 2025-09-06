@@ -1,0 +1,130 @@
+{
+  "pytorch": {
+    "D3_QW0.0": {
+      "final_loss": 0.002318668644875288,
+      "reconstruction_error": 0.002318668644875288,
+      "quantum_fluctuation": 0.0,
+      "training_time": 3.3625640869140625,
+      "time_per_epoch": 0.016812820434570313,
+      "convergence_rate": 0.0,
+      "stability_score": 0.0,
+      "save_dir": "medium_comparison_results/pytorch_D3_QW0.0"
+    },
+    "D3_QW1.0": {
+      "final_loss": 0.23909105360507965,
+      "reconstruction_error": 0.06986269354820251,
+      "quantum_fluctuation": 0.16922836005687714,
+      "training_time": 8.168628692626953,
+      "time_per_epoch": 0.040843143463134765,
+      "convergence_rate": 0.0,
+      "stability_score": 0.0,
+      "save_dir": "medium_comparison_results/pytorch_D3_QW1.0"
+    },
+    "D4_QW0.0": {
+      "final_loss": 0.007535841781646013,
+      "reconstruction_error": 0.007535841781646013,
+      "quantum_fluctuation": 0.0,
+      "training_time": 4.108330011367798,
+      "time_per_epoch": 0.02054165005683899,
+      "convergence_rate": 0.0,
+      "stability_score": 0.0,
+      "save_dir": "medium_comparison_results/pytorch_D4_QW0.0"
+    },
+    "D4_QW0.5": {
+      "final_loss": 0.265298068523407,
+      "reconstruction_error": 0.09124156087636948,
+      "quantum_fluctuation": 0.3481130301952362,
+      "training_time": 10.80643367767334,
+      "time_per_epoch": 0.0540321683883667,
+      "convergence_rate": 0.0,
+      "stability_score": 0.0,
+      "save_dir": "medium_comparison_results/pytorch_D4_QW0.5"
+    },
+    "D6_QW0.0": {
+      "final_loss": 0.022827064618468285,
+      "reconstruction_error": 0.022827064618468285,
+      "quantum_fluctuation": 0.0,
+      "training_time": 5.6483235359191895,
+      "time_per_epoch": 0.028241617679595946,
+      "convergence_rate": 0.0,
+      "stability_score": 0.0,
+      "save_dir": "medium_comparison_results/pytorch_D6_QW0.0"
+    },
+    "D6_QW0.5": {
+      "final_loss": 0.43044716119766235,
+      "reconstruction_error": 0.1857224553823471,
+      "quantum_fluctuation": 0.4894494414329529,
+      "training_time": 5.517498016357422,
+      "time_per_epoch": 0.02758749008178711,
+      "convergence_rate": 0.0,
+      "stability_score": 0.0,
+      "save_dir": "medium_comparison_results/pytorch_D6_QW0.5"
+    }
+  },
+  "jax": {
+    "D3_QW0.0": {
+      "final_loss": 0.01272940012925062,
+      "reconstruction_error": 0.01272940012925062,
+      "quantum_fluctuation": 0.0,
+      "training_time": 5.318039178848267,
+      "time_per_epoch": 0.026590195894241334,
+      "convergence_rate": -0.00014421218433789687,
+      "stability_score": 0.0008736115244701555,
+      "save_dir": "medium_comparison_results/jax_D3_QW0.0"
+    },
+    "D3_QW1.0": {
+      "final_loss": 0.2733399756630188,
+      "reconstruction_error": 0.119034115465063,
+      "quantum_fluctuation": 0.15430586019795584,
+      "training_time": 8.767764568328857,
+      "time_per_epoch": 0.04383882284164429,
+      "convergence_rate": -0.0006268924373203809,
+      "stability_score": 0.0040490106818680685,
+      "save_dir": "medium_comparison_results/jax_D3_QW1.0"
+    },
+    "D4_QW0.0": {
+      "final_loss": 0.04755477529027496,
+      "reconstruction_error": 0.04755477529027496,
+      "quantum_fluctuation": 0.0,
+      "training_time": 5.55549168586731,
+      "time_per_epoch": 0.027777458429336547,
+      "convergence_rate": -0.00022859020351674104,
+      "stability_score": 0.00137684335907335,
+      "save_dir": "medium_comparison_results/jax_D4_QW0.0"
+    },
+    "D4_QW0.5": {
+      "final_loss": 0.3172745807957527,
+      "reconstruction_error": 0.121102364296863,
+      "quantum_fluctuation": 0.39234443299777944,
+      "training_time": 7.46721625328064,
+      "time_per_epoch": 0.0373360812664032,
+      "convergence_rate": -0.000520807086431766,
+      "stability_score": 0.003252487213322756,
+      "save_dir": "medium_comparison_results/jax_D4_QW0.5"
+    },
+    "D6_QW0.0": {
+      "final_loss": 0.11354605340287045,
+      "reconstruction_error": 0.11354605340287045,
+      "quantum_fluctuation": 0.0,
+      "training_time": 5.382806301116943,
+      "time_per_epoch": 0.026914031505584718,
+      "convergence_rate": -0.0002930503916846849,
+      "stability_score": 0.0016116341448152824,
+      "save_dir": "medium_comparison_results/jax_D6_QW0.0"
+    },
+    "D6_QW0.5": {
+      "final_loss": 0.5542669757463344,
+      "reconstruction_error": 0.2687962299923611,
+      "quantum_fluctuation": 0.5709414915079467,
+      "training_time": 5.861394643783569,
+      "time_per_epoch": 0.029306973218917846,
+      "convergence_rate": -0.0012166395154824764,
+      "stability_score": 0.00800205707762157,
+      "save_dir": "medium_comparison_results/jax_D6_QW0.5"
+    }
+  },
+  "comparison": {
+    "D3_QW0.0": {
+      "loss_difference": 0.010410731484375333,
+      "time_speedup": 0.6322939665973458,
+      "convergence_match": 

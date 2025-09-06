@@ -1,0 +1,1111 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core QGML Framework &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "macros": {"ket": ["|#1\\rangle", 1], "bra": ["\\langle#1|", 1], "braket": ["\\langle#1|#2\\rangle", 2], "tr": "\\text{Tr}", "argmin": "\\text{argmin}", "argmax": "\\text{argmax}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quantum Geometry Trainer API" href="quantum_geometry.html" />
+    <link rel="prev" title="QGML Visualization Gallery" href="../visualization_gallery.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core QGML Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core-classes">Core Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basequantummatrixtrainer">BaseQuantumMatrixTrainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer"><code class="docutils literal notranslate"><span class="pre">BaseQuantumMatrixTrainer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#unsupervisedmatrixtrainer">UnsupervisedMatrixTrainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer"><code class="docutils literal notranslate"><span class="pre">UnsupervisedMatrixTrainer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#supervisedmatrixtrainer">SupervisedMatrixTrainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer"><code class="docutils literal notranslate"><span class="pre">SupervisedMatrixTrainer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-foundations">Mathematical Foundations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-matrix-geometry">Quantum Matrix Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-point-cloud">Quantum Point Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loss-functions">Loss Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#common-usage-patterns">Common Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-initialization">Basic Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#training-workflow">Training Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-and-evaluation">Analysis and Evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-features">Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quantum-state-analysis">Quantum State Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-loss-functions">Custom Loss Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-acceleration">GPU Acceleration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling-and-debugging">Error Handling and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-tools">Debugging Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extending-the-framework">Extending the Framework</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-custom-trainers">Creating Custom Trainers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-custom-analysis">Adding Custom Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Core QGML Framework</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-qgml-framework">
+<h1>Core QGML Framework<a class="headerlink" href="#core-qgml-framework" title="Link to this heading"></a></h1>
+<p>This section documents the core components of the Quantum Geometric Machine Learning (QGML) framework.</p>
+<section id="architecture-overview">
+<h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading"></a></h2>
+<p>The QGML framework is built on a hierarchical architecture that promotes code reuse and modular development:</p>
+<div class="graphviz"><img src="../_images/graphviz-66f75a89ea80520ebf31404619775efecd3838ec.png" alt="digraph core_architecture {
+    rankdir=TB;
+    node [shape=box, style=&quot;rounded,filled&quot;, fillcolor=lightblue];
+    edge [arrowhead=open];
+
+    subgraph cluster_base {
+        label=&quot;Base Framework&quot;;
+        style=filled;
+        fillcolor=lightgray;
+
+        base [label=&quot;BaseQuantumMatrixTrainer\n• Hermitian matrix operations\n• Error Hamiltonian construction\n• Ground state computation\n• Quantum state analysis&quot;, fillcolor=lightgreen];
+    }
+
+    subgraph cluster_specialized {
+        label=&quot;Specialized Trainers&quot;;
+        style=filled;
+        fillcolor=lightyellow;
+
+        unsup [label=&quot;UnsupervisedMatrixTrainer\n• Manifold learning\n• Dimension estimation\n• Reconstruction-based loss&quot;];
+        sup [label=&quot;SupervisedMatrixTrainer\n• Regression/Classification\n• Target operator learning\n• Prediction-based loss&quot;];
+        geom [label=&quot;QuantumGeometryTrainer\n• Advanced geometric features\n• Topological analysis\n• Quantum information measures&quot;];
+        chromo [label=&quot;ChromosomalInstabilityTrainer\n• Genomic applications\n• Mixed loss functions\n• POVM framework&quot;];
+    }
+
+    subgraph cluster_analysis {
+        label=&quot;Analysis Modules&quot;;
+        style=filled;
+        fillcolor=lightcyan;
+
+        topo [label=&quot;TopologicalAnalyzer\n• Berry curvature\n• Chern numbers\n• Phase transitions&quot;];
+        info [label=&quot;QuantumInformationAnalyzer\n• Von Neumann entropy\n• Fisher information\n• Coherence measures&quot;];
+    }
+
+    base -&gt; unsup;
+    base -&gt; sup;
+    base -&gt; geom;
+    sup -&gt; chromo;
+
+    geom -&gt; topo;
+    geom -&gt; info;
+}" class="graphviz" /></div>
+</section>
+<section id="core-classes">
+<h2>Core Classes<a class="headerlink" href="#core-classes" title="Link to this heading"></a></h2>
+<section id="basequantummatrixtrainer">
+<h3>BaseQuantumMatrixTrainer<a class="headerlink" href="#basequantummatrixtrainer" title="Link to this heading"></a></h3>
+<p>The foundation class that implements core quantum matrix operations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qgml.core.base_quantum_trainer.</span></span><span class="sig-name descname"><span class="pre">BaseQuantumMatrixTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.9)"><span class="pre">dtype</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.complex64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch v2.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<p>Base class for Quantum Matrix Machine Learning (QMML) models.</p>
+<p>Implements core quantum matrix operations:
+- Hermitian matrix initialization and projection
+- Error Hamiltonian construction: H(x) = 1/2 Σₖ (Aₖ - xₖI)²
+- Ground state computation via eigendecomposition
+- Quantum state expectation values</p>
+<p>Subclasses implement specific learning objectives:
+- Unsupervised: Manifold learning via reconstruction
+- Supervised: Regression/classification via target operators</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch.dtype" title="(in PyTorch v2.9)"><span class="pre">dtype</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.complex64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize base quantum matrix trainer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – Dimension of Hilbert space (matrix size N×N)</p></li>
+<li><p><strong>D</strong> – Number of features/input dimensions</p></li>
+<li><p><strong>device</strong> – Computation device (‘cpu’ or ‘cuda’)</p></li>
+<li><p><strong>dtype</strong> – Matrix data type (torch.cfloat for complex Hermitian matrices)</p></li>
+<li><p><strong>seed</strong> – Random seed for reproducibility</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_error_hamiltonian">
+<span class="sig-name descname"><span class="pre">compute_error_hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.compute_error_hamiltonian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_error_hamiltonian" title="Link to this definition"></a></dt>
+<dd><p>Compute error Hamiltonian for input point x.</p>
+<p>The error Hamiltonian encodes the quantum geometric structure:
+H(x) = 1/2 Σₖ (Aₖ - xₖI)²</p>
+<p>This Hamiltonian has minimum eigenvalue 0 when the quantum state
+perfectly encodes the classical input through operator expectations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point tensor of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Error Hamiltonian H(x) of shape (N, N)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_ground_state">
+<span class="sig-name descname"><span class="pre">compute_ground_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.compute_ground_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_ground_state" title="Link to this definition"></a></dt>
+<dd><p>Compute ground state <a href="#id1"><span class="problematic" id="id2">|</span></a>ψ₀(x)⟩ for input x.</p>
+<p>The ground state minimizes the error Hamiltonian and provides
+the optimal quantum encoding of the classical input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point tensor of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ground state vector <a href="#id3"><span class="problematic" id="id4">|</span></a>ψ₀⟩ of shape (N,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_eigensystem">
+<span class="sig-name descname"><span class="pre">compute_eigensystem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.compute_eigensystem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_eigensystem" title="Link to this definition"></a></dt>
+<dd><p>Compute full eigendecomposition of error Hamiltonian.</p>
+<p>Useful for analyzing quantum geometric properties and
+excited state contributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point tensor of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>eigenvalues: Real eigenvalues sorted ascending, shape (N,)</p></li>
+<li><p>eigenvectors: Eigenvector matrix, shape (N, N)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of (eigenvalues, eigenvectors)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_feature_expectations">
+<span class="sig-name descname"><span class="pre">get_feature_expectations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.get_feature_expectations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_feature_expectations" title="Link to this definition"></a></dt>
+<dd><p>Compute feature operator expectations ⟨ψ₀|Aₖ|ψ₀⟩.</p>
+<p>These expectation values represent the quantum encoding
+of the classical input in the learned matrix representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point tensor of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Feature expectations of shape (D,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_quantum_fidelity">
+<span class="sig-name descname"><span class="pre">compute_quantum_fidelity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.compute_quantum_fidelity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_quantum_fidelity" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum fidelity between ground states of two inputs.</p>
+<p>Fidelity F(ψ₁, ψ₂) = <a href="#id5"><span class="problematic" id="id6">|</span></a>⟨ψ₁|ψ₂⟩|² measures quantum similarity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> – Input points of shape (D,)</p></li>
+<li><p><strong>x2</strong> – Input points of shape (D,)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantum fidelity F ∈ [0, 1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_quantum_state_properties">
+<span class="sig-name descname"><span class="pre">get_quantum_state_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.get_quantum_state_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_quantum_state_properties" title="Link to this definition"></a></dt>
+<dd><p>Analyze quantum properties of the ground state.</p>
+<p>Returns comprehensive quantum information for debugging
+and understanding the learned representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point tensor of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>ground_energy: Minimum eigenvalue</p></li>
+<li><p>energy_gap: Gap to first excited state</p></li>
+<li><p>feature_expectations: ⟨ψ|Aₖ|ψ⟩ values</p></li>
+<li><p>quantum_purity: Tr(ρ²) for ground state</p></li>
+<li><p>entanglement_entropy: von Neumann entropy (if applicable)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary containing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.forward">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass - must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input tensor</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Model output (predictions for supervised, reconstructions for unsupervised)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_loss">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.compute_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute loss function - must be implemented by subclasses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Loss tensor for backpropagation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_model_info">
+<span class="sig-name descname"><span class="pre">get_model_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/core/base_quantum_trainer.html#BaseQuantumMatrixTrainer.get_model_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_model_info" title="Link to this definition"></a></dt>
+<dd><p>Get comprehensive model information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with model architecture and parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>Key Features:</p>
+<ul class="simple">
+<li><p><strong>Hermitian Matrix Operations</strong>: Initialization, projection, and manipulation</p></li>
+<li><p><strong>Error Hamiltonian</strong>: Construction of <span class="math notranslate nohighlight">\(H(x) = \frac{1}{2} \sum_k (A_k - x_k I)^2\)</span></p></li>
+<li><p><strong>Ground State Computation</strong>: Eigendecomposition and quantum state analysis</p></li>
+<li><p><strong>Quantum Expectation Values</strong>: Computation of <span class="math notranslate nohighlight">\(\langle \psi | A_k | \psi \rangle\)</span></p></li>
+</ul>
+</section>
+<section id="unsupervisedmatrixtrainer">
+<h3>UnsupervisedMatrixTrainer<a class="headerlink" href="#unsupervisedmatrixtrainer" title="Link to this heading"></a></h3>
+<p>Extends the base framework for unsupervised manifold learning.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qgml.learning.unsupervised_trainer.</span></span><span class="sig-name descname"><span class="pre">UnsupervisedMatrixTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commutation_penalty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer" title="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseQuantumMatrixTrainer</span></code></a></p>
+<p>Unsupervised QMML trainer for manifold learning and dimension estimation.</p>
+<p>Learns feature operators {A_k} that minimize reconstruction error:
+L = Σᵢ ||xᵢ - X_A(xᵢ)||² + λ * commutation_penalty</p>
+<p>Where X_A(x) = {⟨ψ₀(x)|A_k|ψ₀(x)⟩} is the quantum point cloud.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commutation_penalty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize unsupervised QMML trainer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – Hilbert space dimension</p></li>
+<li><p><strong>D</strong> – Feature space dimension</p></li>
+<li><p><strong>learning_rate</strong> – Learning rate for optimization</p></li>
+<li><p><strong>commutation_penalty</strong> – Weight for commutator penalty term</p></li>
+<li><p><strong>optimizer_type</strong> – Optimizer type (‘adam’, ‘sgd’, ‘adamw’)</p></li>
+<li><p><strong>device</strong> – Computation device</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for base class</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass: compute quantum point cloud reconstruction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reconstructed point X_A(x) of shape (D,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_reconstruction_loss">
+<span class="sig-name descname"><span class="pre">compute_reconstruction_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.compute_reconstruction_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_reconstruction_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute reconstruction loss for a batch of points.</p>
+<p>L_reconstruction = (1/N) Σᵢ ||xᵢ - X_A(xᵢ)||²</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> – Batch of input points, shape (batch_size, D)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean reconstruction loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_commutation_penalty">
+<span class="sig-name descname"><span class="pre">compute_commutation_penalty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.compute_commutation_penalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_commutation_penalty" title="Link to this definition"></a></dt>
+<dd><p>Compute commutation penalty to encourage classical structure.</p>
+<p>Penalty = Σᵢⱼ ||[Aᵢ, Aⱼ]||²_F where [A,B] = AB - BA</p>
+<p>Large commutators indicate non-classical quantum correlations.
+Small commutators suggest classical geometric structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Commutation penalty term</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_loss">
+<span class="sig-name descname"><span class="pre">compute_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.compute_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute total loss with reconstruction and commutation terms.</p>
+<p>L_total = L_reconstruction + λ * L_commutation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> – Batch of training points, shape (batch_size, D)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing individual loss components and total loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.train_epoch">
+<span class="sig-name descname"><span class="pre">train_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.train_epoch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.train_epoch" title="Link to this definition"></a></dt>
+<dd><p>Train for one epoch with optional batching.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Training points, shape (n_points, D)</p></li>
+<li><p><strong>batch_size</strong> – Batch size for training (None = full batch)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with epoch metrics</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_split</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.fit" title="Link to this definition"></a></dt>
+<dd><p>Train the unsupervised QMML model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Training data, shape (n_points, D)</p></li>
+<li><p><strong>n_epochs</strong> – Number of training epochs</p></li>
+<li><p><strong>batch_size</strong> – Batch size (None = full batch)</p></li>
+<li><p><strong>validation_split</strong> – Fraction of data for validation</p></li>
+<li><p><strong>verbose</strong> – Whether to print training progress</p></li>
+<li><p><strong>save_history</strong> – Whether to save training history</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Training history dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.estimate_intrinsic_dimension">
+<span class="sig-name descname"><span class="pre">estimate_intrinsic_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.estimate_intrinsic_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.estimate_intrinsic_dimension" title="Link to this definition"></a></dt>
+<dd><p>Estimate intrinsic dimension by analyzing eigenvalue gaps.</p>
+<p>The intrinsic dimension corresponds to the number of small
+eigenvalues in the average error Hamiltonian spectrum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> – Test points for dimension estimation</p></li>
+<li><p><strong>energy_threshold</strong> – Threshold for small eigenvalues</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with dimension estimation results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.reconstruct_manifold">
+<span class="sig-name descname"><span class="pre">reconstruct_manifold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.reconstruct_manifold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.reconstruct_manifold" title="Link to this definition"></a></dt>
+<dd><p>Reconstruct points using learned quantum embedding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> – Input points to reconstruct</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (original_points, reconstructed_points)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.get_quantum_geometry_metrics">
+<span class="sig-name descname"><span class="pre">get_quantum_geometry_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/unsupervised_trainer.html#UnsupervisedMatrixTrainer.get_quantum_geometry_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.get_quantum_geometry_metrics" title="Link to this definition"></a></dt>
+<dd><p>Compute quantum geometric properties of the learned manifold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> – Sample points on the manifold</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with geometric metrics</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>Key Features:</p>
+<ul class="simple">
+<li><p><strong>Reconstruction Loss</strong>: <span class="math notranslate nohighlight">\(L = \sum_i \|x_i - X_A(x_i)\|^2\)</span></p></li>
+<li><p><strong>Commutation Penalty</strong>: Regularization via <span class="math notranslate nohighlight">\(\sum_{i,j} \|[A_i, A_j]\|_F^2\)</span></p></li>
+<li><p><strong>Intrinsic Dimension Estimation</strong>: Eigenvalue gap analysis</p></li>
+<li><p><strong>Manifold Reconstruction</strong>: Quantum point cloud generation</p></li>
+</ul>
+</section>
+<section id="supervisedmatrixtrainer">
+<h3>SupervisedMatrixTrainer<a class="headerlink" href="#supervisedmatrixtrainer" title="Link to this heading"></a></h3>
+<p>Implements supervised learning with target operators.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qgml.learning.supervised_trainer.</span></span><span class="sig-name descname"><span class="pre">SupervisedMatrixTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'regression'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mae'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commutation_penalty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer" title="qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseQuantumMatrixTrainer</span></code></a></p>
+<p>Supervised QMML trainer for regression and classification tasks.</p>
+<p>Learns feature operators {A_k} and target operator B to minimize:
+L = Σᵢ <a href="#id7"><span class="problematic" id="id8">|</span></a>yᵢ - ⟨ψ₀(xᵢ)|B|ψ₀(xᵢ)⟩|ᵖ + λ * commutation_penalty</p>
+<p>Where ψ₀(x) is the ground state of H(x) = 1/2 Σₖ (Aₖ - xₖI)².</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'regression'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mae'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commutation_penalty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize supervised QMML trainer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N</strong> – Hilbert space dimension</p></li>
+<li><p><strong>D</strong> – Feature space dimension</p></li>
+<li><p><strong>task_type</strong> – ‘regression’ or ‘classification’</p></li>
+<li><p><strong>loss_type</strong> – ‘mae’, ‘mse’, ‘huber’, ‘cross_entropy’</p></li>
+<li><p><strong>learning_rate</strong> – Learning rate for optimization</p></li>
+<li><p><strong>commutation_penalty</strong> – Weight for commutator penalty term</p></li>
+<li><p><strong>optimizer_type</strong> – Optimizer type (‘adam’, ‘sgd’, ‘adamw’)</p></li>
+<li><p><strong>device</strong> – Computation device</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for base class</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.forward" title="Link to this definition"></a></dt>
+<dd><p>Forward pass: compute prediction via target operator expectation.</p>
+<p>ŷ = ⟨ψ₀(x)|B|ψ₀(x)⟩</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – Input point of shape (D,)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Prediction (scalar for regression, logits for classification)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.predict_batch">
+<span class="sig-name descname"><span class="pre">predict_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.predict_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.predict_batch" title="Link to this definition"></a></dt>
+<dd><p>Predict for a batch of inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> – Batch of inputs, shape (batch_size, D)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predictions, shape (batch_size,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.compute_prediction_loss">
+<span class="sig-name descname"><span class="pre">compute_prediction_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.compute_prediction_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.compute_prediction_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute prediction loss for a batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Input batch, shape (batch_size, D)</p></li>
+<li><p><strong>y</strong> – Target batch, shape (batch_size,)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean prediction loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.compute_commutation_penalty">
+<span class="sig-name descname"><span class="pre">compute_commutation_penalty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.compute_commutation_penalty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.compute_commutation_penalty" title="Link to this definition"></a></dt>
+<dd><p>Compute commutation penalty including target operator.</p>
+<p>Penalty = Σᵢⱼ ||[Aᵢ, Aⱼ]||²_F + Σᵢ ||[Aᵢ, B]||²_F</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Total commutation penalty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.compute_loss">
+<span class="sig-name descname"><span class="pre">compute_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.compute_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.compute_loss" title="Link to this definition"></a></dt>
+<dd><p>Compute total loss with prediction and commutation terms.</p>
+<p>L_total = L_prediction + λ * L_commutation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Input batch, shape (batch_size, D)</p></li>
+<li><p><strong>y</strong> – Target batch, shape (batch_size,)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing loss components</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.train_epoch">
+<span class="sig-name descname"><span class="pre">train_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.train_epoch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.train_epoch" title="Link to this definition"></a></dt>
+<dd><p>Train for one epoch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Training inputs, shape (n_samples, D)</p></li>
+<li><p><strong>y</strong> – Training targets, shape (n_samples,)</p></li>
+<li><p><strong>batch_size</strong> – Batch size (None = full batch)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with epoch metrics</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.evaluate" title="Link to this definition"></a></dt>
+<dd><p>Evaluate model performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Test inputs, shape (n_samples, D)</p></li>
+<li><p><strong>y</strong> – Test targets, shape (n_samples,)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with evaluation metrics</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_split</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.fit" title="Link to this definition"></a></dt>
+<dd><p>Train the supervised QMML model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Training inputs, shape (n_samples, D)</p></li>
+<li><p><strong>y</strong> – Training targets, shape (n_samples,)</p></li>
+<li><p><strong>n_epochs</strong> – Number of training epochs</p></li>
+<li><p><strong>batch_size</strong> – Batch size (None = full batch)</p></li>
+<li><p><strong>validation_split</strong> – Fraction for validation (if X_val not provided)</p></li>
+<li><p><strong>X_val</strong> – Validation inputs</p></li>
+<li><p><strong>y_val</strong> – Validation targets</p></li>
+<li><p><strong>verbose</strong> – Whether to print progress</p></li>
+<li><p><strong>save_history</strong> – Whether to save training history</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Training history dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qgml.learning.supervised_trainer.SupervisedMatrixTrainer.analyze_quantum_encoding">
+<span class="sig-name descname"><span class="pre">analyze_quantum_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.9)"><span class="pre">Tensor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.14)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/qgml/learning/supervised_trainer.html#SupervisedMatrixTrainer.analyze_quantum_encoding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qgml.learning.supervised_trainer.SupervisedMatrixTrainer.analyze_quantum_encoding" title="Link to this definition"></a></dt>
+<dd><p>Analyze how well quantum states encode the prediction task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Input data</p></li>
+<li><p><strong>y</strong> – Target data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with encoding analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>Key Features:</p>
+<ul class="simple">
+<li><p><strong>Target Operator Learning</strong>: Hermitian matrix <span class="math notranslate nohighlight">\(B\)</span> for predictions</p></li>
+<li><p><strong>Prediction Function</strong>: <span class="math notranslate nohighlight">\(\hat{y} = \langle \psi_0(x) | B | \psi_0(x) \rangle\)</span></p></li>
+<li><p><strong>Multiple Loss Functions</strong>: MAE, MSE, Huber, Cross-entropy</p></li>
+<li><p><strong>Regression and Classification</strong>: Unified framework for both tasks</p></li>
+</ul>
+</section>
+</section>
+<section id="mathematical-foundations">
+<h2>Mathematical Foundations<a class="headerlink" href="#mathematical-foundations" title="Link to this heading"></a></h2>
+<p>The mathematical foundation of QGML rests on several key concepts:</p>
+<section id="quantum-matrix-geometry">
+<h3>Quantum Matrix Geometry<a class="headerlink" href="#quantum-matrix-geometry" title="Link to this heading"></a></h3>
+<p>Classical data points <span class="math notranslate nohighlight">\(x \in \mathbb{R}^D\)</span> are encoded in quantum states through the error Hamiltonian:</p>
+<div class="math notranslate nohighlight">
+\[H(x) = \frac{1}{2} \sum_{k=1}^{D} (A_k - x_k I)^2\]</div>
+<p>The ground state <span class="math notranslate nohighlight">\(|\psi_0(x)\rangle\)</span> satisfies:</p>
+<div class="math notranslate nohighlight">
+\[H(x) |\psi_0(x)\rangle = \lambda_{\min}(x) |\psi_0(x)\rangle\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_{\min}(x)\)</span> is the minimum eigenvalue.</p>
+</section>
+<section id="quantum-point-cloud">
+<h3>Quantum Point Cloud<a class="headerlink" href="#quantum-point-cloud" title="Link to this heading"></a></h3>
+<p>The quantum encoding maps classical points to quantum expectation values:</p>
+<div class="math notranslate nohighlight">
+\[X_A(x) = \left( \langle \psi_0(x) | A_1 | \psi_0(x) \rangle, \ldots, \langle \psi_0(x) | A_D | \psi_0(x) \rangle \right)\]</div>
+<p>This creates a point cloud <span class="math notranslate nohighlight">\(\mathcal{D}_X = \{X_A(x^i) | x^i \in \mathcal{X}\}\)</span> in the quantum feature space.</p>
+</section>
+<section id="loss-functions">
+<h3>Loss Functions<a class="headerlink" href="#loss-functions" title="Link to this heading"></a></h3>
+<p><strong>Unsupervised Learning:</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{unsup}} = \sum_i \|x^i - X_A(x^i)\|^2 + \lambda \sum_{j,k} \|[A_j, A_k]\|_F^2\]</div>
+<p><strong>Supervised Learning:</strong></p>
+<div class="math notranslate nohighlight">
+\[L_{\text{sup}} = \sum_i \ell(y^i, \langle \psi_0(x^i) | B | \psi_0(x^i) \rangle) + \lambda \sum_{j,k} \|[A_j, A_k]\|_F^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(\ell(\cdot, \cdot)\)</span> is the task-specific loss function.</p>
+</section>
+</section>
+<section id="common-usage-patterns">
+<h2>Common Usage Patterns<a class="headerlink" href="#common-usage-patterns" title="Link to this heading"></a></h2>
+<section id="basic-initialization">
+<h3>Basic Initialization<a class="headerlink" href="#basic-initialization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qgml.core.base_quantum_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseQuantumMatrixTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.unsupervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnsupervisedMatrixTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.supervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupervisedMatrixTrainer</span>
+
+<span class="c1"># Unsupervised manifold learning</span>
+<span class="n">unsup_trainer</span> <span class="o">=</span> <span class="n">UnsupervisedMatrixTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># Hilbert space dimension</span>
+    <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Feature dimension</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">commutation_penalty</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="c1"># Supervised regression</span>
+<span class="n">sup_trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="s1">&#39;regression&#39;</span><span class="p">,</span>
+    <span class="n">loss_type</span><span class="o">=</span><span class="s1">&#39;mae&#39;</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="training-workflow">
+<h3>Training Workflow<a class="headerlink" href="#training-workflow" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Generate or load data</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 100 samples, 3 features</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>     <span class="c1"># Regression targets</span>
+
+<span class="c1"># Unsupervised training</span>
+<span class="n">unsup_history</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">points</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span>
+    <span class="n">n_epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+
+<span class="c1"># Supervised training</span>
+<span class="n">sup_history</span> <span class="o">=</span> <span class="n">sup_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+    <span class="n">n_epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="analysis-and-evaluation">
+<h3>Analysis and Evaluation<a class="headerlink" href="#analysis-and-evaluation" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unsupervised analysis</span>
+<span class="n">dim_results</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">estimate_intrinsic_dimension</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated dimension: </span><span class="si">{</span><span class="n">dim_results</span><span class="p">[</span><span class="s1">&#39;estimated_intrinsic_dimension&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reconstruction quality</span>
+<span class="n">original</span><span class="p">,</span> <span class="n">reconstructed</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">reconstruct_manifold</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">reconstruction_error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">original</span> <span class="o">-</span> <span class="n">reconstructed</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Supervised evaluation</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">test_metrics</span> <span class="o">=</span> <span class="n">sup_trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test R²: </span><span class="si">{</span><span class="n">test_metrics</span><span class="p">[</span><span class="s1">&#39;r2_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test MAE: </span><span class="si">{</span><span class="n">test_metrics</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<section id="quantum-state-analysis">
+<h3>Quantum State Analysis<a class="headerlink" href="#quantum-state-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze quantum properties of learned representations</span>
+<span class="n">x_sample</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+
+<span class="c1"># Get quantum state properties</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">get_quantum_state_properties</span><span class="p">(</span><span class="n">x_sample</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ground energy: </span><span class="si">{</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;ground_energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energy gap: </span><span class="si">{</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energy_gap&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reconstruction error: </span><span class="si">{</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;reconstruction_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Quantum fidelity between states</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+<span class="n">fidelity</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">compute_quantum_fidelity</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantum fidelity: </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-loss-functions">
+<h3>Custom Loss Functions<a class="headerlink" href="#custom-loss-functions" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Custom loss for specialized applications</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomQuantumTrainer</span><span class="p">(</span><span class="n">SupervisedMatrixTrainer</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_custom_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom loss with additional regularization.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Standard prediction loss</span>
+        <span class="n">pred_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_prediction_loss</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Custom quantum regularization</span>
+        <span class="n">quantum_penalty</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="c1"># Add penalty for highly excited states</span>
+            <span class="n">eigenvals</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_eigensystem</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">quantum_penalty</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>  <span class="c1"># Excited state penalty</span>
+
+        <span class="n">quantum_penalty</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pred_loss</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">quantum_penalty</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
+<section id="memory-management">
+<h3>Memory Management<a class="headerlink" href="#memory-management" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For large systems, manage memory carefully</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">UnsupervisedMatrixTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>  <span class="c1"># Larger Hilbert space</span>
+    <span class="n">D</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Process data in smaller batches</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Adjust based on memory</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">batch_start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="n">batch_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">batch_start</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+        <span class="n">X_batch</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">:</span><span class="n">batch_end</span><span class="p">]</span>
+
+        <span class="c1"># Training step</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">train_epoch</span><span class="p">(</span><span class="n">X_batch</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="gpu-acceleration">
+<h3>GPU Acceleration<a class="headerlink" href="#gpu-acceleration" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Automatic GPU detection and usage</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">device</span>
+<span class="p">)</span>
+
+<span class="c1"># Ensure data is on the same device</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Training automatically uses GPU</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-handling-and-debugging">
+<h2>Error Handling and Debugging<a class="headerlink" href="#error-handling-and-debugging" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Numerical Instability</strong>: Large condition numbers in matrices</p></li>
+<li><p><strong>Memory Overflow</strong>: Large Hilbert space dimensions</p></li>
+<li><p><strong>Convergence Problems</strong>: Poor initialization or learning rates</p></li>
+<li><p><strong>Device Mismatch</strong>: Tensors on different devices</p></li>
+</ol>
+</section>
+<section id="debugging-tools">
+<h3>Debugging Tools<a class="headerlink" href="#debugging-tools" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check model health</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">debug_quantum_trainer</span><span class="p">(</span><span class="n">trainer</span><span class="p">,</span> <span class="n">X_sample</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Debug quantum trainer state.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Quantum Trainer Debug ===&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check feature operators</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">A</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trainer</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">):</span>
+        <span class="n">eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature operator </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Eigenvalue range: [</span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Condition number: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check ground state computation</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X_sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ground state norm: </span><span class="si">{</span><span class="n">norm</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check Hermiticity</span>
+        <span class="n">eigenvals</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_eigensystem</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ground energy: </span><span class="si">{</span><span class="n">eigenvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energy gap: </span><span class="si">{</span><span class="n">eigenvals</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">eigenvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in ground state computation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">debug_quantum_trainer</span><span class="p">(</span><span class="n">trainer</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="extending-the-framework">
+<h2>Extending the Framework<a class="headerlink" href="#extending-the-framework" title="Link to this heading"></a></h2>
+<section id="creating-custom-trainers">
+<h3>Creating Custom Trainers<a class="headerlink" href="#creating-custom-trainers" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyCustomTrainer</span><span class="p">(</span><span class="n">BaseQuantumMatrixTrainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom trainer for specialized applications.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">custom_param</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_param</span> <span class="o">=</span> <span class="n">custom_param</span>
+
+        <span class="c1"># Custom initialization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_custom_operators</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_custom_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom operator initialization.&quot;&quot;&quot;</span>
+        <span class="c1"># Override default initialization if needed</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom forward pass.&quot;&quot;&quot;</span>
+        <span class="c1"># Implement custom prediction/reconstruction logic</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_feature_expectations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom loss function.&quot;&quot;&quot;</span>
+        <span class="c1"># Implement domain-specific loss</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-custom-analysis">
+<h3>Adding Custom Analysis<a class="headerlink" href="#adding-custom-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CustomAnalyzer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom analysis module.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trainer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">trainer</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_custom_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze custom quantum property.&quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="c1"># Compute custom quantum property</span>
+            <span class="n">custom_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_custom_measure</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">custom_value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_custom_measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute custom quantum measure.&quot;&quot;&quot;</span>
+        <span class="c1"># Implement custom analysis</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">psi</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="quantum_geometry.html"><span class="doc">Quantum Geometry Trainer API</span></a> - Advanced quantum geometric features</p></li>
+<li><p><a class="reference internal" href="topological_analysis.html"><span class="doc">Topological Analysis API</span></a> - Topological invariant computation</p></li>
+<li><p><a class="reference internal" href="quantum_information.html"><span class="doc">Quantum Information Analysis API</span></a> - Quantum information measures</p></li>
+<li><p><span class="xref std std-doc">../user_guide/tutorials</span> - Step-by-step tutorials</p></li>
+<li><p><span class="xref std std-doc">../math/quantum_matrix_geometry</span> - Mathematical foundations</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../visualization_gallery.html" class="btn btn-neutral float-left" title="QGML Visualization Gallery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quantum_geometry.html" class="btn btn-neutral float-right" title="Quantum Geometry Trainer API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

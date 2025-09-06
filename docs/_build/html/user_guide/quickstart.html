@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QGML Quickstart Guide &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QGML Visualization Gallery" href="../visualization_gallery.html" />
+    <link rel="prev" title="QGML Installation Guide" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QGML Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-verification">Installation Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-qgml-model">Your First QGML Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unsupervised-learning">Unsupervised Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quantum-state-analysis">Quantum State Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geometric-analysis">Geometric Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-example">Complete Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-example">Running the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expected-output">Expected Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">QGML Quickstart Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/quickstart.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qgml-quickstart-guide">
+<h1>QGML Quickstart Guide<a class="headerlink" href="#qgml-quickstart-guide" title="Link to this heading"></a></h1>
+<p>This quickstart guide will get you up and running with QGML in minutes.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before starting, ensure you have:</p>
+<ul class="simple">
+<li><p>Python 3.8+ installed</p></li>
+<li><p>QGML installed (see <a class="reference internal" href="installation.html"><span class="doc">QGML Installation Guide</span></a>)</p></li>
+<li><p>Basic familiarity with machine learning concepts</p></li>
+</ul>
+</section>
+<section id="installation-verification">
+<h2>Installation Verification<a class="headerlink" href="#installation-verification" title="Link to this heading"></a></h2>
+<p>First, verify your QGML installation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qgml</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QGML version: </span><span class="si">{</span><span class="n">qgml</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test backend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_backend</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current backend: </span><span class="si">{</span><span class="n">get_backend</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="your-first-qgml-model">
+<h2>Your First QGML Model<a class="headerlink" href="#your-first-qgml-model" title="Link to this heading"></a></h2>
+<p>Let’s create a simple supervised learning model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.supervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupervisedMatrixTrainer</span>
+
+<span class="c1"># Create a simple regression model</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># Hilbert space dimension</span>
+    <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Input feature dimension</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="s1">&#39;regression&#39;</span><span class="p">,</span>
+    <span class="n">loss_type</span><span class="o">=</span><span class="s1">&#39;mae&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate some sample data</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 100 samples, 3 features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>     <span class="c1"># 100 targets</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predictions shape: </span><span class="si">{</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="unsupervised-learning">
+<h2>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Link to this heading"></a></h2>
+<p>Now let’s try unsupervised manifold learning:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.unsupervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnsupervisedMatrixTrainer</span>
+
+<span class="c1"># Create unsupervised model</span>
+<span class="n">unsup_trainer</span> <span class="o">=</span> <span class="n">UnsupervisedMatrixTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># Hilbert space dimension</span>
+    <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Input feature dimension</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate 2D spiral data</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">X_spiral</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="mf">0.5</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span>
+    <span class="mf">0.5</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_spiral</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Analyze the learned manifold</span>
+<span class="n">dim_results</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">estimate_intrinsic_dimension</span><span class="p">(</span><span class="n">X_spiral</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated intrinsic dimension: </span><span class="si">{</span><span class="n">dim_results</span><span class="p">[</span><span class="s1">&#39;estimated_intrinsic_dimension&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reconstruct the manifold</span>
+<span class="n">original</span><span class="p">,</span> <span class="n">reconstructed</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">reconstruct_manifold</span><span class="p">(</span><span class="n">X_spiral</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">reconstruction_error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">original</span> <span class="o">-</span> <span class="n">reconstructed</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reconstruction error: </span><span class="si">{</span><span class="n">reconstruction_error</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quantum-state-analysis">
+<h2>Quantum State Analysis<a class="headerlink" href="#quantum-state-analysis" title="Link to this heading"></a></h2>
+<p>Let’s analyze the quantum properties of our learned model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze quantum state properties</span>
+<span class="n">x_sample</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+
+<span class="c1"># Get quantum state</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x_sample</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantum state norm: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get expectation values</span>
+<span class="n">expectations</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">get_feature_expectations</span><span class="p">(</span><span class="n">x_sample</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expectation values: </span><span class="si">{</span><span class="n">expectations</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Analyze quantum properties</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">get_quantum_state_properties</span><span class="p">(</span><span class="n">x_sample</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ground energy: </span><span class="si">{</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;ground_energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energy gap: </span><span class="si">{</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energy_gap&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="geometric-analysis">
+<h2>Geometric Analysis<a class="headerlink" href="#geometric-analysis" title="Link to this heading"></a></h2>
+<p>Now let’s explore the geometric properties:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qgml.geometry.quantum_geometry_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumGeometryTrainer</span>
+
+<span class="c1"># Create geometric trainer</span>
+<span class="n">geom_trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">fluctuation_weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">topology_weight</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="c1"># Train on the spiral data</span>
+<span class="n">geom_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_spiral</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Analyze quantum fluctuations</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">fluctuations</span> <span class="o">=</span> <span class="n">geom_trainer</span><span class="o">.</span><span class="n">compute_quantum_fluctuations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total variance: </span><span class="si">{</span><span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;total_variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Displacement error: </span><span class="si">{</span><span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;displacement_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compute Berry curvature</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.topology.topological_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologicalAnalyzer</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">TopologicalAnalyzer</span><span class="p">(</span><span class="n">geom_trainer</span><span class="p">)</span>
+
+<span class="n">berry_curvature</span> <span class="o">=</span> <span class="n">analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Berry curvature: </span><span class="si">{</span><span class="n">berry_curvature</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading"></a></h2>
+<p>Let’s visualize our results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.utils.comprehensive_plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComprehensivePlotter</span>
+
+<span class="c1"># Create plotter</span>
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">ComprehensivePlotter</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;quickstart_results/&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot training progress</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_training_progress</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+
+<span class="c1"># Plot the learned manifold</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_manifold_structure</span><span class="p">(</span><span class="n">unsup_trainer</span><span class="p">,</span> <span class="n">X_spiral</span><span class="p">)</span>
+
+<span class="c1"># Plot quantum state properties</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_quantum_state_analysis</span><span class="p">(</span><span class="n">unsup_trainer</span><span class="p">,</span> <span class="n">X_spiral</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Visualizations saved to quickstart_results/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-example">
+<h2>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading"></a></h2>
+<p>Here’s a complete example combining all the concepts:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.supervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupervisedMatrixTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.unsupervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnsupervisedMatrixTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.geometry.quantum_geometry_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumGeometryTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.utils.comprehensive_plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComprehensivePlotter</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">qgml_quickstart_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete QGML quickstart example.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== QGML Quickstart Example ===&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 1. Generate sample data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">1. Generating sample data...&quot;</span><span class="p">)</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Create target for supervised learning</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Distance from origin</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target shape: </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Supervised learning</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">2. Supervised learning...&quot;</span><span class="p">)</span>
+    <span class="n">sup_trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">task_type</span><span class="o">=</span><span class="s1">&#39;regression&#39;</span><span class="p">)</span>
+    <span class="n">sup_history</span> <span class="o">=</span> <span class="n">sup_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># Evaluate</span>
+    <span class="n">test_predictions</span> <span class="o">=</span> <span class="n">sup_trainer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+    <span class="n">test_metrics</span> <span class="o">=</span> <span class="n">sup_trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test R²: </span><span class="si">{</span><span class="n">test_metrics</span><span class="p">[</span><span class="s1">&#39;r2_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test MAE: </span><span class="si">{</span><span class="n">test_metrics</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Unsupervised learning</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">3. Unsupervised learning...&quot;</span><span class="p">)</span>
+    <span class="n">unsup_trainer</span> <span class="o">=</span> <span class="n">UnsupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">unsup_history</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># Analyze manifold</span>
+    <span class="n">dim_results</span> <span class="o">=</span> <span class="n">unsup_trainer</span><span class="o">.</span><span class="n">estimate_intrinsic_dimension</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated intrinsic dimension: </span><span class="si">{</span><span class="n">dim_results</span><span class="p">[</span><span class="s1">&#39;estimated_intrinsic_dimension&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 4. Geometric analysis</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">4. Geometric analysis...&quot;</span><span class="p">)</span>
+    <span class="n">geom_trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">geom_trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># Analyze quantum properties</span>
+    <span class="n">x_sample</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">geom_trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x_sample</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantum state norm: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 5. Visualization</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">5. Generating visualizations...&quot;</span><span class="p">)</span>
+    <span class="n">plotter</span> <span class="o">=</span> <span class="n">ComprehensivePlotter</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;quickstart_results/&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot training progress</span>
+    <span class="n">plotter</span><span class="o">.</span><span class="n">plot_training_progress</span><span class="p">(</span><span class="n">sup_history</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Supervised Training&quot;</span><span class="p">)</span>
+    <span class="n">plotter</span><span class="o">.</span><span class="n">plot_training_progress</span><span class="p">(</span><span class="n">unsup_history</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Unsupervised Training&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot manifold structure</span>
+    <span class="n">plotter</span><span class="o">.</span><span class="n">plot_manifold_structure</span><span class="p">(</span><span class="n">unsup_trainer</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Plot quantum state analysis</span>
+    <span class="n">plotter</span><span class="o">.</span><span class="n">plot_quantum_state_analysis</span><span class="p">(</span><span class="n">geom_trainer</span><span class="p">,</span> <span class="n">X</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Visualizations saved to quickstart_results/&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 6. Summary</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Summary ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Supervised learning completed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Unsupervised learning completed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Geometric analysis completed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Visualizations generated&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">QGML quickstart completed successfully!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Run the example</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">qgml_quickstart_example</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="running-the-example">
+<h2>Running the Example<a class="headerlink" href="#running-the-example" title="Link to this heading"></a></h2>
+<p>Save the complete example to a file and run it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save as quickstart_example.py</span>
+python<span class="w"> </span>quickstart_example.py
+</pre></div>
+</div>
+</section>
+<section id="expected-output">
+<h2>Expected Output<a class="headerlink" href="#expected-output" title="Link to this heading"></a></h2>
+<p>You should see output similar to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>=== QGML Quickstart Example ===
+
+1. Generating sample data...
+Data shape: torch.Size([200, 2])
+Target shape: torch.Size([200])
+
+2. Supervised learning...
+Test R²: 0.8542
+Test MAE: 0.1234
+
+3. Unsupervised learning...
+Estimated intrinsic dimension: 1.85
+
+4. Geometric analysis...
+Quantum state norm: 1.000000
+
+5. Generating visualizations...
+Visualizations saved to quickstart_results/
+
+=== Summary ===
+✅ Supervised learning completed
+✅ Unsupervised learning completed
+✅ Geometric analysis completed
+✅ Visualizations generated
+
+QGML quickstart completed successfully!
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Now that you’ve completed the quickstart:</p>
+<ol class="arabic simple">
+<li><p><strong>Explore the API</strong>: Check out <a class="reference internal" href="../api/core.html"><span class="doc">Core QGML Framework</span></a> for detailed API documentation</p></li>
+<li><p><strong>Try Advanced Features</strong>: See <span class="xref std std-doc">geometric_analysis</span> for advanced geometric analysis</p></li>
+<li><p><strong>Run Examples</strong>: Explore the <cite>examples/</cite> directory for more complex examples</p></li>
+<li><p><strong>Read the User Guide</strong>: Continue with <span class="xref std std-doc">basic_usage</span> for more detailed usage</p></li>
+</ol>
+</section>
+<section id="common-issues">
+<h2>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Import Errors</strong>:</dt><dd><p>Make sure QGML is properly installed and you’re in the correct environment.</p>
+</dd>
+<dt><strong>Memory Issues</strong>:</dt><dd><p>Reduce the Hilbert space dimension (N) or number of samples for large datasets.</p>
+</dd>
+<dt><strong>Slow Performance</strong>:</dt><dd><p>Use GPU acceleration if available, or reduce model complexity.</p>
+</dd>
+<dt><strong>Visualization Issues</strong>:</dt><dd><p>Ensure matplotlib is installed and check the output directory permissions.</p>
+</dd>
+</dl>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="installation.html"><span class="doc">QGML Installation Guide</span></a> - Installation guide</p></li>
+<li><p><span class="xref std std-doc">basic_concepts</span> - Basic QGML concepts</p></li>
+<li><p><span class="xref std std-doc">basic_usage</span> - Detailed usage guide</p></li>
+<li><p><a class="reference internal" href="../api/core.html"><span class="doc">Core QGML Framework</span></a> - Core API documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="QGML Installation Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../visualization_gallery.html" class="btn btn-neutral float-right" title="QGML Visualization Gallery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
