@@ -1,0 +1,6 @@
+{
+  "N": 4,
+  "D": 3,
+  "learning_rate": 0.0005,
+  "quantum_fluctuation_weight": 0.0
+}

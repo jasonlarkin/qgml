@@ -1,0 +1,2864 @@
+🚀 GPU MASTER TEST SUITE
+============================================================
+Device: cuda
+GPU: Tesla T4
+Memory: 15.8 GB
+============================================================
+🚀 Using device: cuda
+   GPU: Tesla T4
+   Memory: 15.8 GB
+🚀 Using device: cuda
+   GPU: Tesla T4
+   Memory: 15.8 GB
+🚀 Using device: cuda
+   GPU: Tesla T4
+   Memory: 15.8 GB
+
+⚡ RUNNING QUICK VALIDATION
+========================================
+Testing our key discoveries with minimal parameters:
+1. Quantum weight crossover (≈1.15)
+2. Dimensionality crossover (D ≥ 20)
+3. Basic convergence behavior
+
+🔍 Quick Quantum Weight Crossover Test
+   Testing quantum weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.1545s
+[TIME] Moving model to device took: 0.1396s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 5.4808s
+[TIME] TOTAL __init__ took: 5.7750s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 1.818796
+      Epoch 100/1500, Loss: 1.424710
+      Epoch 200/1500, Loss: 1.217221
+      Epoch 300/1500, Loss: 1.103650
+      Epoch 400/1500, Loss: 1.024197
+      Epoch 500/1500, Loss: 0.963226
+      Epoch 600/1500, Loss: 0.916867
+      Epoch 700/1500, Loss: 0.881549
+      Epoch 800/1500, Loss: 0.854360
+      Epoch 900/1500, Loss: 0.833200
+      Epoch 1000/1500, Loss: 0.816282
+      Epoch 1100/1500, Loss: 0.802386
+      Epoch 1200/1500, Loss: 0.790756
+      Epoch 1300/1500, Loss: 0.780720
+      Epoch 1400/1500, Loss: 0.771787
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 1.715139
+      Epoch 100/1500, Loss: 0.894673
+      Epoch 200/1500, Loss: 0.709569
+      Epoch 300/1500, Loss: 0.641878
+      Epoch 400/1500, Loss: 0.608523
+      Epoch 500/1500, Loss: 0.592245
+      Epoch 600/1500, Loss: 0.586166
+      Epoch 700/1500, Loss: 0.582244
+      Epoch 800/1500, Loss: 0.579456
+      Epoch 900/1500, Loss: 0.577961
+      Epoch 1000/1500, Loss: 0.576985
+      Epoch 1100/1500, Loss: 0.576214
+      Epoch 1200/1500, Loss: 0.575675
+      Epoch 1300/1500, Loss: 0.575333
+      Epoch 1400/1500, Loss: 0.575088
+   Testing quantum weight: 0.8
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0028s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0036s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 2.172416
+      Epoch 100/1500, Loss: 1.529480
+      Epoch 200/1500, Loss: 1.176642
+      Epoch 300/1500, Loss: 1.054748
+      Epoch 400/1500, Loss: 1.016704
+      Epoch 500/1500, Loss: 1.004975
+      Epoch 600/1500, Loss: 1.001254
+      Epoch 700/1500, Loss: 1.000016
+      Epoch 800/1500, Loss: 0.999581
+      Epoch 900/1500, Loss: 0.999419
+      Epoch 1000/1500, Loss: 0.999357
+      Epoch 1100/1500, Loss: 0.999331
+      Epoch 1200/1500, Loss: 0.999320
+      Epoch 1300/1500, Loss: 0.999316
+      Epoch 1400/1500, Loss: 0.999314
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0033s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 2.521446
+      Epoch 100/1500, Loss: 1.039717
+      Epoch 200/1500, Loss: 0.999354
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0026s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.058610
+      Epoch 100/1500, Loss: 1.845155
+      Epoch 200/1500, Loss: 1.161186
+      Epoch 300/1500, Loss: 1.027142
+      Epoch 400/1500, Loss: 1.004104
+      Epoch 500/1500, Loss: 1.000155
+      Epoch 600/1500, Loss: 0.999464
+      Epoch 700/1500, Loss: 0.999340
+      Epoch 800/1500, Loss: 0.999317
+      Epoch 900/1500, Loss: 0.999313
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0026s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 2.918449
+      Epoch 100/1500, Loss: 1.019953
+      Epoch 200/1500, Loss: 0.999312
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 1.1
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0024s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0032s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.152760
+      Epoch 100/1500, Loss: 1.735373
+      Epoch 200/1500, Loss: 1.094800
+      Epoch 300/1500, Loss: 1.010539
+      Epoch 400/1500, Loss: 1.000640
+      Epoch 500/1500, Loss: 0.999472
+      Epoch 600/1500, Loss: 0.999332
+      Epoch 700/1500, Loss: 0.999315
+      Epoch 800/1500, Loss: 0.999313
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.159651
+      Epoch 100/1500, Loss: 1.040749
+      Epoch 200/1500, Loss: 0.999314
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 1.15
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0026s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.296159
+      Epoch 100/1500, Loss: 1.614638
+      Epoch 200/1500, Loss: 1.065710
+      Epoch 300/1500, Loss: 1.006076
+      Epoch 400/1500, Loss: 1.000003
+      Epoch 500/1500, Loss: 0.999383
+      Epoch 600/1500, Loss: 0.999319
+      Epoch 700/1500, Loss: 0.999313
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0024s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0032s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.411950
+      Epoch 100/1500, Loss: 1.056929
+      Epoch 200/1500, Loss: 0.999381
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 1.2
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.010108
+      Epoch 100/1500, Loss: 1.902694
+      Epoch 200/1500, Loss: 1.186706
+      Epoch 300/1500, Loss: 1.022674
+      Epoch 400/1500, Loss: 1.002199
+      Epoch 500/1500, Loss: 0.999682
+      Epoch 600/1500, Loss: 0.999362
+      Epoch 700/1500, Loss: 0.999319
+      Epoch 800/1500, Loss: 0.999313
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0027s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0035s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.533660
+      Epoch 100/1500, Loss: 1.054824
+      Epoch 200/1500, Loss: 0.999326
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0024s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0032s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.962072
+      Epoch 100/1500, Loss: 1.262231
+      Epoch 200/1500, Loss: 1.007543
+      Epoch 300/1500, Loss: 0.999567
+      Epoch 400/1500, Loss: 0.999320
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0024s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0033s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 3.823207
+      Epoch 100/1500, Loss: 1.037723
+      Epoch 200/1500, Loss: 0.999320
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 5.328874
+      Epoch 100/1500, Loss: 1.086598
+      Epoch 200/1500, Loss: 0.999678
+      Epoch 300/1500, Loss: 0.999314
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0002s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0044s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0055s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 4.956109
+      Epoch 100/1500, Loss: 1.069772
+      Epoch 200/1500, Loss: 0.999389
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   Testing quantum weight: 2.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0033s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 6.372821
+      Epoch 100/1500, Loss: 1.018957
+      Epoch 200/1500, Loss: 0.999319
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0026s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0035s
+--- Stored 1000 points on device: cuda:0 ---
+      Epoch 0/1500, Loss: 5.856442
+      Epoch 100/1500, Loss: 1.044079
+      Epoch 200/1500, Loss: 0.999375
+      Epoch 300/1500, Loss: 0.999312
+      Epoch 400/1500, Loss: 0.999312
+      Epoch 500/1500, Loss: 0.999312
+      Epoch 600/1500, Loss: 0.999312
+      Epoch 700/1500, Loss: 0.999312
+      Epoch 800/1500, Loss: 0.999312
+      Epoch 900/1500, Loss: 0.999312
+      Epoch 1000/1500, Loss: 0.999312
+      Epoch 1100/1500, Loss: 0.999312
+      Epoch 1200/1500, Loss: 0.999312
+      Epoch 1300/1500, Loss: 0.999312
+      Epoch 1400/1500, Loss: 0.999312
+   💾 Results saved to: test_results/gpu_convergence_testing/quantum_weight_crossover_20250825_201639.npz
+   📝 Summary saved to: test_results/gpu_convergence_testing/quantum_weight_crossover_20250825_201639_summary.txt
+
+🔍 Quick Dimensionality Crossover Test
+
+🎯 GPU DIMENSIONALITY CROSSOVER TESTING
+============================================================
+Testing our discovery: ADAM always wins at D ≥ 20
+regardless of quantum weight or matrix dimension N
+
+📊 Testing: N=3, D=3, Epochs=2000, LR=0.001
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0016s
+[TIME] Moving model to device took: 0.0003s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0025s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.063956
+     Epoch 200/2000, Loss: 0.193708
+     Epoch 400/2000, Loss: 0.080744
+     Epoch 600/2000, Loss: 0.052648
+     Epoch 800/2000, Loss: 0.044604
+     Epoch 1000/2000, Loss: 0.041949
+     Epoch 1200/2000, Loss: 0.040762
+     Epoch 1400/2000, Loss: 0.040092
+     Epoch 1600/2000, Loss: 0.039658
+     Epoch 1800/2000, Loss: 0.039353
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0009s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 0.624704
+     Epoch 200/2000, Loss: 0.214617
+     Epoch 400/2000, Loss: 0.069367
+     Epoch 600/2000, Loss: 0.040086
+     Epoch 800/2000, Loss: 0.037354
+     Epoch 1000/2000, Loss: 0.037034
+     Epoch 1200/2000, Loss: 0.036915
+     Epoch 1400/2000, Loss: 0.036831
+     Epoch 1600/2000, Loss: 0.036761
+     Epoch 1800/2000, Loss: 0.036700
+     Winner: ADAM (better by 6.37%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0012s
+[TIME] Moving model to device took: 0.0003s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0019s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 0.534450
+     Epoch 200/2000, Loss: 0.415834
+     Epoch 400/2000, Loss: 0.363441
+     Epoch 600/2000, Loss: 0.342963
+     Epoch 800/2000, Loss: 0.335826
+     Epoch 1000/2000, Loss: 0.333530
+     Epoch 1200/2000, Loss: 0.332818
+     Epoch 1400/2000, Loss: 0.332598
+     Epoch 1600/2000, Loss: 0.332529
+     Epoch 1800/2000, Loss: 0.332508
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0009s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0002s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 0.972454
+     Epoch 200/2000, Loss: 0.533460
+     Epoch 400/2000, Loss: 0.428170
+     Epoch 600/2000, Loss: 0.359382
+     Epoch 800/2000, Loss: 0.337590
+     Epoch 1000/2000, Loss: 0.333228
+     Epoch 1200/2000, Loss: 0.332574
+     Epoch 1400/2000, Loss: 0.332504
+     Epoch 1600/2000, Loss: 0.332498
+     Epoch 1800/2000, Loss: 0.332498
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0011s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0017s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 0.934422
+     Epoch 200/2000, Loss: 0.617920
+     Epoch 400/2000, Loss: 0.541524
+     Epoch 600/2000, Loss: 0.511797
+     Epoch 800/2000, Loss: 0.502306
+     Epoch 1000/2000, Loss: 0.499553
+     Epoch 1200/2000, Loss: 0.498662
+     Epoch 1400/2000, Loss: 0.498314
+     Epoch 1600/2000, Loss: 0.498158
+     Epoch 1800/2000, Loss: 0.498082
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0010s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.055351
+     Epoch 200/2000, Loss: 0.680756
+     Epoch 400/2000, Loss: 0.557168
+     Epoch 600/2000, Loss: 0.513129
+     Epoch 800/2000, Loss: 0.501077
+     Epoch 1000/2000, Loss: 0.498519
+     Epoch 1200/2000, Loss: 0.498076
+     Epoch 1400/2000, Loss: 0.498012
+     Epoch 1600/2000, Loss: 0.498004
+     Epoch 1800/2000, Loss: 0.498003
+     Winner: ADAM (better by 0.01%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0010s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.345915
+     Epoch 200/2000, Loss: 0.692002
+     Epoch 400/2000, Loss: 0.614627
+     Epoch 600/2000, Loss: 0.591381
+     Epoch 800/2000, Loss: 0.582732
+     Epoch 1000/2000, Loss: 0.577622
+     Epoch 1200/2000, Loss: 0.576361
+     Epoch 1400/2000, Loss: 0.575127
+     Epoch 1600/2000, Loss: 0.575082
+     Epoch 1800/2000, Loss: 0.574444
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0010s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0002s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 0.901328
+     Epoch 200/2000, Loss: 0.626267
+     Epoch 400/2000, Loss: 0.592095
+     Epoch 600/2000, Loss: 0.584619
+     Epoch 800/2000, Loss: 0.583420
+     Epoch 1000/2000, Loss: 0.575325
+     Epoch 1200/2000, Loss: 0.574338
+     Epoch 1400/2000, Loss: 0.573581
+     Epoch 1600/2000, Loss: 0.573551
+     Epoch 1800/2000, Loss: 0.572323
+     Winner: ADAM (better by 1.23%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0010s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.138860
+     Epoch 200/2000, Loss: 0.633298
+     Epoch 400/2000, Loss: 0.601731
+     Epoch 600/2000, Loss: 0.590890
+     Epoch 800/2000, Loss: 0.584913
+     Epoch 1000/2000, Loss: 0.580609
+     Epoch 1200/2000, Loss: 0.579131
+     Epoch 1400/2000, Loss: 0.578398
+     Epoch 1600/2000, Loss: 0.576425
+     Epoch 1800/2000, Loss: 0.574436
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0009s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0015s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.476102
+     Epoch 200/2000, Loss: 0.780285
+     Epoch 400/2000, Loss: 0.600374
+     Epoch 600/2000, Loss: 0.588256
+     Epoch 800/2000, Loss: 0.583592
+     Epoch 1000/2000, Loss: 0.581878
+     Epoch 1200/2000, Loss: 0.579796
+     Epoch 1400/2000, Loss: 0.579789
+     Epoch 1600/2000, Loss: 0.578101
+     Epoch 1800/2000, Loss: 0.576813
+     Winner: SGD (better by 0.48%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0010s
+[TIME] Moving model to device took: 0.0002s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0002s
+[TIME] TOTAL __init__ took: 0.0016s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.460596
+     Epoch 200/2000, Loss: 0.677914
+     Epoch 400/2000, Loss: 0.657016
+     Epoch 600/2000, Loss: 0.639373
+     Epoch 800/2000, Loss: 0.622262
+     Epoch 1000/2000, Loss: 0.597966
+     Epoch 1200/2000, Loss: 0.585678
+     Epoch 1400/2000, Loss: 0.584238
+     Epoch 1600/2000, Loss: 0.582038
+     Epoch 1800/2000, Loss: 0.573460
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0012s
+[TIME] Moving model to device took: 0.0003s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0018s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/2000, Loss: 1.318739
+     Epoch 200/2000, Loss: 0.701976
+     Epoch 400/2000, Loss: 0.674261
+     Epoch 600/2000, Loss: 0.667518
+     Epoch 800/2000, Loss: 0.659494
+     Epoch 1000/2000, Loss: 0.646491
+     Epoch 1200/2000, Loss: 0.634678
+     Epoch 1400/2000, Loss: 0.624140
+     Epoch 1600/2000, Loss: 0.621546
+     Epoch 1800/2000, Loss: 0.616278
+     Winner: SGD (better by 6.90%)
+
+📊 Testing: N=8, D=10, Epochs=1500, LR=0.001
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0002s
+[TIME] TOTAL __init__ took: 0.0033s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 0.415313
+     Epoch 200/1500, Loss: 0.257120
+     Epoch 400/1500, Loss: 0.214724
+     Epoch 600/1500, Loss: 0.192429
+     Epoch 800/1500, Loss: 0.176981
+     Epoch 1000/1500, Loss: 0.164886
+     Epoch 1200/1500, Loss: 0.154863
+     Epoch 1400/1500, Loss: 0.146332
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0033s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 0.521318
+     Epoch 200/1500, Loss: 0.103388
+     Epoch 400/1500, Loss: 0.060106
+     Epoch 600/1500, Loss: 0.043331
+     Epoch 800/1500, Loss: 0.032786
+     Epoch 1000/1500, Loss: 0.025385
+     Epoch 1200/1500, Loss: 0.018221
+     Epoch 1400/1500, Loss: 0.012444
+     Winner: ADAM (better by 92.67%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0033s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 1.811988
+     Epoch 200/1500, Loss: 1.245323
+     Epoch 400/1500, Loss: 1.029478
+     Epoch 600/1500, Loss: 0.919011
+     Epoch 800/1500, Loss: 0.855787
+     Epoch 1000/1500, Loss: 0.816281
+     Epoch 1200/1500, Loss: 0.788290
+     Epoch 1400/1500, Loss: 0.765519
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0025s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0034s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 1.753347
+     Epoch 200/1500, Loss: 0.740520
+     Epoch 400/1500, Loss: 0.642088
+     Epoch 600/1500, Loss: 0.605519
+     Epoch 800/1500, Loss: 0.581487
+     Epoch 1000/1500, Loss: 0.576893
+     Epoch 1200/1500, Loss: 0.575990
+     Epoch 1400/1500, Loss: 0.575406
+     Winner: ADAM (better by 23.84%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0024s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0032s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 2.924786
+     Epoch 200/1500, Loss: 1.148275
+     Epoch 400/1500, Loss: 1.003937
+     Epoch 600/1500, Loss: 0.999492
+     Epoch 800/1500, Loss: 0.999321
+     Epoch 1000/1500, Loss: 0.999313
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0030s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0039s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 3.013588
+     Epoch 200/1500, Loss: 0.999314
+     Epoch 400/1500, Loss: 0.999312
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0031s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0039s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 4.295486
+     Epoch 200/1500, Loss: 1.008076
+     Epoch 400/1500, Loss: 0.999321
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0026s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0035s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 4.297588
+     Epoch 200/1500, Loss: 0.999592
+     Epoch 400/1500, Loss: 0.999312
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0002s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0033s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0043s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 5.625039
+     Epoch 200/1500, Loss: 0.999850
+     Epoch 400/1500, Loss: 0.999312
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0023s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0032s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 5.587967
+     Epoch 200/1500, Loss: 0.999440
+     Epoch 400/1500, Loss: 0.999312
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0024s
+[TIME] Moving model to device took: 0.0004s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0032s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 7.840672
+     Epoch 200/1500, Loss: 0.999327
+     Epoch 400/1500, Loss: 0.999312
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0018s
+[TIME] TOTAL __init__ setup before matrix init: 0.0019s
+[TIME] Matrix initialization took: 0.0033s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0059s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1500, Loss: 8.303216
+     Epoch 200/1500, Loss: 0.999359
+     Epoch 400/1500, Loss: 0.999312
+     Epoch 600/1500, Loss: 0.999312
+     Epoch 800/1500, Loss: 0.999312
+     Epoch 1000/1500, Loss: 0.999312
+     Epoch 1200/1500, Loss: 0.999312
+     Epoch 1400/1500, Loss: 0.999312
+     Winner: SGD (better by 0.00%)
+
+📊 Testing: N=12, D=15, Epochs=1200, LR=0.0005
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0042s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0052s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 0.576945
+     Epoch 200/1200, Loss: 0.354844
+     Epoch 400/1200, Loss: 0.297505
+     Epoch 600/1200, Loss: 0.267348
+     Epoch 800/1200, Loss: 0.247171
+     Epoch 1000/1200, Loss: 0.232298
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0039s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0048s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 0.547417
+     Epoch 200/1200, Loss: 0.132464
+     Epoch 400/1200, Loss: 0.092787
+     Epoch 600/1200, Loss: 0.073439
+     Epoch 800/1200, Loss: 0.061824
+     Epoch 1000/1200, Loss: 0.053976
+     Winner: ADAM (better by 78.06%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0039s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0048s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 2.652712
+     Epoch 200/1200, Loss: 2.022797
+     Epoch 400/1200, Loss: 1.529328
+     Epoch 600/1200, Loss: 1.244650
+     Epoch 800/1200, Loss: 1.107736
+     Epoch 1000/1200, Loss: 1.046353
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0039s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0049s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 2.644773
+     Epoch 200/1200, Loss: 1.003541
+     Epoch 400/1200, Loss: 0.999062
+     Epoch 600/1200, Loss: 0.999062
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+     Winner: ADAM (better by 2.02%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0040s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0050s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 4.829251
+     Epoch 200/1200, Loss: 1.743121
+     Epoch 400/1200, Loss: 1.100321
+     Epoch 600/1200, Loss: 1.012775
+     Epoch 800/1200, Loss: 1.000918
+     Epoch 1000/1200, Loss: 0.999313
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0039s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0049s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 4.667570
+     Epoch 200/1200, Loss: 1.004992
+     Epoch 400/1200, Loss: 0.999062
+     Epoch 600/1200, Loss: 0.999062
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0062s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0072s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 7.082140
+     Epoch 200/1200, Loss: 1.437482
+     Epoch 400/1200, Loss: 1.016838
+     Epoch 600/1200, Loss: 0.999786
+     Epoch 800/1200, Loss: 0.999091
+     Epoch 1000/1200, Loss: 0.999063
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0039s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0049s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 6.998893
+     Epoch 200/1200, Loss: 1.018255
+     Epoch 400/1200, Loss: 0.999064
+     Epoch 600/1200, Loss: 0.999062
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0041s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0051s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 9.321772
+     Epoch 200/1200, Loss: 1.167881
+     Epoch 400/1200, Loss: 1.000966
+     Epoch 600/1200, Loss: 0.999083
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0042s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0054s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 9.236281
+     Epoch 200/1200, Loss: 1.028099
+     Epoch 400/1200, Loss: 0.999066
+     Epoch 600/1200, Loss: 0.999062
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0041s
+[TIME] Moving model to device took: 0.0005s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0051s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 13.902088
+     Epoch 200/1200, Loss: 1.017013
+     Epoch 400/1200, Loss: 0.999095
+     Epoch 600/1200, Loss: 0.999062
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0002s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0050s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0062s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1200, Loss: 12.621255
+     Epoch 200/1200, Loss: 1.049890
+     Epoch 400/1200, Loss: 0.999102
+     Epoch 600/1200, Loss: 0.999062
+     Epoch 800/1200, Loss: 0.999062
+     Epoch 1000/1200, Loss: 0.999062
+     Winner: SGD (better by 0.00%)
+
+📊 Testing: N=16, D=18, Epochs=1000, LR=0.0005
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0057s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0068s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 0.548076
+     Epoch 200/1000, Loss: 0.327105
+     Epoch 400/1000, Loss: 0.279375
+     Epoch 600/1000, Loss: 0.254983
+     Epoch 800/1000, Loss: 0.238348
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0055s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0065s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 0.491347
+     Epoch 200/1000, Loss: 0.117360
+     Epoch 400/1000, Loss: 0.080167
+     Epoch 600/1000, Loss: 0.062179
+     Epoch 800/1000, Loss: 0.051484
+     Winner: ADAM (better by 80.32%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0061s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0072s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 3.069367
+     Epoch 200/1000, Loss: 2.286188
+     Epoch 400/1000, Loss: 1.592379
+     Epoch 600/1000, Loss: 1.248740
+     Epoch 800/1000, Loss: 1.101137
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0063s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0074s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 3.304287
+     Epoch 200/1000, Loss: 0.999115
+     Epoch 400/1000, Loss: 0.998995
+     Epoch 600/1000, Loss: 0.998995
+     Epoch 800/1000, Loss: 0.998995
+     Winner: ADAM (better by 3.99%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0062s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0072s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 6.049101
+     Epoch 200/1000, Loss: 1.884866
+     Epoch 400/1000, Loss: 1.115153
+     Epoch 600/1000, Loss: 1.014124
+     Epoch 800/1000, Loss: 1.000964
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0057s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0068s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 6.199508
+     Epoch 200/1000, Loss: 0.999715
+     Epoch 400/1000, Loss: 0.998995
+     Epoch 600/1000, Loss: 0.998995
+     Epoch 800/1000, Loss: 0.998995
+     Winner: ADAM (better by 0.03%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0060s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0070s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 8.220819
+     Epoch 200/1000, Loss: 1.392997
+     Epoch 400/1000, Loss: 1.014609
+     Epoch 600/1000, Loss: 0.999619
+     Epoch 800/1000, Loss: 0.999020
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0061s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0073s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 8.954194
+     Epoch 200/1000, Loss: 1.003283
+     Epoch 400/1000, Loss: 0.998995
+     Epoch 600/1000, Loss: 0.998995
+     Epoch 800/1000, Loss: 0.998995
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0089s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0102s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 11.678559
+     Epoch 200/1000, Loss: 1.197388
+     Epoch 400/1000, Loss: 1.001244
+     Epoch 600/1000, Loss: 0.999020
+     Epoch 800/1000, Loss: 0.998995
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0073s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0087s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 11.426222
+     Epoch 200/1000, Loss: 1.000260
+     Epoch 400/1000, Loss: 0.998995
+     Epoch 600/1000, Loss: 0.998994
+     Epoch 800/1000, Loss: 0.998995
+     Winner: SGD (better by 0.00%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0058s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0069s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 17.003382
+     Epoch 200/1000, Loss: 1.020964
+     Epoch 400/1000, Loss: 0.999051
+     Epoch 600/1000, Loss: 0.998995
+     Epoch 800/1000, Loss: 0.998995
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0062s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0073s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 16.416763
+     Epoch 200/1000, Loss: 1.001674
+     Epoch 400/1000, Loss: 0.998995
+     Epoch 600/1000, Loss: 0.998995
+     Epoch 800/1000, Loss: 0.998995
+     Winner: ADAM (better by 0.00%)
+
+📊 Testing: N=16, D=20, Epochs=1000, LR=0.0005
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0067s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0079s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 0.705669
+     Epoch 200/1000, Loss: 0.342847
+     Epoch 400/1000, Loss: 0.298997
+     Epoch 600/1000, Loss: 0.277303
+     Epoch 800/1000, Loss: 0.261982
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0067s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0079s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 0.618218
+     Epoch 200/1000, Loss: 0.144946
+     Epoch 400/1000, Loss: 0.100872
+     Epoch 600/1000, Loss: 0.079168
+     Epoch 800/1000, Loss: 0.065749
+     Winner: ADAM (better by 77.34%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0062s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0073s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 3.758713
+     Epoch 200/1000, Loss: 2.655954
+     Epoch 400/1000, Loss: 1.716030
+     Epoch 600/1000, Loss: 1.287866
+     Epoch 800/1000, Loss: 1.112826
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0063s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0074s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 3.621186
+     Epoch 200/1000, Loss: 0.998875
+     Epoch 400/1000, Loss: 0.998733
+     Epoch 600/1000, Loss: 0.998733
+     Epoch 800/1000, Loss: 0.998733
+     Winner: ADAM (better by 4.30%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0066s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0076s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 6.682804
+     Epoch 200/1000, Loss: 2.042732
+     Epoch 400/1000, Loss: 1.133689
+     Epoch 600/1000, Loss: 1.016157
+     Epoch 800/1000, Loss: 1.000982
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0069s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0080s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 6.703401
+     Epoch 200/1000, Loss: 0.999156
+     Epoch 400/1000, Loss: 0.998733
+     Epoch 600/1000, Loss: 0.998733
+     Epoch 800/1000, Loss: 0.998733
+     Winner: ADAM (better by 0.03%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0062s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0073s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 9.703750
+     Epoch 200/1000, Loss: 1.460828
+     Epoch 400/1000, Loss: 1.016810
+     Epoch 600/1000, Loss: 0.999449
+     Epoch 800/1000, Loss: 0.998761
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0060s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0071s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 9.933123
+     Epoch 200/1000, Loss: 1.000873
+     Epoch 400/1000, Loss: 0.998733
+     Epoch 600/1000, Loss: 0.998733
+     Epoch 800/1000, Loss: 0.998733
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0071s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0082s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 12.236768
+     Epoch 200/1000, Loss: 1.167863
+     Epoch 400/1000, Loss: 1.000654
+     Epoch 600/1000, Loss: 0.998755
+     Epoch 800/1000, Loss: 0.998733
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0067s
+[TIME] Moving model to device took: 0.0007s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0078s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 13.408571
+     Epoch 200/1000, Loss: 1.002762
+     Epoch 400/1000, Loss: 0.998733
+     Epoch 600/1000, Loss: 0.998733
+     Epoch 800/1000, Loss: 0.998733
+     Winner: SGD (better by 0.00%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0069s
+[TIME] Moving model to device took: 0.0006s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0079s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 19.018335
+     Epoch 200/1000, Loss: 1.025649
+     Epoch 400/1000, Loss: 0.998810
+     Epoch 600/1000, Loss: 0.998734
+     Epoch 800/1000, Loss: 0.998733
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0064s
+[TIME] Moving model to device took: 0.0009s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0078s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 19.087179
+     Epoch 200/1000, Loss: 1.009974
+     Epoch 400/1000, Loss: 0.998733
+     Epoch 600/1000, Loss: 0.998733
+     Epoch 800/1000, Loss: 0.998733
+     Winner: SGD (better by 0.00%)
+
+📊 Testing: N=16, D=25, Epochs=1000, LR=0.0005
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0105s
+[TIME] Moving model to device took: 0.0011s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0122s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 0.705551
+     Epoch 200/1000, Loss: 0.396087
+     Epoch 400/1000, Loss: 0.354235
+     Epoch 600/1000, Loss: 0.332228
+     Epoch 800/1000, Loss: 0.316950
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0077s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0089s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 0.709929
+     Epoch 200/1000, Loss: 0.197309
+     Epoch 400/1000, Loss: 0.144327
+     Epoch 600/1000, Loss: 0.114398
+     Epoch 800/1000, Loss: 0.094969
+     Winner: ADAM (better by 73.25%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0076s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0088s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 4.632936
+     Epoch 200/1000, Loss: 2.571131
+     Epoch 400/1000, Loss: 1.609132
+     Epoch 600/1000, Loss: 1.231078
+     Epoch 800/1000, Loss: 1.086562
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0086s
+[TIME] Moving model to device took: 0.0009s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0101s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 4.736914
+     Epoch 200/1000, Loss: 0.999057
+     Epoch 400/1000, Loss: 0.998686
+     Epoch 600/1000, Loss: 0.998686
+     Epoch 800/1000, Loss: 0.998686
+     Winner: ADAM (better by 3.23%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0107s
+[TIME] Moving model to device took: 0.0011s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0122s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 8.735493
+     Epoch 200/1000, Loss: 2.233604
+     Epoch 400/1000, Loss: 1.153360
+     Epoch 600/1000, Loss: 1.018175
+     Epoch 800/1000, Loss: 1.001143
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0083s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0096s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 8.419447
+     Epoch 200/1000, Loss: 0.999722
+     Epoch 400/1000, Loss: 0.998686
+     Epoch 600/1000, Loss: 0.998686
+     Epoch 800/1000, Loss: 0.998686
+     Winner: ADAM (better by 0.03%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0080s
+[TIME] Moving model to device took: 0.0009s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0093s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 12.905560
+     Epoch 200/1000, Loss: 1.663740
+     Epoch 400/1000, Loss: 1.024706
+     Epoch 600/1000, Loss: 0.999710
+     Epoch 800/1000, Loss: 0.998726
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0077s
+[TIME] Moving model to device took: 0.0009s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0091s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 12.533185
+     Epoch 200/1000, Loss: 1.001566
+     Epoch 400/1000, Loss: 0.998686
+     Epoch 600/1000, Loss: 0.998686
+     Epoch 800/1000, Loss: 0.998686
+     Winner: ADAM (better by 0.00%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0122s
+[TIME] Moving model to device took: 0.0011s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0138s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 16.646824
+     Epoch 200/1000, Loss: 1.239280
+     Epoch 400/1000, Loss: 1.001422
+     Epoch 600/1000, Loss: 0.998717
+     Epoch 800/1000, Loss: 0.998686
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0079s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0091s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 16.105286
+     Epoch 200/1000, Loss: 1.002245
+     Epoch 400/1000, Loss: 0.998686
+     Epoch 600/1000, Loss: 0.998686
+     Epoch 800/1000, Loss: 0.998686
+     Winner: SGD (better by 0.00%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0104s
+[TIME] Moving model to device took: 0.0009s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0118s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 23.561184
+     Epoch 200/1000, Loss: 1.029704
+     Epoch 400/1000, Loss: 0.998796
+     Epoch 600/1000, Loss: 0.998687
+     Epoch 800/1000, Loss: 0.998686
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0085s
+[TIME] Moving model to device took: 0.0008s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0099s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/1000, Loss: 24.639252
+     Epoch 200/1000, Loss: 1.010653
+     Epoch 400/1000, Loss: 0.998686
+     Epoch 600/1000, Loss: 0.998686
+     Epoch 800/1000, Loss: 0.998686
+     Winner: ADAM (better by 0.00%)
+
+📊 Testing: N=20, D=30, Epochs=800, LR=0.0005
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0114s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0128s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 0.721587
+     Epoch 200/800, Loss: 0.419176
+     Epoch 400/800, Loss: 0.372631
+     Epoch 600/800, Loss: 0.348256
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0099s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0113s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 0.730538
+     Epoch 200/800, Loss: 0.180524
+     Epoch 400/800, Loss: 0.128452
+     Epoch 600/800, Loss: 0.100678
+     Winner: ADAM (better by 75.11%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0111s
+[TIME] Moving model to device took: 0.0014s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0129s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 5.741806
+     Epoch 200/800, Loss: 3.597614
+     Epoch 400/800, Loss: 2.171118
+     Epoch 600/800, Loss: 1.626609
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0002s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0185s
+[TIME] Moving model to device took: 0.0015s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0205s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 5.830678
+     Epoch 200/800, Loss: 1.360139
+     Epoch 400/800, Loss: 1.586953
+     Epoch 600/800, Loss: 1.923249
+     Winner: SGD (better by 47.63%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0112s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0126s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 10.931017
+     Epoch 200/800, Loss: 3.659901
+     Epoch 400/800, Loss: 2.381531
+     Epoch 600/800, Loss: 2.247020
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0104s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0119s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 11.028395
+     Epoch 200/800, Loss: 1.908354
+     Epoch 400/800, Loss: 2.619408
+     Epoch 600/800, Loss: 3.466865
+     Winner: SGD (better by 56.15%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0103s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0116s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 16.224600
+     Epoch 200/800, Loss: 2.915716
+     Epoch 400/800, Loss: 2.138034
+     Epoch 600/800, Loss: 2.135733
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0100s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0115s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 16.285652
+     Epoch 200/800, Loss: 2.664697
+     Epoch 400/800, Loss: 3.781540
+     Epoch 600/800, Loss: 4.937187
+     Winner: SGD (better by 71.04%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0100s
+[TIME] Moving model to device took: 0.0011s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0115s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 20.621977
+     Epoch 200/800, Loss: 3.541914
+     Epoch 400/800, Loss: 3.444804
+     Epoch 600/800, Loss: 3.532177
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0105s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0120s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 20.961761
+     Epoch 200/800, Loss: 3.062344
+     Epoch 400/800, Loss: 4.697229
+     Epoch 600/800, Loss: 7.447667
+     Winner: SGD (better by 72.32%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0169s
+[TIME] Moving model to device took: 0.0014s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0188s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 30.567976
+     Epoch 200/800, Loss: 1.404313
+     Epoch 400/800, Loss: 1.360168
+     Epoch 600/800, Loss: 1.362139
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0107s
+[TIME] Moving model to device took: 0.0010s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0121s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 31.551126
+     Epoch 200/800, Loss: 4.487132
+     Epoch 400/800, Loss: 6.616772
+     Epoch 600/800, Loss: 10.737702
+     Winner: SGD (better by 92.81%)
+
+📊 Testing: N=24, D=40, Epochs=800, LR=0.0005
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0148s
+[TIME] Moving model to device took: 0.0015s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0167s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 0.808651
+     Epoch 200/800, Loss: 0.459465
+     Epoch 400/800, Loss: 0.415907
+     Epoch 600/800, Loss: 0.394295
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0187s
+[TIME] Moving model to device took: 0.0016s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0208s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 0.837302
+     Epoch 200/800, Loss: 0.212392
+     Epoch 400/800, Loss: 0.169485
+     Epoch 600/800, Loss: 0.430310
+     Winner: ADAM (better by 27.50%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0142s
+[TIME] Moving model to device took: 0.0012s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0159s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 7.857103
+     Epoch 200/800, Loss: 4.828210
+     Epoch 400/800, Loss: 2.999690
+     Epoch 600/800, Loss: 2.346702
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0130s
+[TIME] Moving model to device took: 0.0014s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0149s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 7.991380
+     Epoch 200/800, Loss: 2.677985
+     Epoch 400/800, Loss: 4.421516
+     Epoch 600/800, Loss: 8.391430
+     Winner: ADAM (better by 48.44%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0142s
+[TIME] Moving model to device took: 0.0012s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0159s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 14.842109
+     Epoch 200/800, Loss: 4.386379
+     Epoch 400/800, Loss: 2.599818
+     Epoch 600/800, Loss: 2.444105
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0161s
+[TIME] Moving model to device took: 0.0012s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0179s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 15.123051
+     Epoch 200/800, Loss: 4.630400
+     Epoch 400/800, Loss: 9.422505
+     Epoch 600/800, Loss: 19.134634
+     Winner: ADAM (better by 39.78%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0166s
+[TIME] Moving model to device took: 0.0015s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0187s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 21.789448
+     Epoch 200/800, Loss: 6.397559
+     Epoch 400/800, Loss: 5.569834
+     Epoch 600/800, Loss: 5.670418
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0155s
+[TIME] Moving model to device took: 0.0012s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0172s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 22.468971
+     Epoch 200/800, Loss: 4.892102
+     Epoch 400/800, Loss: 9.026482
+     Epoch 600/800, Loss: 15.938807
+     Winner: SGD (better by 82.87%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0195s
+[TIME] Moving model to device took: 0.0017s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0218s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 29.307106
+     Epoch 200/800, Loss: 4.088159
+     Epoch 400/800, Loss: 3.643554
+     Epoch 600/800, Loss: 3.723589
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0145s
+[TIME] Moving model to device took: 0.0013s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0163s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 29.436182
+     Epoch 200/800, Loss: 6.621174
+     Epoch 400/800, Loss: 12.707439
+     Epoch 600/800, Loss: 22.316856
+     Winner: SGD (better by 64.96%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0203s
+[TIME] Moving model to device took: 0.0016s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0225s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 42.616440
+     Epoch 200/800, Loss: 10.239826
+     Epoch 400/800, Loss: 11.074076
+     Epoch 600/800, Loss: 12.060580
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0155s
+[TIME] Moving model to device took: 0.0013s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0172s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/800, Loss: 42.622047
+     Epoch 200/800, Loss: 15.206654
+     Epoch 400/800, Loss: 28.643818
+     Epoch 600/800, Loss: 55.760616
+     Winner: ADAM (better by 83.37%)
+
+📊 Testing: N=32, D=50, Epochs=600, LR=0.0001
+   Quantum Weight: 0.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0421s
+[TIME] Moving model to device took: 0.0021s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0042s
+[TIME] TOTAL __init__ took: 0.0486s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 1.003401
+     Epoch 200/600, Loss: 0.600164
+     Epoch 400/600, Loss: 0.526745
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0259s
+[TIME] Moving model to device took: 0.0017s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0281s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 1.139275
+     Epoch 200/600, Loss: 0.321874
+     Epoch 400/600, Loss: 0.255124
+     Winner: ADAM (better by 55.85%)
+   Quantum Weight: 0.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0315s
+[TIME] Moving model to device took: 0.0023s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0005s
+[TIME] TOTAL __init__ took: 0.0344s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 10.187888
+     Epoch 200/600, Loss: 10.429416
+     Epoch 400/600, Loss: 9.069851
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0002s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0210s
+[TIME] Moving model to device took: 0.0017s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0233s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 10.329424
+     Epoch 200/600, Loss: 5.391455
+     Epoch 400/600, Loss: 4.204661
+     Winner: ADAM (better by 42.89%)
+   Quantum Weight: 1.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0213s
+[TIME] Moving model to device took: 0.0018s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0236s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 19.688456
+     Epoch 200/600, Loss: 19.898590
+     Epoch 400/600, Loss: 15.642891
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0221s
+[TIME] Moving model to device took: 0.0016s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0242s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 19.427532
+     Epoch 200/600, Loss: 7.716613
+     Epoch 400/600, Loss: 5.893363
+     Winner: ADAM (better by 48.27%)
+   Quantum Weight: 1.5
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0227s
+[TIME] Moving model to device took: 0.0016s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0247s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 28.398785
+     Epoch 200/600, Loss: 24.039564
+     Epoch 400/600, Loss: 17.063454
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0002s
+[TIME] TOTAL __init__ setup before matrix init: 0.0005s
+[TIME] Matrix initialization took: 0.0333s
+[TIME] Moving model to device took: 0.0021s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0005s
+[TIME] TOTAL __init__ took: 0.0364s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 28.500290
+     Epoch 200/600, Loss: 9.555964
+     Epoch 400/600, Loss: 6.956038
+     Winner: ADAM (better by 43.74%)
+   Quantum Weight: 2.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0215s
+[TIME] Moving model to device took: 0.0015s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0235s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 37.579945
+     Epoch 200/600, Loss: 25.597250
+     Epoch 400/600, Loss: 16.247557
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0002s
+[TIME] Matrix initialization took: 0.0257s
+[TIME] Moving model to device took: 0.0019s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0006s
+[TIME] TOTAL __init__ took: 0.0284s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 38.166981
+     Epoch 200/600, Loss: 14.752785
+     Epoch 400/600, Loss: 11.077817
+     Winner: SGD (better by 3.84%)
+   Quantum Weight: 3.0
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0210s
+[TIME] Moving model to device took: 0.0015s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0004s
+[TIME] TOTAL __init__ took: 0.0230s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 56.459362
+     Epoch 200/600, Loss: 34.001202
+     Epoch 400/600, Loss: 21.953484
+--- Device Setup ---
+CUDA Available: True
+CUDA Device Name: Tesla T4
+Using device: cuda
+--------------------
+[TIME] Device setup took: 0.0001s
+[TIME] TOTAL __init__ setup before matrix init: 0.0001s
+[TIME] Matrix initialization took: 0.0224s
+[TIME] Moving model to device took: 0.0015s
+[MatrixTrainer Init] Trainer using device: cuda
+[MatrixTrainer Init] Parameter matrix device: cuda:0
+[TIME] Optimizer init took: 0.0003s
+[TIME] TOTAL __init__ took: 0.0244s
+--- Stored 1000 points on device: cuda:0 ---
+     Epoch 0/600, Loss: 56.638260
+     Epoch 200/600, Loss: 20.384809
+     Epoch 400/600, Loss: 14.981079
+     Winner: ADAM (better by 8.02%)
+   💾 Dimensionality results saved to: test_results/gpu_dimensionality_crossover/dimensionality_crossover_20250825_211518.npz
+   📝 Summary saved to: test_results/gpu_dimensionality_crossover/dimensionality_crossover_20250825_211518_summary.txt
+
+🔍 DIMENSIONALITY CROSSOVER ANALYSIS
+==================================================
+📊 Low-dimensional scenarios (D < 20): 4
+📊 High-dimensional scenarios (D >= 20): 5
+
+🔍 Low-Dimensional Analysis (Should follow quantum weight crossover):
+   N=3, D=3:
+     SGD wins: 2, ADAM wins: 4
+     Expected: Follow quantum weight crossover
+   N=8, D=10:
+     SGD wins: 1, ADAM wins: 5
+     Expected: Follow quantum weight crossover
+   N=12, D=15:
+     SGD wins: 1, ADAM wins: 5
+     Expected: Follow quantum weight crossover
+   N=16, D=18:
+     SGD wins: 1, ADAM wins: 5
+     Expected: Follow quantum weight crossover
+
+🔍 High-Dimensional Analysis (ADAM should always win):
+   N=16, D=20:
+     SGD wins: 2, ADAM wins: 4
+     Expected: ADAM always wins (high-dimensional advantage)
+   N=16, D=25:
+     SGD wins: 1, ADAM wins: 5
+     Expected: ADAM always wins (high-dimensional advantage)
+   N=20, D=30:
+     SGD wins: 5, ADAM wins: 1
+     Expected: ADAM always wins (high-dimensional advantage)
+   N=24, D=40:
+     SGD wins: 2, ADAM wins: 4
+     Expected: ADAM always wins (high-dimensional advantage)
+   N=32, D=50:
+     SGD wins: 1, ADAM wins: 5
+     Expected: ADAM always wins (high-dimensional advantage)
+
+🧪 TESTING DIMENSIONALITY CROSSOVER HYPOTHESIS
+==================================================
+❌ HYPOTHESIS VIOLATED: Some high-dimensional scenarios don't follow the rule
+   ❌ N=16, D=20, QW=2.0: SGD won instead of ADAM
+   ❌ N=16, D=20, QW=3.0: SGD won instead of ADAM
+   ❌ N=16, D=25, QW=2.0: SGD won instead of ADAM
+   ❌ N=20, D=30, QW=0.5: SGD won instead of ADAM
+   ❌ N=20, D=30, QW=1.0: SGD won instead of ADAM
+   ❌ N=20, D=30, QW=1.5: SGD won instead of ADAM
+   ❌ N=20, D=30, QW=2.0: SGD won instead of ADAM
+   ❌ N=20, D=30, QW=3.0: SGD won instead of ADAM
+   ❌ N=24, D=40, QW=1.5: SGD won instead of ADAM
+   ❌ N=24, D=40, QW=2.0: SGD won instead of ADAM
+   ❌ N=32, D=50, QW=2.0: SGD won instead of ADAM
+
+📊 Summary:
+   Total scenarios tested: 9
+   Hypothesis correct: False
+
+✅ Quick validation completed!
+
+🎯 Test suite completed in mode: quick
+Check the test_results/gpu_master_suite/ directory for results.

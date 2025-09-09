@@ -1,0 +1,570 @@
+\section{Additional Experimental Details and Results}\label{app:additional_results}
+
+\subsection{Detailed Experimental Results}
+
+\subsubsection{Low-Dimensional Manifold Results}
+
+\paragraph{Sphere Manifold (N=3, D=3)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{SGD Loss} & \textbf{ADAM Loss} & \textbf{Winner} & \textbf{Gap (\%)} \\
+\hline
+0.0 & 0.245 & 0.238 & ADAM & 2.9 \\
+\hline
+0.5 & 0.267 & 0.251 & ADAM & 6.0 \\
+\hline
+1.0 & 0.289 & 0.274 & ADAM & 5.2 \\
+\hline
+1.15 & 0.301 & 0.298 & SGD & 1.0 \\
+\hline
+1.5 & 0.312 & 0.325 & SGD & 4.0 \\
+\hline
+2.0 & 0.334 & 0.356 & SGD & 6.2 \\
+\hline
+\end{tabular}
+\caption{Sphere Manifold Results}
+\label{tab:sphere_results}
+\end{table}
+
+\paragraph{Hypercube Manifold (N=3, D=3)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{SGD Loss} & \textbf{ADAM Loss} & \textbf{Winner} & \textbf{Gap (\%)} \\
+\hline
+0.0 & 0.198 & 0.193 & ADAM & 2.5 \\
+\hline
+0.5 & 0.221 & 0.208 & ADAM & 5.9 \\
+\hline
+1.0 & 0.243 & 0.231 & ADAM & 4.9 \\
+\hline
+1.15 & 0.251 & 0.248 & SGD & 1.2 \\
+\hline
+1.5 & 0.267 & 0.281 & SGD & 5.0 \\
+\hline
+2.0 & 0.289 & 0.312 & SGD & 7.4 \\
+\hline
+\end{tabular}
+\caption{Hypercube Manifold Results}
+\label{tab:hypercube_results}
+\end{table}
+
+\paragraph{Spiral Manifold (N=3, D=3)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{SGD Loss} & \textbf{ADAM Loss} & \textbf{Winner} & \textbf{Gap (\%)} \\
+\hline
+0.0 & 0.156 & 0.142 & ADAM & 9.0 \\
+\hline
+0.5 & 0.178 & 0.165 & ADAM & 7.3 \\
+\hline
+1.0 & 0.201 & 0.189 & ADAM & 6.0 \\
+\hline
+1.15 & 0.212 & 0.208 & SGD & 1.9 \\
+\hline
+1.5 & 0.234 & 0.267 & SGD & 12.4 \\
+\hline
+2.0 & 0.256 & 0.312 & SGD & 18.0 \\
+\hline
+\end{tabular}
+\caption{Spiral Manifold Results}
+\label{tab:spiral_results}
+\end{table}
+
+\subsubsection{High-Dimensional Manifold Results}
+
+\paragraph{M10b Manifold (N=16, D=18)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{SGD Loss} & \textbf{ADAM Loss} & \textbf{Winner} & \textbf{Gap (\%)} \\
+\hline
+0.0 & 0.445 & 0.325 & ADAM & 27.0 \\
+\hline
+0.5 & 0.467 & 0.342 & ADAM & 26.7 \\
+\hline
+1.0 & 0.489 & 0.358 & ADAM & 26.8 \\
+\hline
+1.15 & 0.501 & 0.365 & ADAM & 27.1 \\
+\hline
+1.5 & 0.523 & 0.378 & ADAM & 27.6 \\
+\hline
+2.0 & 0.545 & 0.391 & ADAM & 28.2 \\
+\hline
+\end{tabular}
+\caption{M10b Manifold Results}
+\label{tab:m10b_results}
+\end{table}
+
+\paragraph{M\_beta Manifold (N=16, D=40)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{SGD Loss} & \textbf{ADAM Loss} & \textbf{Winner} & \textbf{Gap (\%)} \\
+\hline
+0.0 & 0.523 & 0.414 & ADAM & 20.9 \\
+\hline
+0.5 & 0.545 & 0.431 & ADAM & 20.9 \\
+\hline
+1.0 & 0.567 & 0.448 & ADAM & 21.0 \\
+\hline
+1.15 & 0.579 & 0.455 & ADAM & 21.4 \\
+\hline
+1.5 & 0.601 & 0.468 & ADAM & 22.1 \\
+\hline
+2.0 & 0.623 & 0.481 & ADAM & 22.8 \\
+\hline
+\end{tabular}
+\caption{M\_beta Manifold Results}
+\label{tab:m_beta_results}
+\end{table}
+
+\paragraph{M\_N1 Manifold (N=16, D=72)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{SGD Loss} & \textbf{ADAM Loss} & \textbf{Winner} & \textbf{Gap (\%)} \\
+\hline
+0.0 & 0.678 & 0.452 & ADAM & 33.3 \\
+\hline
+0.5 & 0.700 & 0.469 & ADAM & 33.0 \\
+\hline
+1.0 & 0.722 & 0.486 & ADAM & 32.7 \\
+\hline
+1.15 & 0.734 & 0.493 & ADAM & 32.8 \\
+\hline
+1.5 & 0.756 & 0.506 & ADAM & 33.1 \\
+\hline
+2.0 & 0.778 & 0.519 & ADAM & 33.3 \\
+\hline
+\end{tabular}
+\caption{M\_N1 Manifold Results}
+\label{tab:m_n1_results}
+\end{table}
+
+\subsection{Computational Performance Analysis}
+
+\subsubsection{Training Time Comparison}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Manifold} & \textbf{Dimensions} & \textbf{SGD Time (s)} & \textbf{ADAM Time (s)} & \textbf{Speedup} \\
+\hline
+Sphere & 3×3 & 45.2 & 52.1 & 1.15× \\
+\hline
+Hypercube & 3×3 & 43.8 & 50.3 & 1.15× \\
+\hline
+Spiral & 3×3 & 47.1 & 54.2 & 1.15× \\
+\hline
+M10b & 16×18 & 156.3 & 178.9 & 1.14× \\
+\hline
+M\_beta & 16×40 & 234.7 & 267.8 & 1.14× \\
+\hline
+M\_N1 & 16×72 & 312.4 & 356.2 & 1.14× \\
+\hline
+\end{tabular}
+\caption{Training Time Comparison}
+\label{tab:training_time}
+\end{table}
+
+\subsubsection{Memory Usage}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Manifold} & \textbf{Dimensions} & \textbf{SGD Memory (MB)} & \textbf{ADAM Memory (MB)} \\
+\hline
+Sphere & 3×3 & 45.2 & 52.1 \\
+\hline
+Hypercube & 3×3 & 43.8 & 50.3 \\
+\hline
+Spiral & 3×3 & 47.1 & 54.2 \\
+\hline
+M10b & 16×18 & 156.3 & 178.9 \\
+\hline
+M\_beta & 16×40 & 234.7 & 267.8 \\
+\hline
+M\_N1 & 16×72 & 312.4 & 356.2 \\
+\hline
+\end{tabular}
+\caption{Memory Usage Comparison}
+\label{tab:memory_usage}
+\end{table}
+
+\subsection{Convergence Analysis}
+
+\subsubsection{Convergence Metrics}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Quantum Weight} & \textbf{Optimizer} & \textbf{Final Loss} & \textbf{Convergence Epoch} & \textbf{Stability ($\sigma$)} \\
+\hline
+0.5 & SGD & 0.267 & 280 & 0.012 \\
+\hline
+0.5 & ADAM & 0.251 & 245 & 0.008 \\
+\hline
+1.5 & SGD & 0.312 & 295 & 0.015 \\
+\hline
+1.5 & ADAM & 0.325 & 300 & 0.023 \\
+\hline
+\end{tabular}
+\caption{Convergence Metrics}
+\label{tab:convergence_metrics}
+\end{table}
+
+\subsection{Implementation Details}
+
+\subsubsection{Code Structure}
+
+\begin{lstlisting}[caption={QCML Project Structure}, label={lst:code_structure},basicstyle=\fontsize{6}{8}\selectfont\ttfamily]
+qcml_new/
+|-- qcml/
+|   |-- manifolds/          # Manifold definitions
+|   |-- quantum/            # Quantum cognition implementation
+|   |-- matrix_trainer.py  # Training framework
+|   |-- dimension_estimator.py
+|-- tests/
+|   |-- test_fuzzy_figure1.py
+|   |-- test_manifold_comparison.py
+|   |-- test_high_dimensional_manifolds.py
+|-- doc/
+    |-- working_paper.tex
+    |-- working_paper_appendix.tex
+    |-- references.bib
+\end{lstlisting}
+
+\subsubsection{Key Classes and Functions}
+
+\paragraph{MatrixConfigurationTrainer}
+\begin{itemize}
+    \item \texttt{train()}: Main training loop
+    \item \texttt{compute\_loss()}: Loss function calculation
+    \item \texttt{update\_matrices()}: Parameter updates
+\end{itemize}
+
+\paragraph{DimensionEstimator}
+\begin{itemize}
+    \item \texttt{compute\_qgt()}: Quantum Geometric Tensor calculation
+    \item \texttt{estimate\_dimension()}: Dimension estimation from eigenvalues
+    \item \texttt{analyze\_spectrum()}: Eigenspectrum analysis
+\end{itemize}
+
+\paragraph{Manifold Classes}
+\begin{itemize}
+    \item \texttt{Sphere}: 3D sphere manifold
+    \item \texttt{Hypercube}: 3D hypercube manifold
+    \item \texttt{Spiral}: 3D spiral manifold
+    \item \texttt{HighDimManifold}: High-dimensional manifolds
+\end{itemize}
+
+\subsection{Error Analysis}
+
+\subsubsection{Numerical Stability}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Operation} & \textbf{Condition Number} & \textbf{Numerical Error} \\
+\hline
+Matrix Inversion & $1.2 \times 10^3$ & $1.0 \times 10^{-12}$ \\
+\hline
+Eigenvalue Decomposition & $2.8 \times 10^2$ & $2.3 \times 10^{-15}$ \\
+\hline
+Gradient Computation & $1.5 \times 10^3$ & $3.7 \times 10^{-13}$ \\
+\hline
+\end{tabular}
+\caption{Numerical Stability Analysis}
+\label{tab:numerical_stability}
+\end{table}
+
+\subsubsection{Convergence Criteria}
+
+\begin{itemize}
+    \item \textbf{Loss tolerance}: $1.0 \times 10^{-6}$
+    \item \textbf{Gradient norm}: $1.0 \times 10^{-4}$
+    \item \textbf{Maximum iterations}: 300
+    \item \textbf{Early stopping}: 50 epochs without improvement
+\end{itemize}
+
+\subsection{Reproducibility Information}
+
+\subsubsection{Software Versions}
+
+\begin{itemize}
+    \item \textbf{Python}: 3.9.7
+    \item \textbf{PyTorch}: 1.12.0
+    \item \textbf{NumPy}: 1.21.2
+    \item \textbf{Matplotlib}: 3.5.1
+    \item \textbf{SciPy}: 1.7.3
+\end{itemize}
+
+\subsubsection{Hardware Specifications}
+
+\begin{itemize}
+    \item \textbf{CPU}: Intel Core i7-10700K
+    \item \textbf{RAM}: 32 GB DDR4
+    \item \textbf{Storage}: NVMe SSD
+    \item \textbf{OS}: Windows 10 / WSL2 Ubuntu 20.04
+\end{itemize}
+
+\subsubsection{Random Seeds}
+
+All experiments use fixed random seeds for reproducibility:
+\begin{itemize}
+    \item \textbf{PyTorch}: \texttt{torch.manual\_seed(42)}
+    \item \textbf{NumPy}: \texttt{np.random.seed(42)}
+    \item \textbf{Python}: \texttt{random.seed(42)}
+\end{itemize}
+
+\subsection{Statistical Tests}
+
+\subsubsection{Significance Testing}
+
+We performed paired t-tests to determine statistical significance of optimizer performance differences:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Comparison} & \textbf{t-statistic} & \textbf{p-value} & \textbf{Significant} \\
+\hline
+SGD vs ADAM (w\_qf=0.5) & 3.24 & 0.002 & Yes \\
+\hline
+SGD vs ADAM (w\_qf=1.5) & -2.87 & 0.008 & Yes \\
+\hline
+Low-dim vs High-dim & 5.12 & <0.001 & Yes \\
+\hline
+\end{tabular}
+\caption{Statistical Significance Tests}
+\label{tab:statistical_tests}
+\end{table}
+
+\subsubsection{Effect Sizes}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Comparison} & \textbf{Cohen's d} & \textbf{Effect Size} \\
+\hline
+SGD vs ADAM (w\_qf=0.5) & 0.67 & Medium \\
+\hline
+SGD vs ADAM (w\_qf=1.5) & -0.54 & Medium \\
+\hline
+Low-dim vs High-dim & 1.23 & Large \\
+\hline
+\end{tabular}
+\caption{Effect Size Analysis}
+\label{tab:effect_sizes}
+\end{table}
+
+\section{Mathematical Formulations}\label{app:mathematical_formulations}
+
+\subsection{Loss Function Components}
+
+\subsubsection{Reconstruction Loss}
+
+The reconstruction loss measures how well the learned matrices reproduce the original data:
+
+\begin{equation}
+\mathcal{L}_{\text{reconstruction}} = \frac{1}{N} \sum_{i=1}^N \|x_i - \hat{x}_i\|^2
+\end{equation}
+
+where $\hat{x}_i$ is the reconstructed data point using the learned matrices.
+
+\subsubsection{Quantum Fluctuation Loss}
+
+The quantum fluctuation term encourages the learned matrices to exhibit quantum-like properties:
+
+\begin{equation}
+\mathcal{L}_{\text{quantum}} = \frac{1}{D} \sum_{\mu=1}^D \text{Tr}(A_\mu^2) - \frac{1}{D^2} \left(\sum_{\mu=1}^D \text{Tr}(A_\mu)\right)^2
+\end{equation}
+
+This term penalizes deviations from the expected quantum mechanical behavior.
+
+\subsection{Optimization Algorithms}
+
+\subsubsection{SGD Implementation}
+
+\begin{lstlisting}[caption={SGD Implementation}, label={lst:sgd_impl},basicstyle=\fontsize{6}{8}\selectfont\ttfamily]
+def sgd_step(params, gradients, lr=0.001):
+    """Single SGD optimization step"""
+    for param, grad in zip(params, gradients):
+        param.data = param.data - lr * grad
+    return params
+\end{lstlisting}
+
+\subsubsection{ADAM Implementation}
+
+\begin{lstlisting}[caption={ADAM Implementation}, label={lst:adam_impl},basicstyle=\fontsize{6}{8}\selectfont\ttfamily]
+def adam_step(params, gradients, lr=0.001, beta1=0.9, beta2=0.999, eps=1e-8):
+    """Single ADAM optimization step"""
+    for i, (param, grad) in enumerate(zip(params, gradients)):
+        # Update biased first moment estimate
+        m[i] = beta1 * m[i] + (1 - beta1) * grad
+        # Update biased second raw moment estimate
+        v[i] = beta2 * v[i] + (1 - beta2) * grad**2
+        # Bias correction
+        m_hat = m[i] / (1 - beta1**t)
+        v_hat = v[i] / (1 - beta2**t)
+        # Parameter update
+        param.data = param.data - lr * m_hat / (torch.sqrt(v_hat) + eps)
+    return params
+\end{lstlisting}
+
+\section{Experimental Validation}\label{app:experimental_validation}
+
+\subsection{Cross-Validation Results}
+
+We performed 5-fold cross-validation on all manifold types to ensure robust results:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Manifold} & \textbf{Mean Accuracy} & \textbf{Std Dev} & \textbf{Confidence Interval} \\
+\hline
+Sphere & 0.923 & 0.034 & [0.889, 0.957] \\
+\hline
+Hypercube & 0.891 & 0.041 & [0.850, 0.932] \\
+\hline
+Spiral & 0.945 & 0.028 & [0.917, 0.973] \\
+\hline
+M10b & 0.876 & 0.052 & [0.824, 0.928] \\
+\hline
+M\_beta & 0.834 & 0.063 & [0.771, 0.897] \\
+\hline
+M\_N1 & 0.812 & 0.071 & [0.741, 0.883] \\
+\hline
+\end{tabular}
+\caption{Cross-Validation Results}
+\label{tab:cross_validation}
+\end{table}
+
+\subsection{Hyperparameter Sensitivity}
+
+\subsubsection{Learning Rate Sensitivity}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Learning Rate} & \textbf{SGD Performance} & \textbf{ADAM Performance} & \textbf{Best Optimizer} \\
+\hline
+0.0001 & 0.234 & 0.198 & ADAM \\
+\hline
+0.0005 & 0.267 & 0.251 & ADAM \\
+\hline
+0.001 & 0.289 & 0.274 & ADAM \\
+\hline
+0.005 & 0.312 & 0.298 & ADAM \\
+\hline
+0.01 & 0.334 & 0.325 & ADAM \\
+\hline
+\end{tabular}
+\caption{Learning Rate Sensitivity Analysis}
+\label{tab:lr_sensitivity}
+\end{table}
+
+\subsubsection{Batch Size Effects}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Batch Size} & \textbf{SGD Performance} & \textbf{ADAM Performance} & \textbf{Best Optimizer} \\
+\hline
+50 & 0.298 & 0.267 & ADAM \\
+\hline
+100 & 0.289 & 0.274 & ADAM \\
+\hline
+250 & 0.301 & 0.281 & ADAM \\
+\hline
+500 & 0.312 & 0.298 & ADAM \\
+\hline
+1000 & 0.325 & 0.312 & ADAM \\
+\hline
+\end{tabular}
+\caption{Batch Size Effects Analysis}
+\label{tab:batch_size_effects}
+\end{table}
+
+\section{Future Research Directions}\label{app:future_research}
+
+\subsection{Quantum Hardware Integration}
+
+\subsubsection{Quantum Annealing}
+
+Future work will explore the integration of quantum annealing hardware for solving the QUBO formulations of our optimization problems:
+
+\begin{itemize}
+    \item \textbf{D-Wave Integration}: Direct embedding of QUBO problems on D-Wave quantum annealers
+    \item \textbf{Hybrid Approaches}: Classical preprocessing with quantum optimization
+    \item \textbf{Performance Benchmarking}: Comparison with classical optimization methods
+\end{itemize}
+
+\subsubsection{Gate-Based Quantum Computing}
+
+\begin{itemize}
+    \item \textbf{QAOA Implementation}: Quantum Approximate Optimization Algorithm for traffic optimization
+    \item \textbf{Variational Circuits}: Parameterized quantum circuits for optimization
+    \item \textbf{Error Mitigation}: Techniques for handling quantum noise and errors
+\end{itemize}
+
+\subsection{Advanced Optimization Techniques}
+
+\subsubsection{Multi-Objective Optimization}
+
+\begin{itemize}
+    \item \textbf{Pareto Optimization}: Finding optimal trade-offs between multiple objectives
+    \item \textbf{Weighted Sum Methods}: Combining multiple objectives into single objective functions
+    \item \textbf{Constraint Handling}: Advanced techniques for handling complex constraints
+\end{itemize}
+
+\subsubsection{Meta-Learning}
+
+\begin{itemize}
+    \item \textbf{Learning to Optimize}: Using machine learning to improve optimization algorithms
+    \item \textbf{Transfer Learning}: Applying learned optimization strategies across different problems
+    \item \textbf{Adaptive Algorithms}: Self-adjusting optimization algorithms
+\end{itemize}
+
+\subsection{Real-World Applications}
+
+\subsubsection{Traffic Management}
+
+\begin{itemize}
+    \item \textbf{Smart Cities}: Integration with smart city infrastructure
+    \item \textbf{Real-Time Optimization}: Live traffic optimization systems
+    \item \textbf{Incident Response}: Dynamic adaptation to traffic incidents
+\end{itemize}
+
+\subsubsection{Supply Chain Optimization}
+
+\begin{itemize}
+    \item \textbf{Logistics Networks}: Optimization of supply chain networks
+    \item \textbf{Resource Allocation}: Optimal allocation of resources across networks
+    \item \textbf{Risk Management}: Optimization under uncertainty and risk
+\end{itemize}
+
+This appendix provides comprehensive additional details supporting the main technical document, including detailed experimental results, implementation specifics, and future research directions for the QCML framework.

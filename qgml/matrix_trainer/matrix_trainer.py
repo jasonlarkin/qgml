@@ -337,13 +337,18 @@ class MatrixConfigurationTrainer(nn.Module):
             print(f"--- Reconstructing provided {target_points_np.shape[0]} points. ---")
 
         # ensure matrices do not require gradients for reconstruction
-        self.matrices.requires_grad_(False)
+        for matrix in self.matrices:
+            matrix.requires_grad_(False)
 
         # convert target NumPy array to tensor for internal calculation
         points_tensor = torch.tensor(target_points_np, dtype=torch.float32).to(self.device)
 
         # call internal tensor-based reconstruction method
         reconstructed_tensor = self._reconstruct_points_tensor(points_tensor)
+        
+        # restore gradients for training
+        for matrix in self.matrices:
+            matrix.requires_grad_(True)
         
         # convert result back to NumPy array on CPU
         return reconstructed_tensor.detach().cpu().numpy()
@@ -472,7 +477,7 @@ class MatrixConfigurationTrainer(nn.Module):
         Returns:
             dictionary of metrics for this epoch
         """
-        self.train() # set model to training mode
+        super().train(mode=True) # set model to training mode
         epoch_total_loss = 0.0
         epoch_recon_error = 0.0
         epoch_comm_norm = 0.0
@@ -541,6 +546,21 @@ class MatrixConfigurationTrainer(nn.Module):
             'reconstruction_error': avg_recon_error,
             'quantum_fluctuation': avg_qf # ensure this key matches history
         }
+    
+    def train(self, n_epochs=200, batch_size=None, verbose=False):
+        """Train the matrix configuration (alias for train_matrix_configuration).
+        
+        This method provides a consistent interface with the JAX implementation.
+        
+        Args:
+            n_epochs: number of epochs to train
+            batch_size: batch size (None means full batch)
+            verbose: whether to print progress
+            
+        Returns:
+            Training history
+        """
+        return self.train_matrix_configuration(n_epochs, batch_size, verbose)
     
     def train_matrix_configuration(
         self,
