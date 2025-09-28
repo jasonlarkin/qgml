@@ -1,18 +1,42 @@
 [build-system]
-requires = ["setuptools>=64.0.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "qgml"
 version = "0.1.0"
-description = "Quantum Geometric Machine Learning Library (demo)"
-requires-python = ">=3.7"
+description = "Quantum Geometric Machine Learning with dual JAX/PyTorch backends"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "QGML Team", email = "team@qgml.dev"},
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10", 
+    "Programming Language :: Python :: 3.11",
+]
 dependencies = [
-    "numpy>=1.20.0",
-    "scikit-learn>=1.0.0",
-    "matplotlib>=3.4.0",
-    "torch>=1.9.0",
+    "numpy>=1.21.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.5.0",
+    "torch>=2.0.0",
+    "scikit-learn>=1.3.0",
+    "pytest>=8.4.2",
 ]
 
 [project.optional-dependencies]
-test = ["pytest>=6.0.0"] 
+jax = ["jax>=0.4.0", "jaxlib>=0.4.0"]
+pytorch = ["torch>=2.0.0", "torchvision>=0.15.0"]
+quantum = ["qiskit>=0.45.0"]
+full = ["jax>=0.4.0", "jaxlib>=0.4.0", "qiskit>=0.45.0"]
+dev = ["pytest>=7.0.0", "pytest-cov>=4.0.0", "black>=23.0.0", "flake8>=6.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/[username]/qgml"
+Documentation = "https://qgml.readthedocs.io/"
+Repository = "https://github.com/[username]/qgml.git"

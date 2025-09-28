@@ -1,103 +1,140 @@
-# QGML: Quantum Cognition for Machine Learning
+# QGML: Quantum Geometric Machine Learning
 
-QGML is a Python library implementing techniques from Quantum Cognition for Machine Learning (\cite{candelori2025robust}), focusing on estimating the intrinsic dimension of data manifolds. It is based on the approach of learning Hermitian matrix configurations that represent the data coordinates, and hence their Manifold (\cite{candelori2025robust}).
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![JAX](https://img.shields.io/badge/backend-JAX-orange.svg)](https://jax.readthedocs.io/)
+[![PyTorch](https://img.shields.io/badge/backend-PyTorch-red.svg)](https://pytorch.org/)
 
-## Features
+**Quantum Geometric Machine Learning (QGML)** is a comprehensive framework that combines quantum geometric structures with machine learning. Features dual **JAX** and **PyTorch** backends for optimal performance across different computational environments.
 
-- Learning matrix configurations (`A_μ`) representing manifold coordinates.
-- Calculating Quantum Geometric Tensors (`g(x)`) from learned configurations.
-- Estimating manifold dimension from the eigenspectrum of `g(x)`.
-- Example implementation reproducing Figure 1 and Supplementary Section from \cite{candelori2025robust}.
-- Configurable Hilbert space dimension (`N`) and embedding dimension (`D`).
+## Key Features
 
-## Installation
+### **Quantum Geometric Analysis**
+- Berry curvature computation and topological invariants
+- Quantum metric tensor and geometric loss functions
+- Quantum phase transition detection
 
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/jasonlarkin/qgml.git 
-    cd qgml
-    ```
+### **Dual Backend Support**
+- **JAX Backend**: XLA compilation, automatic differentiation, TPU support
+- **PyTorch Backend**: Dynamic graphs, extensive ecosystem, GPU optimization
+- **Seamless switching**: Change backends with single function call
 
-2.  Create and activate a virtual environment (recommended):
-    ```bash
-    python -m venv qgml-test-env
-    source qgml-test-env/bin/activate  
-    ```
+### **Specialized Applications**
+- Genomics analysis with chromosomal instability detection
+- High-dimensional manifold learning
+- Quantum computing algorithm implementation
 
-3.  Install the package in editable mode (this will also install dependencies):
-    ```bash
-    pip install -e .
-    ```
+### **Production Ready**
+- Comprehensive testing across both backends
+- Extensive documentation and examples
+- Performance benchmarks and optimization guides
 
-## Usage 
+## Quick Start
 
-### Example: Reproducing Figure 1 (Fuzzy Sphere)
+### Basic Usage
 
-The primary example demonstrating the core workflow is `qgml/tests/test_fig1.py`. This script reproduces the fuzzy sphere example (Figure 1) from the reference paper.
+```python
+import qgml
 
-Key steps involved:
+# Set computational backend
+qgml.set_backend("pytorch") # or "jax"
 
-1.  **Data Generation**: Sample points from a sphere manifold, potentially adding noise (controlled by `manifold_noise_std`). (`qgml.manifolds.Sphere`)
-2.  **Training**: Learn the matrix configuration `A = {A₁,...,A_D}` using `qgml.matrix_trainer.MatrixConfigurationTrainer`. This involves minimizing a loss function including reconstruction error and optionally a quantum fluctuation term (`w_qf`). Hyperparameters like learning rate, epochs, penalty weights are crucial and set within the script.
-3.  **Metric Calculation**: Compute the Quantum Geometric Tensor `g(x)` at each point using the trained matrices `A_μ` and the resulting ground states `ψ₀(x)` via `qgml.dimension_estimator.DimensionEstimator`.
-4.  **Eigenspectrum**: Calculate and plot the eigenvalues (`e0`, `e1`, `e2` for D=3) of `g(x)` for each point. The separation and magnitude of these eigenvalues reveal the estimated dimension and data properties.
-5.  **Visualization**: Plot input data, training curves, and eigenvalues using functions from `qgml.visualization`.
+# Create quantum geometric trainer
+trainer = qgml.geometry.QuantumGeometryTrainer(
+    hilbert_dim=8,
+    feature_dim=4,
+    backend="auto" # Uses current backend
+)
 
-To run the Figure 1 example:
-```bash
-python qgml/tests/test_fuzzy_figure1.py
+# Analyze quantum geometric properties
+analysis = trainer.analyze_complete_quantum_geometry(
+    data_points,
+    compute_berry_curvature=True,
+    compute_chern_numbers=True
+)
 ```
-This will generate plots in the `test_outputs/figure1/` directory, organized by the hyperparameters used.
 
-### Example: Reproducing Supplemtary Figures 
+### Backend Comparison
 
-Similarly `qgml/tests/test_supp_fig1.py` and `qgml/tests/test_supp_fig2.py` attempt to reproduce figrues 1 and 2 from Supplementary Section.
+```python
+import qgml
 
-### Example Notebook
+# Compare performance across backends
+results = qgml.utils.compare_backends(
+    data=my_dataset,
+    models=["supervised", "geometric"],
+    metrics=["speed", "memory", "accuracy"]
+)
 
-Also see `doc/example.ipynb` for a simple example covering functionality. 
+print(results.summary())
+```
 
-## Testing
+## Backend Performance
 
-The library uses `pytest` for testing. Tests verify the correctness of individual components and the overall workflow.
+| Feature | JAX Backend | PyTorch Backend |
+|---------|------------|----------------|
+| **Compilation** | XLA (fast) | JIT (moderate) |
+| **Memory** | Efficient | Standard |
+| **GPU/TPU** | Excellent | GPU excellent, no TPU |
+| **Ecosystem** | Scientific | ML/DL focused |
+| **Debugging** | Functional | Imperative |
 
--   Run all tests:
-    ```bash
-    pytest
-    ```
--   Run tests specific to the quantum module:
-    ```bash
-    pytest qgml/tests/
-    ```
--   Run a specific test file:
-    ```bash
-    pytest qgml/tests/test_training.py
-    ```
+## Documentation
 
-Currently, the script `qgml/quantum/test_fig1.py` serves both as a key example and a form of integration test, demonstrating the successful training and metric calculation pipeline.
+- [**Installation & Setup**](docs/source/getting_started/installation.rst)
+- [**Backend Guide**](docs/source/getting_started/backends.rst)
+- [**API Reference**](docs/source/api/)
+- [**Performance Benchmarks**](docs/source/experimental_results/backend_performance.rst)
+- [**Examples**](examples/)
 
-## Future Work & Development
+## ️ Installation
 
--   **Experiment Tracking**: Integrate `MLflow` to systematically track hyperparameters, training metrics, loss components, and output artifacts (plots, eigenvalues) for different runs, facilitating better analysis and comparison.
--   **Dimension Estimation Methods**: Implement and compare alternative manifold dimension estimation algorithms (e.g., methods from `scipy.spatial.distance` or algorithms discussed in related literature like robust PCA or topological methods).
--   **Testing**: Continue expanding the test suite for broader coverage and edge cases.
--   **Documentation**: Enhance API documentation and add more explanatory examples.
+### Basic Installation
+```bash
+pip install qgml
+```
 
-## Reference
+### With specific backend
+```bash
+# PyTorch backend (default)
+pip install qgml[pytorch]
 
-@article{abanov2024quantum,
-  title={Quantum Geometric Machine Learning AI Needs Quantum},
-  author={Abanov, Alexander and Berger, Jeffrey and Candelori, Luca and Kirakosyan, Vahagn and Samson, Ryan and Smith, James and Villani, Dario},
-  year={2024}
+# JAX backend
+pip install qgml[jax]
+
+# Both backends
+pip install qgml[full]
+```
+
+### Development
+```bash
+git clone https://github.com/[username]/qgml.git
+cd qgml
+pip install -e .[dev]
+```
+
+## Research Applications
+
+- **Genomics**: Chromosomal instability analysis
+- **Physics**: Quantum phase transitions and topological states
+- **Finance**: High-dimensional manifold learning for risk analysis
+- **Quantum Computing**: Algorithm design and quantum advantage analysis
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Citation
+
+```bibtex
+@software{qgml2024,
+  title={QGML: Quantum Geometric Machine Learning with Dual Backend Support},
+  author={[Your Name]},
+  year={2024},
+  url={https://github.com/[username]/qgml}
 }
+```
 
-@article{candelori2025robust,
-  title={Robust estimation of the intrinsic dimension of data sets with quantum cognition machine learning},
-  author={Candelori, Luca and Abanov, Alexander G and Berger, Jeffrey and Hogan, Cameron J and Kirakosyan, Vahagn and Musaelian, Kharen and Samson, Ryan and Smith, James ET and Villani, Dario and Wells, Martin T and others},
-  journal={Scientific reports},
-  volume={15},
-  number={1},
-  pages={6933},
-  year={2025},
-  publisher={Nature Publishing Group UK London}
-}
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
