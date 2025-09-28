@@ -1,4 +1,4 @@
-"""QCML Univariate Regression Trainer for Quantum Cognition Machine Learning.
+"""QGML Univariate Regression Trainer for Quantum Geometric Machine Learning.
 
 This implements the algorithm from the Qognitive AI paper:
 • Randomly initialize feature operators {Ak} and target operator B.
@@ -18,8 +18,8 @@ import json
 from pathlib import Path
 from collections import defaultdict
 
-class QCMLRegressionTrainer(nn.Module):
-    """QCML Univariate Regression Trainer with feature operators {Ak} and target operator B."""
+class QGMLRegressionTrainer(nn.Module):
+    """QGML Univariate Regression Trainer with feature operators {Ak} and target operator B."""
     
     def __init__(
         self,
@@ -29,7 +29,7 @@ class QCMLRegressionTrainer(nn.Module):
         device: str = 'cpu',
         loss_type: str = 'mae'  # 'mae' (mean absolute error) or 'mse' (mean squared error)
     ):
-        """Initialize QCML Regression Trainer.
+        """Initialize QGML Regression Trainer.
         
         Args:
             N: dimension of Hilbert space (size of matrices)
@@ -228,7 +228,7 @@ class QCMLRegressionTrainer(nn.Module):
         validation_data: Optional[Tuple[torch.Tensor, torch.Tensor]] = None,
         verbose: bool = True
     ) -> Dict[str, List[float]]:
-        """Train the QCML regression model.
+        """Train the QGML regression model.
         
         Args:
             X: Training features of shape (n_samples, D)
