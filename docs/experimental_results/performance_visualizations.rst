@@ -50,7 +50,7 @@ Detailed comparison between QGML variants and classical ML methods:
 
 Model performance highlights:
 
-* **QCML supervised** achieves best R² score (-0.1967) among quantum methods
+* **QGML supervised** achieves best R² score (-0.1967) among quantum methods
 * **Competitive with classical** linear regression (difference: 0.0004)
 * **Superior classification** accuracy (75% vs 65% for classical methods)
 * **Specialized models** excel in domain-specific applications
@@ -89,10 +89,10 @@ Validation achievements:
 * **Model compatibility** validated across different feature dimensions
 * **Consistent performance** across multiple test iterations
 
-QCML Architecture Overview
+QGML Architecture Overview
 ===========================
 
-Visualization of the integrated QCML architecture and code reuse benefits:
+Visualization of the integrated QGML architecture and code reuse benefits:
 
 .. image:: ../_static/experimental_results/architecture_overview.png
    :alt: Architecture Overview
@@ -112,7 +112,7 @@ Experimental Validation Summary
 The comprehensive experimental validation demonstrates:
 
 **Integration Success**
-   * Seamless integration between different QCML model variants
+   * Seamless integration between different QGML model variants
    * 90% code reuse across core quantum operations
    * Complete dimensional consistency validation
 
@@ -131,7 +131,7 @@ The comprehensive experimental validation demonstrates:
    * Robust architecture validated across multiple scenarios
    * Ready for deployment on real-world datasets
 
-These results validate the QCML framework as a viable quantum machine learning approach with demonstrated advantages over classical methods in specific application domains.
+These results validate the QGML framework as a viable quantum machine learning approach with demonstrated advantages over classical methods in specific application domains.
 
 .. note::
    All visualization code and experimental results are available in the repository under ``create_comprehensive_visualizations.py`` and related experiment scripts.
