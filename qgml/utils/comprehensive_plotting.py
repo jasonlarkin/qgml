@@ -1,8 +1,8 @@
 """
-Comprehensive Visualization Suite for QCML Integration Results.
+Comprehensive Visualization Suite for QGML Integration Results.
 
 This module creates detailed visualizations and analysis plots for the
-QCML experimental validation results, designed for inclusion in Sphinx documentation.
+QGML experimental validation results, designed for inclusion in Sphinx documentation.
 """
 
 import numpy as np
@@ -21,8 +21,8 @@ warnings.filterwarnings('ignore')
 plt.style.use('seaborn-v0_8-whitegrid')
 sns.set_palette("husl")
 
-class QCMLVisualizationSuite:
-    """Comprehensive visualization suite for QCML experimental results."""
+class QGMLVisualizationSuite:
+    """Comprehensive visualization suite for QGML experimental results."""
     
     def __init__(self, output_dir: str = "docs/_static/experimental_results"):
         """Initialize visualization suite."""
@@ -32,7 +32,7 @@ class QCMLVisualizationSuite:
         # Experimental results data (from our tests)
         self.results_data = self._load_experimental_data()
         
-        print(f" QCML Visualization Suite initialized")
+        print(f" QGML Visualization Suite initialized")
         print(f" Output directory: {self.output_dir}")
     
     def _load_experimental_data(self):
@@ -95,7 +95,7 @@ class QCMLVisualizationSuite:
         
         bars = ax1.bar(stages, r2_scores, color=colors, alpha=0.7, edgecolor='black', linewidth=1)
         ax1.set_ylabel('R² Score')
-        ax1.set_title('QCML Performance Improvement Timeline', fontsize=14, fontweight='bold')
+        ax1.set_title('QGML Performance Improvement Timeline', fontsize=14, fontweight='bold')
         ax1.grid(True, alpha=0.3)
         
         # Add value labels on bars
@@ -119,7 +119,7 @@ class QCMLVisualizationSuite:
                     bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgreen', alpha=0.7))
         
         # Performance comparison radar chart
-        models = ['QCML\nSupervised', 'QCML\nOriginal', 'Linear\nRegression', 'Random\nForest']
+        models = ['QGML\nSupervised', 'QGML\nOriginal', 'Linear\nRegression', 'Random\nForest']
         metrics = ['R² Score\n(normalized)', 'MAE\n(inverted)', 'Accuracy', 'Stability']
         
         # Normalize metrics to 0-1 scale for radar chart
@@ -258,7 +258,7 @@ class QCMLVisualizationSuite:
         accuracies = [all_models[m]['acc'] for m in model_names]
         
         # Plot 1: Performance comparison bar chart
-        colors = ['blue' if 'QCML' in m else 'green' for m in model_names]
+        colors = ['blue' if 'QGML' in m else 'green' for m in model_names]
         x_pos = np.arange(len(model_names))
         
         bars = ax1.bar(x_pos, r2_scores, color=colors, alpha=0.7, edgecolor='black')
@@ -350,7 +350,7 @@ class QCMLVisualizationSuite:
         
         bars = ax4.barh(categories, scores, color=colors_success, alpha=0.8, edgecolor='black')
         ax4.set_xlabel('Success Score')
-        ax4.set_title('QCML Integration Success Metrics', fontweight='bold')
+        ax4.set_title('QGML Integration Success Metrics', fontweight='bold')
         ax4.set_xlim(0, 1)
         
         # Add value labels
@@ -505,7 +505,7 @@ class QCMLVisualizationSuite:
         ax2.grid(True, alpha=0.3)
         
         # Plot 3: Model compatibility matrix
-        models = ['Chromosomal\nMixed', 'Chromosomal\nPOVM', 'Supervised\nStandard', 'QCML\nOriginal']
+        models = ['Chromosomal\nMixed', 'Chromosomal\nPOVM', 'Supervised\nStandard', 'QGML\nOriginal']
         features = ['6 Features', '8 Features', '10 Features', '12 Features']
         
         # Create compatibility matrix (all compatible after fixes)
@@ -553,7 +553,7 @@ class QCMLVisualizationSuite:
         plt.show()
         
     def create_architecture_overview(self):
-        """Create QCML architecture overview visualization."""
+        """Create QGML architecture overview visualization."""
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
         
         # Plot 1: Module integration hierarchy
@@ -574,7 +574,7 @@ class QCMLVisualizationSuite:
                 ha='center', va='center', fontsize=10,
                 bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))
         
-        ax1.text(0.5, 0.1, 'QCMLRegressionTrainer\n(Original Implementation)', 
+        ax1.text(0.5, 0.1, 'QGMLRegressionTrainer\n(Original Implementation)', 
                 ha='center', va='center', fontsize=10,
                 bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgray', alpha=0.8))
         
@@ -588,7 +588,7 @@ class QCMLVisualizationSuite:
         
         ax1.set_xlim(0, 1)
         ax1.set_ylim(0, 1)
-        ax1.set_title('QCML Architecture Hierarchy', fontweight='bold')
+        ax1.set_title('QGML Architecture Hierarchy', fontweight='bold')
         ax1.axis('off')
         
         # Plot 2: Code reuse analysis
@@ -601,7 +601,7 @@ class QCMLVisualizationSuite:
         
         ax2.set_xlabel('Component')
         ax2.set_ylabel('Code Reuse Percentage')
-        ax2.set_title('Code Reuse Across QCML Models', fontweight='bold')
+        ax2.set_title('Code Reuse Across QGML Models', fontweight='bold')
         ax2.set_xticks(range(len(components)))
         ax2.set_xticklabels(components, rotation=45, ha='right')
         ax2.grid(True, alpha=0.3)
@@ -637,7 +637,7 @@ class QCMLVisualizationSuite:
         # Plot 4: Integration success timeline
         dates = ['Initial\nImplementation', 'Quick\nValidation', 'Dimensional\nFixes', 'Advanced\nValidation']
         success_scores = [30, 70, 95, 100]
-        milestones = ['Basic QCML', 'Fast Testing', 'Bug Fixes', 'Full Integration']
+        milestones = ['Basic QGML', 'Fast Testing', 'Bug Fixes', 'Full Integration']
         
         ax4.plot(range(len(dates)), success_scores, 'o-', linewidth=3, markersize=10, color='green')
         
@@ -649,7 +649,7 @@ class QCMLVisualizationSuite:
         
         ax4.set_xlabel('Development Stage')
         ax4.set_ylabel('Integration Success Score (%)')
-        ax4.set_title('QCML Integration Success Timeline', fontweight='bold')
+        ax4.set_title('QGML Integration Success Timeline', fontweight='bold')
         ax4.set_xticks(range(len(dates)))
         ax4.set_xticklabels(dates)
         ax4.grid(True, alpha=0.3)
@@ -661,7 +661,7 @@ class QCMLVisualizationSuite:
         
     def generate_all_visualizations(self):
         """Generate the complete visualization suite."""
-        print(" Generating comprehensive QCML visualization suite...")
+        print(" Generating comprehensive QGML visualization suite...")
         
         self.create_performance_improvement_plot()
         print(" Performance improvement visualization created")
@@ -686,11 +686,11 @@ class QCMLVisualizationSuite:
 
 
 def main():
-    """Generate comprehensive QCML visualization suite."""
-    print(" QCML Comprehensive Visualization Suite")
+    """Generate comprehensive QGML visualization suite."""
+    print(" QGML Comprehensive Visualization Suite")
     print("=" * 50)
     
-    visualizer = QCMLVisualizationSuite()
+    visualizer = QGMLVisualizationSuite()
     visualizer.generate_all_visualizations()
     
     return visualizer
