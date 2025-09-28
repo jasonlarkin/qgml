@@ -27,7 +27,7 @@ class QGMLQuantumMapping:
     def __init__(self):
         """Initialize quantum algorithm mapping."""
         self.mapping_data = self._create_mapping_structure()
-        print("🔬 QGML → Quantum Computing Mapping Initialized")
+        print(" QGML → Quantum Computing Mapping Initialized")
     
     def _create_mapping_structure(self) -> Dict[str, Dict[str, Any]]:
         """Create comprehensive mapping structure."""
@@ -164,8 +164,8 @@ class QGMLQuantumMapping:
         ax1.text(0.5, 0.7, '↓ VQE Algorithm ↓', ha='center', fontsize=10)
         
         # Draw simple VQE circuit
-        ax1.plot([0.1, 0.9], [0.5, 0.5], 'k-', linewidth=2)  # qubit line
-        ax1.plot([0.1, 0.9], [0.3, 0.3], 'k-', linewidth=2)  # qubit line
+        ax1.plot([0.1, 0.9], [0.5, 0.5], 'k-', linewidth=2) # qubit line
+        ax1.plot([0.1, 0.9], [0.3, 0.3], 'k-', linewidth=2) # qubit line
         
         # State prep
         ax1.add_patch(plt.Rectangle((0.2, 0.45), 0.1, 0.1, facecolor='lightblue', edgecolor='black'))
@@ -299,8 +299,8 @@ class QGMLQuantumMapping:
         
         # Hardware scaling plot
         algorithms = ['VQE', 'QAOA', 'SWAP\nTest', 'POVM', 'Berry\nCurve']
-        qubit_scaling = [3, 4, 5, 6, 4]  # log scale
-        depth_scaling = [2, 3, 1, 4, 3]  # relative
+        qubit_scaling = [3, 4, 5, 6, 4] # log scale
+        depth_scaling = [2, 3, 1, 4, 3] # relative
         
         x = np.arange(len(algorithms))
         width = 0.35
@@ -322,11 +322,11 @@ class QGMLQuantumMapping:
         
     def generate_quantum_algorithm_summary(self):
         """Generate comprehensive summary of quantum algorithms for QGML."""
-        print("\n🔬 QGML → Quantum Computing Algorithm Mapping")
+        print("\n QGML → Quantum Computing Algorithm Mapping")
         print("=" * 60)
         
         for component, details in self.mapping_data.items():
-            print(f"\n📋 {component.upper().replace('_', ' ')}")
+            print(f"\n {component.upper().replace('_', ' ')}")
             print("-" * 40)
             print(f"QGML Form: {details['qgml_form']}")
             print(f"Quantum Algorithm: {details['quantum_algorithm']}")
@@ -334,11 +334,11 @@ class QGMLQuantumMapping:
             
             print("\nCircuit Components:")
             for comp, desc in details['circuit_components'].items():
-                print(f"  • {comp}: {desc}")
+                print(f" • {comp}: {desc}")
             
             print("\nHardware Requirements:")
             for req, desc in details['hardware_requirements'].items():
-                print(f"  • {req}: {desc}")
+                print(f" • {req}: {desc}")
             print()
         
         return self.mapping_data
@@ -372,20 +372,20 @@ class QGMLQuantumMapping:
             ]
         }
         
-        print("\n📚 Relevant Quantum ML Literature")
+        print("\n Relevant Quantum ML Literature")
         print("=" * 50)
         
         for category, papers in literature.items():
-            print(f"\n🔹 {category}:")
+            print(f"\n {category}:")
             for paper in papers:
-                print(f"   • {paper}")
+                print(f" • {paper}")
         
         return literature
 
 
 def main():
     """Generate comprehensive QGML → Quantum Computing mapping."""
-    print("🔬 QGML → Quantum Computing Algorithm Mapping")
+    print(" QGML → Quantum Computing Algorithm Mapping")
     print("=" * 60)
     
     mapper = QGMLQuantumMapping()
@@ -399,7 +399,7 @@ def main():
     # Literature review
     literature = mapper.create_literature_review_table()
     
-    print("\n🎯 Key Insights:")
+    print("\n Key Insights:")
     print("• QGML mathematical objects map directly to established quantum algorithms")
     print("• Quantum advantage comes from exponential state space and geometric structure")
     print("• Hardware requirements are within NISQ-era capabilities")

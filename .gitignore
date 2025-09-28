@@ -75,6 +75,8 @@ instance/
 docs/_build/
 docs/build/
 _build/
+docs/_static/
+docs/_images/
 
 # PyBuilder
 target/
@@ -156,6 +158,18 @@ experiments/backend_comparison/results/
 *.pkl
 *.h5
 *.hdf5
+
+# Cleanup scripts (not part of the main codebase)
+check_emojis.py
+clean_remaining_emojis.py
+remove_all_emojis.py
+
+# Package manager files
+uv.lock
+*.lock
+
+# Virtual environments
+qgml_env/
 
 # Model checkpoints and weights
 checkpoints/

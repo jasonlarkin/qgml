@@ -32,8 +32,8 @@ class QCMLVisualizationSuite:
         # Experimental results data (from our tests)
         self.results_data = self._load_experimental_data()
         
-        print(f"📊 QCML Visualization Suite initialized")
-        print(f"📁 Output directory: {self.output_dir}")
+        print(f" QCML Visualization Suite initialized")
+        print(f" Output directory: {self.output_dir}")
     
     def _load_experimental_data(self):
         """Load experimental results data."""
@@ -64,7 +64,7 @@ class QCMLVisualizationSuite:
             'hyperparameter_optimization': {
                 'best_config': {'N': 8, 'lr': 0.001, 'epochs': 300, 'comm_penalty': 0.01},
                 'best_r2': -0.1961,
-                'improvement_from_broken': 0.859  # 85.9% improvement from -2.786
+                'improvement_from_broken': 0.859 # 85.9% improvement from -2.786
             },
             'model_comparison': {
                 'qgml_models': {
@@ -123,13 +123,13 @@ class QCMLVisualizationSuite:
         metrics = ['R² Score\n(normalized)', 'MAE\n(inverted)', 'Accuracy', 'Stability']
         
         # Normalize metrics to 0-1 scale for radar chart
-        qgml_sup_vals = [0.95, 0.85, 0.75, 0.90]  # High performance
-        qgml_orig_vals = [0.80, 0.82, 0.75, 0.85]  # Good performance  
-        linear_vals = [0.94, 0.81, 0.65, 0.95]  # Classical baseline
-        rf_vals = [0.60, 0.75, 0.65, 0.70]  # Weaker performance
+        qgml_sup_vals = [0.95, 0.85, 0.75, 0.90] # High performance
+        qgml_orig_vals = [0.80, 0.82, 0.75, 0.85] # Good performance 
+        linear_vals = [0.94, 0.81, 0.65, 0.95] # Classical baseline
+        rf_vals = [0.60, 0.75, 0.65, 0.70] # Weaker performance
         
         angles = np.linspace(0, 2*np.pi, len(metrics), endpoint=False)
-        angles = np.concatenate((angles, [angles[0]]))  # Complete the circle
+        angles = np.concatenate((angles, [angles[0]])) # Complete the circle
         
         ax2 = plt.subplot(122, projection='polar')
         
@@ -137,7 +137,7 @@ class QCMLVisualizationSuite:
         for model, values, color in zip(models, 
                                        [qgml_sup_vals, qgml_orig_vals, linear_vals, rf_vals],
                                        ['blue', 'cyan', 'green', 'orange']):
-            values = np.concatenate((values, [values[0]]))  # Complete the circle
+            values = np.concatenate((values, [values[0]])) # Complete the circle
             ax2.plot(angles, values, 'o-', linewidth=2, label=model, color=color)
             ax2.fill(angles, values, alpha=0.15, color=color)
         
@@ -313,9 +313,9 @@ class QCMLVisualizationSuite:
         for model in qgml_models_list:
             data = qgml_models[model]
             normalized_metrics = [
-                (data['r2'] + 0.5) / 0.5,  # Normalize R² to 0-1 range
-                1.0 / (1.0 + data['mae'] / 10.0),  # Inverse MAE normalized
-                data['acc']  # Accuracy already 0-1
+                (data['r2'] + 0.5) / 0.5, # Normalize R² to 0-1 range
+                1.0 / (1.0 + data['mae'] / 10.0), # Inverse MAE normalized
+                data['acc'] # Accuracy already 0-1
             ]
             performance_matrix.append(normalized_metrics)
         
@@ -371,8 +371,8 @@ class QCMLVisualizationSuite:
         
         # Plot 1: Quantum vs Classical performance by complexity
         complexities = ['Simple', 'Medium', 'Complex']
-        quantum_performance = [0.7, 0.85, 0.9]  # Quantum gets better with complexity
-        classical_performance = [0.8, 0.75, 0.7]  # Classical gets worse with complexity
+        quantum_performance = [0.7, 0.85, 0.9] # Quantum gets better with complexity
+        classical_performance = [0.8, 0.75, 0.7] # Classical gets worse with complexity
         
         x = np.arange(len(complexities))
         width = 0.35
@@ -468,7 +468,7 @@ class QCMLVisualizationSuite:
         
         # Plot 1: Test results summary
         test_categories = ['Model\nCreation', 'Quantum\nStates', 'Training\nConsistency', 'Cross\nExperiment']
-        pass_rates = [100, 100, 100, 100]  # All tests passed
+        pass_rates = [100, 100, 100, 100] # All tests passed
         colors = ['green'] * 4
         
         bars = ax1.bar(test_categories, pass_rates, color=colors, alpha=0.7, edgecolor='black')
@@ -481,12 +481,12 @@ class QCMLVisualizationSuite:
         for bar in bars:
             height = bar.get_height()
             ax1.text(bar.get_x() + bar.get_width()/2., height + 2,
-                    '✓', ha='center', va='bottom', fontsize=20, color='darkgreen', fontweight='bold')
+                    '', ha='center', va='bottom', fontsize=20, color='darkgreen', fontweight='bold')
         
         # Plot 2: Before vs After architecture
         before_issues = ['Index\nErrors', 'Dimension\nMismatches', 'Training\nCrashes', 'Model\nIncompatibility']
-        before_severity = [10, 8, 9, 7]  # High severity before fixes
-        after_severity = [0, 0, 0, 0]  # No issues after fixes
+        before_severity = [10, 8, 9, 7] # High severity before fixes
+        after_severity = [0, 0, 0, 0] # No issues after fixes
         
         x = np.arange(len(before_issues))
         width = 0.35
@@ -521,13 +521,13 @@ class QCMLVisualizationSuite:
         # Add checkmarks
         for i in range(len(models)):
             for j in range(len(features)):
-                ax3.text(j, i, '✓', ha="center", va="center", 
+                ax3.text(j, i, '', ha="center", va="center", 
                         color="darkgreen", fontsize=16, fontweight='bold')
         
         # Plot 4: Performance over test iterations
         iterations = np.arange(1, 21)
-        quick_test_times = 15 + 5 * np.random.randn(20)  # Quick tests ~15s
-        success_rates = np.ones(20) * 100  # 100% success rate
+        quick_test_times = 15 + 5 * np.random.randn(20) # Quick tests ~15s
+        success_rates = np.ones(20) * 100 # 100% success rate
         
         ax4_twin = ax4.twinx()
         
@@ -615,8 +615,8 @@ class QCMLVisualizationSuite:
         # Plot 3: Feature consistency validation
         experiments = ['Experiment 1\n(Hyperparameter)', 'Experiment 2\n(Model Comparison)', 
                       'Experiment 3\n(Classical Baseline)', 'Experiment 4\n(Quantum Analysis)']
-        feature_dims = [10, 10, 10, 10]  # All consistent now
-        data_samples = [200, 250, 250, 150]  # Different sample sizes
+        feature_dims = [10, 10, 10, 10] # All consistent now
+        data_samples = [200, 250, 250, 150] # Different sample sizes
         
         x = np.arange(len(experiments))
         width = 0.35
@@ -661,33 +661,33 @@ class QCMLVisualizationSuite:
         
     def generate_all_visualizations(self):
         """Generate the complete visualization suite."""
-        print("📊 Generating comprehensive QCML visualization suite...")
+        print(" Generating comprehensive QCML visualization suite...")
         
         self.create_performance_improvement_plot()
-        print("✅ Performance improvement visualization created")
+        print(" Performance improvement visualization created")
         
         self.create_hyperparameter_analysis()
-        print("✅ Hyperparameter analysis visualization created")
+        print(" Hyperparameter analysis visualization created")
         
         self.create_model_comparison_analysis()
-        print("✅ Model comparison visualization created")
+        print(" Model comparison visualization created")
         
         self.create_quantum_advantage_visualization()
-        print("✅ Quantum advantage visualization created")
+        print(" Quantum advantage visualization created")
         
         self.create_dimensional_consistency_report()
-        print("✅ Dimensional consistency report created")
+        print(" Dimensional consistency report created")
         
         self.create_architecture_overview()
-        print("✅ Architecture overview visualization created")
+        print(" Architecture overview visualization created")
         
-        print(f"\n🎉 All visualizations saved to: {self.output_dir}")
-        print("📖 Ready for Sphinx documentation integration!")
+        print(f"\n All visualizations saved to: {self.output_dir}")
+        print(" Ready for Sphinx documentation integration!")
 
 
 def main():
     """Generate comprehensive QCML visualization suite."""
-    print("📊 QCML Comprehensive Visualization Suite")
+    print(" QCML Comprehensive Visualization Suite")
     print("=" * 50)
     
     visualizer = QCMLVisualizationSuite()

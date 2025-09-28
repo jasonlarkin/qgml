@@ -532,6 +532,6 @@ class TopologicalAnalyzer:
         
         if output_dir:
             plt.savefig(output_dir / 'topological_analysis.png', dpi=300, bbox_inches='tight')
-            print(f"📊 Topology visualization saved to {output_dir}/topological_analysis.png")
+            print(f"Topology visualization saved to {output_dir}/topological_analysis.png")
         
         plt.show()

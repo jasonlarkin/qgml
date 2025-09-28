@@ -31,7 +31,7 @@ class BackendManager:
         # Clear cached modules to force reload
         cls._backend_modules.clear()
         
-        print(f"🔄 QGML backend set to: {backend.value}")
+        print(f"QGML backend set to: {backend.value}")
     
     @classmethod
     def get_backend(cls) -> Backend:

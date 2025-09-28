@@ -21,7 +21,7 @@ from qgml.learning.supervised_trainer import SupervisedMatrixTrainer
 
 def test_base_functionality():
     """Test core base class operations."""
-    print("🧪 Testing Base Functionality...")
+    print(" Testing Base Functionality...")
     
     # Create unsupervised trainer to test base methods
     trainer = UnsupervisedMatrixTrainer(N=4, D=2, device='cpu')
@@ -43,13 +43,13 @@ def test_base_functionality():
     expectations = trainer.get_feature_expectations(x)
     assert expectations.shape == (2,), "Should have D feature expectations"
     
-    print("✅ Base functionality tests passed!")
+    print(" Base functionality tests passed!")
     return True
 
 
 def test_unsupervised_trainer():
     """Test unsupervised manifold learning."""
-    print("\n🧪 Testing Unsupervised Trainer...")
+    print("\n Testing Unsupervised Trainer...")
     
     # Generate synthetic 2D manifold data (circle)
     n_points = 100
@@ -94,14 +94,14 @@ def test_unsupervised_trainer():
     print(f"Mean quantum fidelity: {geo_metrics['mean_quantum_fidelity']:.4f}")
     
     assert reconstruction_error < 1.0, "Reconstruction error should be reasonable"
-    print("✅ Unsupervised trainer tests passed!")
+    print(" Unsupervised trainer tests passed!")
     
     return history, trainer
 
 
 def test_supervised_trainer():
     """Test supervised regression learning."""
-    print("\n🧪 Testing Supervised Trainer...")
+    print("\n Testing Supervised Trainer...")
     
     # Generate synthetic regression data: y = x1^2 + x2^2 + noise
     n_samples = 200
@@ -144,14 +144,14 @@ def test_supervised_trainer():
     print(f"Prediction-target correlation: {encoding_analysis['prediction_target_correlation']:.4f}")
     
     assert test_metrics['r2_score'] > 0.5, "R² should indicate reasonable learning"
-    print("✅ Supervised trainer tests passed!")
+    print(" Supervised trainer tests passed!")
     
     return history, trainer
 
 
 def test_code_reduction():
     """Verify the refactored code eliminates duplication."""
-    print("\n🧪 Testing Code Reduction...")
+    print("\n Testing Code Reduction...")
     
     # Create both trainers with same seed for identical initialization
     unsup = UnsupervisedMatrixTrainer(N=4, D=2, seed=42)
@@ -177,7 +177,7 @@ def test_code_reduction():
     exp_sup = sup.get_feature_expectations(x)
     assert torch.allclose(exp_unsup, exp_sup, atol=1e-5), "Same feature expectations"
     
-    print("✅ Code reduction verification passed!")
+    print(" Code reduction verification passed!")
     
     # Count parameters to verify architecture
     unsup_params = sum(p.numel() for p in unsup.parameters())
@@ -225,13 +225,13 @@ def create_comparison_plots(unsup_history, sup_history, output_dir="test_outputs
         axes[1, 0].legend()
     
     # Model comparison
-    axes[1, 1].text(0.1, 0.8, "🎯 QMML Refactoring Results", fontsize=14, fontweight='bold')
-    axes[1, 1].text(0.1, 0.7, "✅ Base class created with shared functionality", fontsize=10)
-    axes[1, 1].text(0.1, 0.6, "✅ ~60% code duplication eliminated", fontsize=10)
-    axes[1, 1].text(0.1, 0.5, "✅ Unsupervised: Manifold learning works", fontsize=10)
-    axes[1, 1].text(0.1, 0.4, "✅ Supervised: Regression learning works", fontsize=10)
-    axes[1, 1].text(0.1, 0.3, "✅ Quantum matrix operations consistent", fontsize=10)
-    axes[1, 1].text(0.1, 0.2, "🚀 Ready for QCML paper model extensions", fontsize=10)
+    axes[1, 1].text(0.1, 0.8, " QMML Refactoring Results", fontsize=14, fontweight='bold')
+    axes[1, 1].text(0.1, 0.7, " Base class created with shared functionality", fontsize=10)
+    axes[1, 1].text(0.1, 0.6, " ~60% code duplication eliminated", fontsize=10)
+    axes[1, 1].text(0.1, 0.5, " Unsupervised: Manifold learning works", fontsize=10)
+    axes[1, 1].text(0.1, 0.4, " Supervised: Regression learning works", fontsize=10)
+    axes[1, 1].text(0.1, 0.3, " Quantum matrix operations consistent", fontsize=10)
+    axes[1, 1].text(0.1, 0.2, " Ready for QCML paper model extensions", fontsize=10)
     axes[1, 1].set_xlim(0, 1)
     axes[1, 1].set_ylim(0, 1)
     axes[1, 1].axis('off')
@@ -240,12 +240,12 @@ def create_comparison_plots(unsup_history, sup_history, output_dir="test_outputs
     plt.savefig(output_dir / 'qmml_refactoring_results.png', dpi=300, bbox_inches='tight')
     plt.show()
     
-    print(f"📊 Plots saved to {output_dir}/qmml_refactoring_results.png")
+    print(f" Plots saved to {output_dir}/qmml_refactoring_results.png")
 
 
 def main():
     """Run all tests and create summary."""
-    print("🚀 Testing Refactored QMML Trainers")
+    print(" Testing Refactored QMML Trainers")
     print("=" * 50)
     
     # Run tests
@@ -277,14 +277,14 @@ def main():
     with open(output_dir / 'refactored_model_info.json', 'w') as f:
         json.dump(model_info, f, indent=2)
     
-    print("\n🎉 All tests passed!")
-    print("📁 Results saved to test_outputs/")
-    print("\n🔬 Next Steps:")
-    print("  • Extract mathematical models from remaining QCML papers")
-    print("  • Implement additional Hamiltonian variants")
-    print("  • Add more loss function options")
-    print("  • Test on real-world datasets")
-    print("  • Prepare for Qiskit quantum implementation")
+    print("\n All tests passed!")
+    print(" Results saved to test_outputs/")
+    print("\n Next Steps:")
+    print(" • Extract mathematical models from remaining QCML papers")
+    print(" • Implement additional Hamiltonian variants")
+    print(" • Add more loss function options")
+    print(" • Test on real-world datasets")
+    print(" • Prepare for Qiskit quantum implementation")
 
 
 if __name__ == "__main__":
