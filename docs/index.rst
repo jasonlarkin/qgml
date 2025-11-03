@@ -9,6 +9,13 @@ Welcome to the comprehensive documentation for **Quantum Geometric Machine Learn
    :width: 400
    :align: center
 
+Quick Links
+===========
+
+* :doc:`visualization_gallery` - View generated visualizations and analysis results
+* :doc:`user_guide/quickstart` - Get started with QGML
+* :doc:`user_guide/installation` - Installation guide
+
 Overview
 =========
 
@@ -131,6 +138,12 @@ Contents
    user_guide/quickstart
    user_guide/tutorials
    user_guide/examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Visualizations
+   
+   visualization_gallery
 
 .. toctree::
    :maxdepth: 2

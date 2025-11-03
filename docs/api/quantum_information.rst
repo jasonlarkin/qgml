@@ -2,7 +2,7 @@
 Quantum Information Analysis API
 ==============================
 
-The quantum information module provides comprehensive tools for analyzing the information-theoretic properties of quantum states in QMML models.
+The quantum information module provides comprehensive tools for analyzing the information-theoretic properties of quantum states in QGML models.
 
 Overview
 ========
@@ -73,7 +73,7 @@ Core Classes
 QuantumInformationAnalyzer
 --------------------------
 
-.. autoclass:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer
+.. autoclass:: qgml.information.quantum_information.QuantumInformationAnalyzer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -84,39 +84,39 @@ Key Methods
 Entropy and Entanglement
 ------------------------
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_von_neumann_entropy
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_von_neumann_entropy
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_entanglement_entropy
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_entanglement_entropy
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_density_matrix
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_density_matrix
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_reduced_density_matrix
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_reduced_density_matrix
 
 Fisher Information
 ------------------
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_quantum_fisher_information
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_fisher_information
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_quantum_fisher_information_matrix
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_fisher_information_matrix
 
 Fidelity and Distances
 ----------------------
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_quantum_fidelity
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_fidelity
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_bures_distance
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_bures_distance
 
 Coherence and Capacity
 ----------------------
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_quantum_coherence
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_coherence
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.compute_quantum_capacity_measures
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_capacity_measures
 
 Comprehensive Analysis
 ----------------------
 
-.. automethod:: qcml.quantum.quantum_information_measures.QuantumInformationAnalyzer.analyze_quantum_information
+.. automethod:: qgml.information.quantum_information.QuantumInformationAnalyzer.analyze_quantum_information
 
 Usage Examples
 ===============
@@ -127,7 +127,7 @@ Basic Entropy Computation
 .. code-block:: python
 
    import torch
-   from qcml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
+   from qgml.geometry.quantum_geometry_trainer import QuantumGeometryTrainer
    
    # Create trainer and analyzer
    trainer = QuantumGeometryTrainer(N=8, D=2)

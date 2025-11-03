@@ -22,7 +22,7 @@ Core Classes
 QuantumGeometryTrainer
 ----------------------
 
-.. autoclass:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer
+.. autoclass:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -82,36 +82,36 @@ Key Methods
 Core Quantum Operations
 -----------------------
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fluctuations
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fluctuations
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_matrix_laplacian
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_matrix_laplacian
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_eigenmaps
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_eigenmaps
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl
 
 Topological Analysis
 --------------------
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_berry_curvature_field
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_berry_curvature_field
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_chern_number
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_chern_number
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.detect_quantum_phase_transitions
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.detect_quantum_phase_transitions
 
 Quantum Information
 -------------------
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_von_neumann_entropy
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_von_neumann_entropy
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_entanglement_entropy
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_entanglement_entropy
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fisher_information_matrix
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fisher_information_matrix
 
 Comprehensive Analysis
 ----------------------
 
-.. automethod:: qcml.quantum.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_complete_quantum_geometry
+.. automethod:: qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_complete_quantum_geometry
 
 Usage Examples
 ===============
@@ -122,7 +122,7 @@ Basic Quantum Geometry Analysis
 .. code-block:: python
 
    import torch
-   from qcml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
+   from qgml.geometry.quantum_geometry_trainer import QuantumGeometryTrainer
    
    # Initialize trainer
    trainer = QuantumGeometryTrainer(
