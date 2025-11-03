@@ -1,13 +1,28 @@
 """
-Quantum Geometry Trainer - Advanced QMML with Quantum Geometric Structures
+Quantum Geometry Trainer for QGML
 
-This module implements the advanced quantum geometric features from the 
-"Quantum Geometry of Data" paper, extending the base QMML framework with:
-- Matrix Laplacian operators
-- Quantum fluctuation analysis
-- Eigenmap-based dimension reduction
-- Topological analysis (Berry curvature, Chern numbers)
-- Intrinsic dimension estimation via Weyl's law
+Advanced quantum geometric analysis with topological and information measures.
+
+This trainer extends the base QGML framework with comprehensive geometric
+and topological analysis capabilities:
+
+Geometric Features:
+    - Matrix Laplacian operators for geometric structure
+    - Quantum fluctuation and coherence analysis
+    - Eigenmap-based dimensionality reduction
+    - Quantum metric tensor computation
+
+Topological Analysis:
+    - Berry curvature field computation
+    - Chern number calculation for topological invariants
+    - Quantum phase transition detection
+    - Topological state characterization
+
+Information Theory:
+    - Von Neumann entropy and entanglement measures
+    - Quantum Fisher information for parameter sensitivity
+    - Intrinsic dimension estimation via Weyl's law
+    - Quantum capacity and coherence measures
 """
 
 import torch

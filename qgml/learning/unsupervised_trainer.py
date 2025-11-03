@@ -1,8 +1,24 @@
 """
-Unsupervised Quantum Matrix Machine Learning (QMML) for manifold learning.
+Unsupervised Quantum Learning Trainer for QGML
+
+Quantum geometric manifold learning and dimensionality reduction.
 
 This module implements unsupervised learning using quantum matrix geometry
-for intrinsic dimension estimation and manifold reconstruction.
+for discovering intrinsic structure in high-dimensional data:
+
+Learning Objective:
+    Minimize: L = ||⟨ψ₀|Aₖ|ψ₀⟩ - xₖ||²
+    Learn operators {Aₖ} that reconstruct input features from quantum states
+
+Key Capabilities:
+    - Manifold learning: Discover low-dimensional structure
+    - Intrinsic dimension estimation: Via quantum fluctuations
+    - Feature reconstruction: Quantum state-based encoding
+    - Geometric analysis: Quantum metric and curvature
+
+The trainer learns quantum representations that capture the intrinsic
+geometry of the data manifold, enabling dimension estimation and
+structure discovery without supervision.
 """
 
 import torch

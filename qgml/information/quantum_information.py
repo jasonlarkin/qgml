@@ -1,13 +1,32 @@
 """
-Quantum Information Measures for QMML
+Quantum Information Analyzer for QGML
 
-This module implements quantum information theoretic measures for analyzing
-quantum matrix machine learning models, including:
-- Von Neumann entropy for entanglement analysis
-- Quantum Fisher information for parameter estimation
-- Quantum fidelity and distances
-- Coherence measures
-- Quantum capacity and compression metrics
+Comprehensive quantum information theoretic measures and analysis tools.
+
+This module provides a complete suite of quantum information measures for
+analyzing quantum states and optimizing quantum machine learning models:
+
+Entropy Measures:
+    - Von Neumann entropy for quantum entanglement
+    - Relative entropy and divergence measures
+    - Conditional and mutual information
+
+Fisher Information:
+    - Quantum Fisher information matrix (QFIM)
+    - Parameter estimation bounds via Cramér-Rao
+    - Sensitivity analysis for quantum parameters
+    - Optimal measurement strategies
+
+Coherence & Fidelity:
+    - Quantum coherence measures (l1 norm, relative entropy)
+    - Quantum state fidelity and distance metrics
+    - Purity and mixedness quantification
+    - State distinguishability analysis
+
+Capacity Metrics:
+    - Quantum channel capacity
+    - Compression and storage bounds
+    - Information flow and transmission
 """
 
 import torch

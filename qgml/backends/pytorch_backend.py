@@ -1,4 +1,21 @@
-"""Matrix configuration trainer for QCML using PyTorch."""
+"""
+PyTorch Backend Implementation for QGML
+
+Standard PyTorch implementation with dynamic computation graphs.
+
+This backend leverages PyTorch's strengths:
+- Dynamic computation graphs for flexibility
+- Extensive deep learning ecosystem integration
+- Excellent GPU optimization and CUDA support
+- Intuitive imperative programming style
+- Rich debugging capabilities
+
+The PyTorch backend is ideal for:
+    - Rapid prototyping and experimentation
+    - Integration with existing PyTorch models
+    - Interactive debugging workflows
+    - Standard GPU-accelerated training
+"""
 
 import torch
 import torch.nn as nn

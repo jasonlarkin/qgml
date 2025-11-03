@@ -1,8 +1,19 @@
 """
-Base class for Quantum Matrix Machine Learning (QMML) models.
+Base Quantum Matrix Trainer for QGML
 
-This module provides the foundational quantum matrix operations shared across
-different QMML variants (supervised and unsupervised learning).
+Foundation class providing core quantum matrix operations for all QGML models.
+
+This module implements the fundamental quantum geometric machine learning
+operations shared across all trainer variants:
+
+Core Operations:
+    - Hermitian matrix initialization and projection
+    - Error Hamiltonian construction: H(x) = 1/2 Σₖ (Aₖ - xₖI)²
+    - Ground state computation via eigendecomposition
+    - Quantum state expectation values and measurements
+
+The base trainer provides a unified architecture that specialized trainers
+extend for specific learning tasks (supervised, unsupervised, geometric).
 """
 
 import torch

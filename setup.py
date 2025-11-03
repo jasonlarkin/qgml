@@ -4,9 +4,9 @@ setup(
     name="qgml",
     version="0.1.0",
     description="Quantum Geometric Machine Learning with dual JAX/PyTorch backends",
-    author="[Your Name]",
-    author_email="[your.email@domain.com]",
-    url="https://github.com/[username]/qgml",
+    author="Jason Larkin",
+    author_email="jasonlarkin84@gmail.com",
+    url="https://github.com/jasonlarkin/qgml",
     packages=find_packages(),
     python_requires=">=3.9",
     install_requires=[

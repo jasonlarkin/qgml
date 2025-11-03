@@ -1,11 +1,30 @@
 """
-Chromosomal Instability QCML Trainer with Mixed Loss and POVM.
+Chromosomal Instability Trainer for QGML
 
-This module implements the advanced QCML features from the chromosomal instability paper:
-- Mixed loss function combining regression (L1) and classification (cross-entropy)
-- LST threshold-based classification (LST > 12)
-- POVM framework for probability density estimation
-- Legendre polynomial parametrization for continuous variables
+Specialized quantum learning for genomic chromosomal instability analysis.
+
+This module implements advanced quantum learning techniques specifically
+designed for cancer genomics and chromosomal instability detection:
+
+Mixed Learning Framework:
+    - Hybrid regression and classification objectives
+    - LST (Large-scale State Transitions) threshold detection (LST > 12)
+    - Multi-task loss optimization
+
+POVM Quantum Measurements:
+    - Positive Operator-Valued Measure framework
+    - Probability density estimation from quantum states
+    - Continuous variable measurement optimization
+
+Genomic Features:
+    - Legendre polynomial parametrization for smooth features
+    - Copy number variation analysis
+    - Chromosomal instability biomarker prediction
+    - Cancer subtype classification
+
+This trainer is specifically designed for analyzing genomic data where
+both continuous (LST scores) and categorical (cancer subtypes) predictions
+are needed simultaneously.
 """
 
 import torch

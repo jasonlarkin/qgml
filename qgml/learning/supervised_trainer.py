@@ -1,8 +1,23 @@
 """
-Supervised Quantum Matrix Machine Learning (QMML) for regression and classification.
+Supervised Quantum Learning Trainer for QGML
 
-This module implements supervised learning using quantum matrix geometry
-with target operators for prediction tasks.
+Quantum geometric machine learning for supervised prediction tasks.
+
+This module implements supervised learning using quantum matrix geometry,
+where target operators encode the prediction function:
+
+Learning Objective:
+    Minimize: L = ||⟨ψ₀|T|ψ₀⟩ - y||²
+    Where T is a learned target operator and y is the true label
+
+Supported Tasks:
+    - Regression: Continuous value prediction with quantum operators
+    - Classification: Categorical prediction with quantum measurements
+    - Multi-task learning: Combined objective optimization
+
+The trainer learns feature matrices {Aₖ} that encode input features into
+quantum states, optimizing both the quantum representation and the target
+operator simultaneously for prediction accuracy.
 """
 
 import torch
