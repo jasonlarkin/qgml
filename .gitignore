@@ -232,3 +232,7 @@ mlflow.db
 *.cubin
 *.fatbin
 *.ptx
+
+# Internal working documents
+DOCUMENTATION_STRATEGY.md
+GITHUB_SETUP.md
