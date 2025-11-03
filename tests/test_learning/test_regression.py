@@ -1,4 +1,4 @@
-"""Test script for QCML Univariate Regression Trainer."""
+"""Test script for QGML Univariate Regression Trainer."""
 
 import torch
 import numpy as np
@@ -27,8 +27,8 @@ def create_synthetic_data(n_samples=200, n_features=3, noise=0.1, random_state=4
     return X, y, scaler_X, scaler_y
 
 def test_qgml_regression():
-    """Test QCML regression on synthetic data."""
-    print("=== QCML Univariate Regression Test ===\n")
+    """Test QGML regression on synthetic data."""
+    print("=== QGML Univariate Regression Test ===\n")
     
     # Set device
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -52,12 +52,12 @@ def test_qgml_regression():
     print(f"Training data shape: {X_train.shape}")
     print(f"Test data shape: {X_test.shape}")
     
-    # Initialize QCML model
-    print("\nInitializing QCML Regression Trainer...")
+    # Initialize QGML model
+    print("\nInitializing QGML Regression Trainer...")
     N = 8  # Hilbert space dimension
     D = X_train.shape[1]  # Number of features
     
-    model = QCMLRegressionTrainer(
+    model = QGMLRegressionTrainer(
         N=N,
         D=D,
         learning_rate=0.01,
