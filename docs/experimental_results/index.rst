@@ -1,8 +1,8 @@
 =====================================
-QCML Integration Experimental Results
+QGML Integration Experimental Results
 =====================================
 
-This section documents comprehensive experimental validation of the QCML (Quantum Cognition Machine Learning) framework integration, including performance analysis, model comparisons, and quantum advantage demonstrations.
+This section documents comprehensive experimental validation of the QGML (Quantum Geometric Machine Learning) framework integration, including performance analysis, model comparisons, and quantum advantage demonstrations.
 
 .. toctree::
    :maxdepth: 2
@@ -18,9 +18,9 @@ This section documents comprehensive experimental validation of the QCML (Quantu
 Overview
 ========
 
-The QCML framework has undergone rigorous experimental validation to demonstrate:
+The QGML framework has undergone rigorous experimental validation to demonstrate:
 
-* **Integration Architecture Success**: Seamless integration between different QCML model variants
+* **Integration Architecture Success**: Seamless integration between different QGML model variants
 * **Performance Optimization**: Systematic hyperparameter tuning for optimal results
 * **Competitive Performance**: Benchmarking against state-of-the-art classical ML methods
 * **Quantum Advantage**: Identification of regimes where quantum methods excel
@@ -31,7 +31,7 @@ Key Achievements
 
 **R² Score Improvement**
    * **From**: -2.786 (original broken implementation)
-   * **To**: -0.1967 (optimized QCML supervised)
+   * **To**: -0.1967 (optimized QGML supervised)
    * **Improvement**: 85.9% better performance
 
  **Dimensional Consistency**
@@ -40,9 +40,9 @@ Key Achievements
    * **Rigorous validation** of architectural integrity
 
 **Competitive Performance**
-   * **QCML vs Classical**: Matches linear regression performance (R² difference: 0.0004)
+   * **QGML vs Classical**: Matches linear regression performance (R² difference: 0.0004)
    * **Superior Classification**: 75% vs 65% accuracy compared to classical methods
-   * **Lower Error Rates**: Best MAE of 9.095 achieved by QCML supervised
+   * **Lower Error Rates**: Best MAE of 9.095 achieved by QGML supervised
 
 **Scientific Validation**
    * **4 comprehensive experiments** validating different aspects
@@ -80,17 +80,17 @@ Advanced Integration Suite
 
 **Experiments**:
    1. **Hyperparameter Optimization**: 5 configurations tested
-   2. **Model Architecture Comparison**: 4 QCML variants + classical baselines
+   2. **Model Architecture Comparison**: 4 QGML variants + classical baselines
    3. **Classical ML Benchmarking**: 5 state-of-the-art methods
    4. **Quantum Advantage Analysis**: Multi-complexity validation
 
 Model Performance Summary
 ========================
 
-QCML Model Ranking
+QGML Model Ranking
 ------------------
 
-.. list-table:: QCML Model Performance (Advanced Experiments)
+.. list-table:: QGML Model Performance (Advanced Experiments)
    :header-rows: 1
    :widths: 30 15 15 15 25
 
@@ -132,7 +132,7 @@ Classical ML Comparison
      - MAE
      - Accuracy
      - Category
-   * - **QCML supervised**
+   * - **QGML supervised**
      - **-0.1967**
      - **9.095**
      - **75.0%**
@@ -181,7 +181,7 @@ This configuration provides:
 Architecture Validation
 =======================
 
-The modular QCML architecture demonstrates:
+The modular QGML architecture demonstrates:
 
 **Code Reuse**: 90% shared quantum operations across all models
 
@@ -201,7 +201,7 @@ The experimental validation enables:
 1. **Production Deployment**: Optimal configurations identified
 2. **Real Data Applications**: Architecture validated for genomic datasets 
 3. **Quantum Hardware**: Ready for quantum circuit implementation
-4. **Feature Expansion**: Foundation for additional QCML capabilities
+4. **Feature Expansion**: Foundation for additional QGML capabilities
 
 .. note::
    All experimental code, results, and visualizations are available in the repository under ``advanced_qcml_experiments.py``, ``quick_qcml_experiments.py``, and ``test_dimensional_consistency.py``.

@@ -188,7 +188,7 @@ test_results/
 1. **CUDA Out of Memory**: Reduce batch sizes or matrix dimensions
 2. **Slow Convergence**: Lower learning rates, increase epochs
 3. **Unstable Training**: Check quantum weights, reduce learning rates
-4. **Import Errors**: Ensure QCML framework is properly installed
+4. **Import Errors**: Ensure QGML framework is properly installed
 
 ### **Performance Tips**
 - **GPU Memory**: Monitor with `nvidia-smi`

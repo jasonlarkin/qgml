@@ -1,4 +1,4 @@
-# QCML Model Integration Analysis & Experimental Design
+# QGML Model Integration Analysis & Experimental Design
 
 ## ️ **Current Architecture Integration**
 
@@ -10,12 +10,12 @@ BaseQuantumMatrixTrainer (base quantum operations)
     │ └── ChromosomalInstabilityTrainer (advanced genomic models)
     └── UnsupervisedMatrixTrainer (manifold learning)
 
-QCMLRegressionTrainer (original QCML implementation - parallel branch)
+QGMLRegressionTrainer (original QGML implementation - parallel branch)
 ```
 
 ### **Key Integration Points**
 
-| Component | BaseQuantumMatrix | SupervisedMatrix | ChromosomalInstability | QCMLRegression |
+| Component | BaseQuantumMatrix | SupervisedMatrix | ChromosomalInstability | QGMLRegression |
 |-----------|-------------------|------------------|----------------------|----------------|
 | **Core Hamiltonian** | Shared | Inherited | Inherited | Duplicate |
 | **Ground State** | Shared | Inherited | Inherited | Duplicate |
@@ -79,23 +79,23 @@ def experiment_1_performance_tuning():
 
 ### **Experiment 2: Model Architecture Comparison**
 
-**Objective**: Compare all QCML variants on identical datasets
+**Objective**: Compare all QGML variants on identical datasets
 
 **Design**:
 ```python
 def experiment_2_architecture_comparison():
     """
-    Compare all QCML models on same genomic datasets:
+    Compare all QGML models on same genomic datasets:
     1. BaseQuantumMatrix + SupervisedMatrix (standard)
     2. ChromosomalInstabilityTrainer (mixed loss)
-    3. QCMLRegressionTrainer (original implementation)
+    3. QGMLRegressionTrainer (original implementation)
     4. Classical ML baselines (Random Forest, XGBoost)
     """
     
     models = {
         'standard_qcml': SupervisedMatrixTrainer,
         'chromosomal_qcml': ChromosomalInstabilityTrainer,
-        'original_qcml': QCMLRegressionTrainer,
+        'original_qcml': QGMLRegressionTrainer,
         'random_forest': RandomForestRegressor,
         'xgboost': XGBRegressor
     }
@@ -235,13 +235,13 @@ for method_name, method_func in balancing_methods.items():
 
 ### **Phase 2: Model Comparison (Weeks 3-4)**
 
-**Experiment 2A: QCML Variant Comparison**
+**Experiment 2A: QGML Variant Comparison**
 ```python
-# Compare all QCML implementations
+# Compare all QGML implementations
 qcml_models = {
     'standard': SupervisedMatrixTrainer(N=8, D=genomic_features.shape[1]),
     'chromosomal': ChromosomalInstabilityTrainer(N=8, D=genomic_features.shape[1], use_mixed_loss=True),
-    'original': QCMLRegressionTrainer(N=8, D=genomic_features.shape[1]),
+    'original': QGMLRegressionTrainer(N=8, D=genomic_features.shape[1]),
     'povm': ChromosomalInstabilityTrainer(N=8, D=genomic_features.shape[1], use_povm=True)
 }
 
@@ -297,7 +297,7 @@ clinical_outcomes = {
     'metastatic_progression': load_progression_data()
 }
 
-# Correlate QCML predictions with clinical outcomes
+# Correlate QGML predictions with clinical outcomes
 for outcome_name, outcome_data in clinical_outcomes.items():
     correlation = correlate_qcml_predictions(
         qcml_predictions, 
@@ -338,7 +338,7 @@ def analyze_quantum_advantages():
 **Experiment 5A: End-to-End Genomic Pipeline**
 ```python
 class GenomicAnalysisPipeline:
-    """Complete genomic analysis pipeline using QCML."""
+    """Complete genomic analysis pipeline using QGML."""
     
     def __init__(self):
         self.preprocessor = GenomicPreprocessor()
@@ -349,7 +349,7 @@ class GenomicAnalysisPipeline:
         # Preprocess genomic features
         processed_features = self.preprocessor.transform(genomic_data)
         
-        # QCML analysis
+        # QGML analysis
         lst_prediction = self.qcml_model.predict_lst(processed_features)
         instability_classification = self.qcml_model.classify_instability(processed_features)
         
@@ -399,7 +399,7 @@ class GenomicAnalysisPipeline:
 **Week 9-10**: Production pipeline development
 
 **Deliverables**:
-- Optimized QCML models with R² > 0.7
+- Optimized QGML models with R² > 0.7
 - Comprehensive benchmarking results
 - Real genomic data validation study
 - Quantum advantage demonstration
