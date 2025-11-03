@@ -7,7 +7,7 @@ The topological analysis module provides advanced tools for computing topologica
 Overview
 ========
 
-Topological analysis in QMML enables:
+Topological analysis in QGML enables:
 
 * **Berry curvature computation** over parameter manifolds
 * **Chern number calculation** for topological classification
@@ -63,7 +63,7 @@ Core Classes
 TopologicalAnalyzer
 -------------------
 
-.. autoclass:: qcml.quantum.topological_analysis.TopologicalAnalyzer
+.. autoclass:: qgml.topology.topological_analyzer.TopologicalAnalyzer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -74,32 +74,32 @@ Key Methods
 Berry Connection and Curvature
 ------------------------------
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.compute_berry_connection
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_connection
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.compute_berry_curvature_2d
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_curvature_2d
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.compute_berry_curvature_field
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_berry_curvature_field
 
 Topological Invariants
 ----------------------
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.compute_chern_number
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_chern_number
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.compute_topological_charge
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_topological_charge
 
 Geometric Analysis
 ------------------
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.compute_quantum_metric_tensor
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.compute_quantum_metric_tensor
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.detect_quantum_phase_transitions
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.detect_quantum_phase_transitions
 
 Comprehensive Analysis
 ----------------------
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.analyze_topological_properties
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.analyze_topological_properties
 
-.. automethod:: qcml.quantum.topological_analysis.TopologicalAnalyzer.visualize_topology
+.. automethod:: qgml.topology.topological_analyzer.TopologicalAnalyzer.visualize_topology
 
 Usage Examples
 ===============
@@ -110,7 +110,7 @@ Basic Berry Curvature Computation
 .. code-block:: python
 
    import torch
-   from qcml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
+   from qgml.geometry.quantum_geometry_trainer import QuantumGeometryTrainer
    
    # Create trainer
    trainer = QuantumGeometryTrainer(N=8, D=2)

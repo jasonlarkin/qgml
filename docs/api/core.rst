@@ -1,13 +1,13 @@
 ====================
-Core QMML Framework
+Core QGML Framework
 ====================
 
-This section documents the core components of the Quantum Matrix Machine Learning (QMML) framework.
+This section documents the core components of the Quantum Geometric Machine Learning (QGML) framework.
 
 Architecture Overview
 =====================
 
-The QMML framework is built on a hierarchical architecture that promotes code reuse and modular development:
+The QGML framework is built on a hierarchical architecture that promotes code reuse and modular development:
 
 .. graphviz::
 
@@ -61,7 +61,7 @@ BaseQuantumMatrixTrainer
 
 The foundation class that implements core quantum matrix operations.
 
-.. autoclass:: qcml.quantum.base_quantum_matrix_trainer.BaseQuantumMatrixTrainer
+.. autoclass:: qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -78,7 +78,7 @@ UnsupervisedMatrixTrainer
 
 Extends the base framework for unsupervised manifold learning.
 
-.. autoclass:: qcml.quantum.unsupervised_matrix_trainer.UnsupervisedMatrixTrainer
+.. autoclass:: qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -95,7 +95,7 @@ SupervisedMatrixTrainer
 
 Implements supervised learning with target operators.
 
-.. autoclass:: qcml.quantum.supervised_matrix_trainer.SupervisedMatrixTrainer
+.. autoclass:: qgml.learning.supervised_trainer.SupervisedMatrixTrainer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -110,7 +110,7 @@ Key Features:
 Mathematical Foundations
 ========================
 
-The mathematical foundation of QMML rests on several key concepts:
+The mathematical foundation of QGML rests on several key concepts:
 
 Quantum Matrix Geometry
 -----------------------
@@ -160,9 +160,9 @@ Basic Initialization
 
 .. code-block:: python
 
-   from qcml.quantum.base_quantum_matrix_trainer import BaseQuantumMatrixTrainer
-   from qcml.quantum.unsupervised_matrix_trainer import UnsupervisedMatrixTrainer
-   from qcml.quantum.supervised_matrix_trainer import SupervisedMatrixTrainer
+   from qgml.core.base_quantum_trainer import BaseQuantumMatrixTrainer
+   from qgml.learning.unsupervised_trainer import UnsupervisedMatrixTrainer
+   from qgml.learning.supervised_trainer import SupervisedMatrixTrainer
    
    # Unsupervised manifold learning
    unsup_trainer = UnsupervisedMatrixTrainer(

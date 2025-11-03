@@ -9,7 +9,7 @@ description = "Quantum Geometric Machine Learning with dual JAX/PyTorch backends
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "QGML Team", email = "team@qgml.dev"},
+    {name = "QGML Team", email = "jasonlarkin84@gmail.com"},
 ]
 requires-python = ">=3.9"
 classifiers = [
@@ -28,6 +28,9 @@ dependencies = [
     "scikit-learn>=1.3.0",
     "pytest>=8.4.2",
     "seaborn>=0.13.2",
+    "myst-parser>=3.0.1",
+    "sphinx-rtd-theme>=3.0.2",
+    "linkify-it-py>=2.0.3",
 ]
 
 [project.optional-dependencies]
@@ -38,6 +41,6 @@ full = ["jax>=0.4.0", "jaxlib>=0.4.0", "qiskit>=0.45.0"]
 dev = ["pytest>=7.0.0", "pytest-cov>=4.0.0", "black>=23.0.0", "flake8>=6.0.0"]
 
 [project.urls]
-Homepage = "https://github.com/[username]/qgml"
+Homepage = "https://github.com/jasonlarkin/qgml"
 Documentation = "https://qgml.readthedocs.io/"
-Repository = "https://github.com/[username]/qgml.git"
+Repository = "https://github.com/jasonlarkin/qgml.git"
