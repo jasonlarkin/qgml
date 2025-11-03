@@ -81,11 +81,13 @@ print(results.summary())
 
 ## Documentation
 
-- [**Installation & Setup**](docs/source/getting_started/installation.rst)
-- [**Backend Guide**](docs/source/getting_started/backends.rst)
-- [**API Reference**](docs/source/api/)
-- [**Performance Benchmarks**](docs/source/experimental_results/backend_performance.rst)
-- [**Examples**](examples/)
+**[View Live Documentation](https://jasonlarkin.github.io/qgml/)**
+
+- [Installation Guide](https://jasonlarkin.github.io/qgml/user_guide/installation.html)
+- [Quickstart Tutorial](https://jasonlarkin.github.io/qgml/user_guide/quickstart.html)
+- [API Reference](https://jasonlarkin.github.io/qgml/api/core.html)
+- [Visualization Gallery](https://jasonlarkin.github.io/qgml/visualization_gallery.html)
+- [Examples](examples/)
 
 ## ️ Installation
 
