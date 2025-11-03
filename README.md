@@ -108,7 +108,7 @@ pip install qgml[full]
 
 ### Development
 ```bash
-git clone https://github.com/[username]/qgml.git
+git clone https://github.com/jasonlarkin/qgml.git
 cd qgml
 pip install -e .[dev]
 ```
@@ -129,9 +129,9 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 ```bibtex
 @software{qgml2024,
   title={QGML: Quantum Geometric Machine Learning with Dual Backend Support},
-  author={[Your Name]},
+  author={Jason Larkin},
   year={2024},
-  url={https://github.com/[username]/qgml}
+  url={https://github.com/jasonlarkin/qgml}
 }
 ```
 
