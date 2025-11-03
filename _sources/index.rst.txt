@@ -1,0 +1,206 @@
+=====================================================
+Quantum Geometric Machine Learning (QGML) Documentation
+=====================================================
+
+Welcome to the comprehensive documentation for **Quantum Geometric Machine Learning (QGML)**, an advanced framework that combines quantum geometric principles with machine learning for intrinsic dimension estimation, manifold learning, and data analysis.
+
+.. image:: _static/qmml_logo.png
+   :alt: QGML Framework
+   :width: 400
+   :align: center
+
+Quick Links
+===========
+
+* :doc:`visualization_gallery` - View generated visualizations and analysis results
+* :doc:`user_guide/quickstart` - Get started with QGML
+* :doc:`user_guide/installation` - Installation guide
+
+Overview
+=========
+
+QGML leverages quantum geometric principles to encode classical data in quantum states, enabling:
+
+* **Intrinsic dimension estimation** using quantum geometric techniques
+* **Manifold learning** with quantum coherent states
+* **Topological data analysis** via Berry curvature and Chern numbers
+* **Advanced quantum information measures** for data characterization
+* **Quantum-classical hybrid learning** algorithms
+
+Key Features
+============
+
+ **Core Framework**
+   * Base quantum matrix operations with Hermitian constraints
+   * Error Hamiltonian construction and ground state computation
+   * Quantum state expectation value calculations
+   * Unified architecture for supervised and unsupervised learning
+
+ **Advanced Topological Analysis**
+   * Berry curvature field computation over parameter space
+   * Chern number calculation for topological invariants
+   * Quantum phase transition detection
+   * Quantum metric tensor analysis
+
+**Quantum Information Measures**
+   * Von Neumann entropy for entanglement quantification
+   * Quantum Fisher information matrix for parameter estimation
+   * Quantum coherence and capacity measures
+   * Cross-correlation analysis between geometric properties
+
+ **Specialized Applications**
+   * Chromosomal instability analysis for cancer research
+   * Financial time series forecasting
+   * High-dimensional manifold learning
+   * Quantum-enhanced feature extraction
+
+Quick Start
+===========
+
+Installation
+------------
+
+.. code-block:: bash
+
+   git clone <repository-url>
+   cd qcml_new
+   pip install -e .
+
+Basic Usage
+-----------
+
+.. code-block:: python
+
+   import torch
+   from qcml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
+   
+   # Create trainer with advanced quantum geometric features
+   trainer = QuantumGeometryTrainer(
+       N=8, # Hilbert space dimension
+       D=2, # Feature space dimension
+       fluctuation_weight=1.0,
+       topology_weight=0.1
+   )
+   
+   # Generate sample data
+   points = torch.randn(100, 2)
+   
+   # Perform complete quantum geometric analysis
+   analysis = trainer.analyze_complete_quantum_geometry(
+       points,
+       compute_topology=True,
+       compute_information=True,
+       output_dir="analysis_results"
+   )
+   
+   # Access results
+   print(f"Berry curvature: {analysis['topology']['sample_berry_curvature']}")
+   print(f"Von Neumann entropy: {analysis['quantum_information']['von_neumann_entropy']}")
+
+Architecture Overview
+====================
+
+.. graphviz::
+
+   digraph qmml_architecture {
+       rankdir=TB;
+       node [shape=box, style=rounded];
+       
+       base [label="BaseQuantumMatrixTrainer\n(Core quantum operations)"];
+       unsup [label="UnsupervisedMatrixTrainer\n(Manifold learning)"];
+       sup [label="SupervisedMatrixTrainer\n(Regression/Classification)"];
+       geom [label="QuantumGeometryTrainer\n(Advanced geometric features)"];
+       chromo [label="ChromosomalInstabilityTrainer\n(Specialized genomic analysis)"];
+       
+       topo [label="TopologicalAnalyzer\n(Berry curvature, Chern numbers)"];
+       info [label="QuantumInformationAnalyzer\n(Entropy, Fisher information)"];
+       
+       base -> unsup;
+       base -> sup;
+       base -> geom;
+       sup -> chromo;
+       
+       geom -> topo;
+       geom -> info;
+       
+       {rank=same; unsup, sup}
+       {rank=same; topo, info}
+   }
+
+Contents
+========
+
+.. toctree::
+   :maxdepth: 2
+   :caption: User Guide
+   
+   user_guide/installation
+   user_guide/quickstart
+   user_guide/tutorials
+   user_guide/examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Visualizations
+   
+   visualization_gallery
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference
+   
+   api/core
+   api/quantum_geometry
+   api/topological_analysis
+   api/quantum_information
+   api/specialized_trainers
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Mathematical Background
+   
+   math/quantum_matrix_geometry
+   math/topological_invariants
+   math/quantum_information_theory
+   math/applications
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Advanced Features
+   
+   advanced/berry_curvature
+   advanced/chern_numbers
+   advanced/phase_transitions
+   advanced/entanglement_analysis
+   advanced/quantum_fisher_information
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Applications
+   
+   applications/manifold_learning
+   applications/genomics
+   applications/finance
+   applications/dimension_estimation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Experimental Results
+   
+   experimental_results/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Guide
+   
+   developer/contributing
+   developer/architecture
+   developer/testing
+   developer/performance
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

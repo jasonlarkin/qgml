@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qgml.information.quantum_information &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">qgml.information.quantum_information</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qgml.information.quantum_information</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Quantum Information Analyzer for QGML</span>
+
+<span class="sd">Comprehensive quantum information theoretic measures and analysis tools.</span>
+
+<span class="sd">This module provides a complete suite of quantum information measures for</span>
+<span class="sd">analyzing quantum states and optimizing quantum machine learning models:</span>
+
+<span class="sd">Entropy Measures:</span>
+<span class="sd">    - Von Neumann entropy for quantum entanglement</span>
+<span class="sd">    - Relative entropy and divergence measures</span>
+<span class="sd">    - Conditional and mutual information</span>
+
+<span class="sd">Fisher Information:</span>
+<span class="sd">    - Quantum Fisher information matrix (QFIM)</span>
+<span class="sd">    - Parameter estimation bounds via Cramér-Rao</span>
+<span class="sd">    - Sensitivity analysis for quantum parameters</span>
+<span class="sd">    - Optimal measurement strategies</span>
+
+<span class="sd">Coherence &amp; Fidelity:</span>
+<span class="sd">    - Quantum coherence measures (l1 norm, relative entropy)</span>
+<span class="sd">    - Quantum state fidelity and distance metrics</span>
+<span class="sd">    - Purity and mixedness quantification</span>
+<span class="sd">    - State distinguishability analysis</span>
+
+<span class="sd">Capacity Metrics:</span>
+<span class="sd">    - Quantum channel capacity</span>
+<span class="sd">    - Compression and storage bounds</span>
+<span class="sd">    - Information flow and transmission</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">logm</span><span class="p">,</span> <span class="n">sqrtm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="QuantumInformationAnalyzer">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QuantumInformationAnalyzer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quantum information analysis for quantum matrix machine learning.</span>
+<span class="sd">    </span>
+<span class="sd">    Provides comprehensive quantum information measures for analyzing</span>
+<span class="sd">    the information content, entanglement, and optimization properties</span>
+<span class="sd">    of quantum states in QMML models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.__init__">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quantum_trainer</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize quantum information analyzer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            quantum_trainer: Any quantum matrix trainer with ground state computation</span>
+<span class="sd">            epsilon: Small value for numerical stability</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">quantum_trainer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">quantum_trainer</span><span class="o">.</span><span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">quantum_trainer</span><span class="o">.</span><span class="n">dtype</span>
+        
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QuantumInformationAnalyzer initialized&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_density_matrix">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_density_matrix">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_density_matrix</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">psi</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> 
+        <span class="n">subsystem_dims</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute density matrix ρ = |ψ⟩⟨ψ| for pure state.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            psi: Quantum state vector of shape (N,)</span>
+<span class="sd">            subsystem_dims: Dimensions for subsystem analysis (None = full system)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Density matrix ρ of shape (N, N)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Ensure normalized state</span>
+        <span class="n">psi_normalized</span> <span class="o">=</span> <span class="n">psi</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        
+        <span class="c1"># Full system density matrix</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">psi_normalized</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_normalized</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">rho</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_reduced_density_matrix">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_reduced_density_matrix">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_reduced_density_matrix</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">psi</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">subsystem_dims</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+        <span class="n">subsystem</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute reduced density matrix by tracing out subsystem.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            psi: Quantum state vector</span>
+<span class="sd">            subsystem_dims: Dimensions (dim_A, dim_B) where dim_A * dim_B = N</span>
+<span class="sd">            subsystem: Which subsystem to keep (0 for A, 1 for B)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Reduced density matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dim_A</span><span class="p">,</span> <span class="n">dim_B</span> <span class="o">=</span> <span class="n">subsystem_dims</span>
+        
+        <span class="k">if</span> <span class="n">dim_A</span> <span class="o">*</span> <span class="n">dim_B</span> <span class="o">!=</span> <span class="n">N</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subsystem dimensions </span><span class="si">{</span><span class="n">subsystem_dims</span><span class="si">}</span><span class="s2"> don&#39;t match total dimension </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Reshape state as matrix</span>
+        <span class="n">psi_matrix</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">dim_A</span><span class="p">,</span> <span class="n">dim_B</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">subsystem</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Keep subsystem A, trace out B</span>
+            <span class="c1"># ρ_A = Tr_B[|ψ⟩⟨ψ|] = ψ ψ†</span>
+            <span class="n">rho_reduced</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">psi_matrix</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_matrix</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Keep subsystem B, trace out A</span>
+            <span class="c1"># ρ_B = Tr_A[|ψ⟩⟨ψ|] = ψ† ψ</span>
+            <span class="n">rho_reduced</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi_matrix</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">psi_matrix</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">rho_reduced</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_von_neumann_entropy">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_von_neumann_entropy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_von_neumann_entropy</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">rho</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">base</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute von Neumann entropy S(ρ) = -Tr[ρ log ρ].</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            rho: Density matrix</span>
+<span class="sd">            base: Logarithm base (2 for bits, e for nats)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Von Neumann entropy</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Compute eigenvalues</span>
+        <span class="n">eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+        <span class="n">eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span>  <span class="c1"># Should be real for Hermitian matrix</span>
+        
+        <span class="c1"># Remove zero/negative eigenvalues (numerical errors)</span>
+        <span class="n">eigenvals</span> <span class="o">=</span> <span class="n">eigenvals</span><span class="p">[</span><span class="n">eigenvals</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Compute entropy: S = -Σ λᵢ log λᵢ</span>
+        <span class="n">log_eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+        <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">eigenvals</span> <span class="o">*</span> <span class="n">log_eigenvals</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">entropy</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_entanglement_entropy">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_entanglement_entropy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_entanglement_entropy</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">psi</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">subsystem_dims</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute entanglement entropy between subsystems.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            psi: Quantum state vector</span>
+<span class="sd">            subsystem_dims: Bipartition dimensions (dim_A, dim_B)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Entanglement entropy S(ρ_A) = S(ρ_B)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get reduced density matrix for subsystem A</span>
+        <span class="n">rho_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_reduced_density_matrix</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">subsystem_dims</span><span class="p">,</span> <span class="n">subsystem</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># Entanglement entropy</span>
+        <span class="n">S_ent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho_A</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">S_ent</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_quantum_fisher_information">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_fisher_information">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_fisher_information</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum Fisher information F_μ for parameter estimation.</span>
+<span class="sd">        </span>
+<span class="sd">        For pure states: F_μ = 4 Re⟨∂_μψ|∂_μψ⟩ - 4|⟨ψ|∂_μψ⟩|²</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Parameter point</span>
+<span class="sd">            direction: Parameter direction for Fisher information</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Quantum Fisher information F_μ</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get ground state and its derivative</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Compute derivative via finite differences</span>
+        <span class="n">x_plus</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="n">x_plus</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span>
+        <span class="n">psi_plus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x_plus</span><span class="p">)</span>
+        
+        <span class="n">x_minus</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="n">x_minus</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span>
+        <span class="n">psi_minus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x_minus</span><span class="p">)</span>
+        
+        <span class="n">dpsi_dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi_plus</span> <span class="o">-</span> <span class="n">psi_minus</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+        
+        <span class="c1"># Quantum Fisher information for pure states</span>
+        <span class="c1"># F = 4 Re⟨∂ψ|∂ψ⟩ - 4|⟨ψ|∂ψ⟩|²</span>
+        <span class="n">term1</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">dpsi_dx</span><span class="p">)</span> <span class="o">@</span> <span class="n">dpsi_dx</span><span class="p">)</span>
+        <span class="n">overlap</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">dpsi_dx</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">overlap</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        
+        <span class="n">fisher_info</span> <span class="o">=</span> <span class="n">term1</span> <span class="o">-</span> <span class="n">term2</span>
+        
+        <span class="k">return</span> <span class="n">fisher_info</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_quantum_fisher_information_matrix">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_fisher_information_matrix">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_fisher_information_matrix</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute full quantum Fisher information matrix F_μν.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Parameter point of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Fisher information matrix of shape (D, D)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">F_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">D</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Get ground state</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Compute all parameter derivatives</span>
+        <span class="n">dpsi</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+            <span class="n">x_plus</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="n">x_plus</span><span class="p">[</span><span class="n">mu</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span>
+            <span class="n">psi_plus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x_plus</span><span class="p">)</span>
+            
+            <span class="n">x_minus</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="n">x_minus</span><span class="p">[</span><span class="n">mu</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span>
+            <span class="n">psi_minus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x_minus</span><span class="p">)</span>
+            
+            <span class="n">dpsi_mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi_plus</span> <span class="o">-</span> <span class="n">psi_minus</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+            <span class="n">dpsi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dpsi_mu</span><span class="p">)</span>
+        
+        <span class="c1"># Compute Fisher information matrix</span>
+        <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">nu</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+                <span class="c1"># F_μν = 4 Re⟨∂_μψ|∂_νψ⟩ - 4 Re⟨∂_μψ|ψ⟩Re⟨ψ|∂_νψ⟩</span>
+                <span class="n">term1</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">dpsi</span><span class="p">[</span><span class="n">mu</span><span class="p">])</span> <span class="o">@</span> <span class="n">dpsi</span><span class="p">[</span><span class="n">nu</span><span class="p">])</span>
+                <span class="n">overlap_mu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">dpsi</span><span class="p">[</span><span class="n">mu</span><span class="p">])</span> <span class="o">@</span> <span class="n">psi</span>
+                <span class="n">overlap_nu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">dpsi</span><span class="p">[</span><span class="n">nu</span><span class="p">]</span>
+                <span class="n">term2</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">overlap_mu</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">overlap_nu</span><span class="p">)</span>
+                
+                <span class="n">F_matrix</span><span class="p">[</span><span class="n">mu</span><span class="p">,</span> <span class="n">nu</span><span class="p">]</span> <span class="o">=</span> <span class="n">term1</span> <span class="o">-</span> <span class="n">term2</span>
+        
+        <span class="k">return</span> <span class="n">F_matrix</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_quantum_fidelity">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_fidelity">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_fidelity</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">psi1</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">psi2</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum fidelity F(ψ₁, ψ₂) = |⟨ψ₁|ψ₂⟩|².</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            psi1, psi2: Quantum state vectors</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Quantum fidelity F ∈ [0, 1]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">overlap</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi1</span><span class="p">)</span> <span class="o">@</span> <span class="n">psi2</span><span class="p">)</span>
+        <span class="n">fidelity</span> <span class="o">=</span> <span class="n">overlap</span> <span class="o">**</span> <span class="mi">2</span>
+        
+        <span class="k">return</span> <span class="n">fidelity</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_bures_distance">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_bures_distance">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_bures_distance</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">rho1</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">rho2</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute Bures distance between density matrices.</span>
+<span class="sd">        </span>
+<span class="sd">        D_B(ρ₁, ρ₂) = √(2 - 2√F(ρ₁, ρ₂))</span>
+<span class="sd">        where F is the fidelity.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            rho1, rho2: Density matrices</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Bures distance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># For pure states, this simplifies significantly</span>
+        <span class="c1"># But we implement the general case</span>
+        
+        <span class="c1"># Compute √ρ₁</span>
+        <span class="n">rho1_np</span> <span class="o">=</span> <span class="n">rho1</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">sqrt_rho1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">sqrtm</span><span class="p">(</span><span class="n">rho1_np</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Compute √ρ₁ ρ₂ √ρ₁</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">sqrt_rho1</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">rho2</span><span class="p">,</span> <span class="n">sqrt_rho1</span><span class="p">))</span>
+        
+        <span class="c1"># Compute √(√ρ₁ ρ₂ √ρ₁)</span>
+        <span class="n">temp_np</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">sqrt_temp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">sqrtm</span><span class="p">(</span><span class="n">temp_np</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Fidelity F = (Tr[√(√ρ₁ ρ₂ √ρ₁)])²</span>
+        <span class="n">fidelity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">sqrt_temp</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+        
+        <span class="c1"># Bures distance</span>
+        <span class="n">bures_distance</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fidelity</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">bures_distance</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_quantum_coherence">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_coherence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_coherence</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">psi</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">basis</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;computational&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum coherence measures.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            psi: Quantum state vector</span>
+<span class="sd">            basis: Reference basis (&#39;computational&#39; or &#39;energy&#39;)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with coherence measures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Density matrix</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_density_matrix</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">basis</span> <span class="o">==</span> <span class="s1">&#39;computational&#39;</span><span class="p">:</span>
+            <span class="c1"># Coherence relative to computational basis</span>
+            <span class="c1"># Extract diagonal elements</span>
+            <span class="n">rho_diag_elements</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+            <span class="n">rho_diag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">rho_diag_elements</span><span class="p">)</span>
+            <span class="n">rho_off_diag</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">-</span> <span class="n">rho_diag</span>
+            
+        <span class="k">elif</span> <span class="n">basis</span> <span class="o">==</span> <span class="s1">&#39;energy&#39;</span><span class="p">:</span>
+            <span class="c1"># Coherence relative to energy eigenbasis</span>
+            <span class="c1"># This would require diagonalizing the Hamiltonian</span>
+            <span class="c1"># For now, use computational basis</span>
+            <span class="n">rho_diag_elements</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+            <span class="n">rho_diag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">rho_diag_elements</span><span class="p">)</span>
+            <span class="n">rho_off_diag</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">-</span> <span class="n">rho_diag</span>
+        
+        <span class="c1"># l1-norm coherence</span>
+        <span class="n">l1_coherence</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rho_off_diag</span><span class="p">))</span>
+        
+        <span class="c1"># Relative entropy coherence</span>
+        <span class="c1"># C_re = S(ρ_diag) - S(ρ)</span>
+        <span class="n">S_rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+        <span class="n">S_diag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho_diag</span><span class="p">)</span>
+        <span class="n">relative_entropy_coherence</span> <span class="o">=</span> <span class="n">S_diag</span> <span class="o">-</span> <span class="n">S_rho</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;l1_coherence&#39;</span><span class="p">:</span> <span class="n">l1_coherence</span><span class="p">,</span>
+            <span class="s1">&#39;relative_entropy_coherence&#39;</span><span class="p">:</span> <span class="n">relative_entropy_coherence</span><span class="p">,</span>
+            <span class="s1">&#39;purity&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">rho</span><span class="p">)))</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.compute_quantum_capacity_measures">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.compute_quantum_capacity_measures">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_capacity_measures</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum information capacity measures.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input parameter point</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with capacity measures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get quantum state</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_density_matrix</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        
+        <span class="c1"># Dimension</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Maximum entropy (fully mixed state)</span>
+        <span class="n">max_entropy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span>
+        
+        <span class="c1"># Current entropy</span>
+        <span class="n">current_entropy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+        
+        <span class="c1"># Information capacity (relative to maximum)</span>
+        <span class="n">info_capacity</span> <span class="o">=</span> <span class="n">current_entropy</span> <span class="o">/</span> <span class="n">max_entropy</span>
+        
+        <span class="c1"># Effective dimension</span>
+        <span class="c1"># d_eff = exp(S(ρ))</span>
+        <span class="n">effective_dimension</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">current_entropy</span><span class="p">)</span>
+        
+        <span class="c1"># Participation ratio</span>
+        <span class="n">eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+        <span class="n">eigenvals_real</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">)</span>
+        <span class="n">eigenvals_positive</span> <span class="o">=</span> <span class="n">eigenvals_real</span><span class="p">[</span><span class="n">eigenvals_real</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">]</span>
+        <span class="n">participation_ratio</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">eigenvals_positive</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvals_positive</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;information_capacity&#39;</span><span class="p">:</span> <span class="n">info_capacity</span><span class="p">,</span>
+            <span class="s1">&#39;effective_dimension&#39;</span><span class="p">:</span> <span class="n">effective_dimension</span><span class="p">,</span>
+            <span class="s1">&#39;participation_ratio&#39;</span><span class="p">:</span> <span class="n">participation_ratio</span><span class="p">,</span>
+            <span class="s1">&#39;max_entropy&#39;</span><span class="p">:</span> <span class="n">max_entropy</span><span class="p">,</span>
+            <span class="s1">&#39;current_entropy&#39;</span><span class="p">:</span> <span class="n">current_entropy</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="QuantumInformationAnalyzer.analyze_quantum_information">
+<a class="viewcode-back" href="../../../api/quantum_information.html#qgml.information.quantum_information.QuantumInformationAnalyzer.analyze_quantum_information">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_quantum_information</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">compute_entanglement</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">compute_fisher</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">compute_coherence</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Comprehensive quantum information analysis.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Sample points for analysis</span>
+<span class="sd">            compute_entanglement: Whether to compute entanglement measures</span>
+<span class="sd">            compute_fisher: Whether to compute Fisher information</span>
+<span class="sd">            compute_coherence: Whether to compute coherence measures</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with quantum information analysis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">analysis</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_points&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">),</span>
+            <span class="s1">&#39;hilbert_dimension&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">N</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Sample point analysis</span>
+        <span class="n">sample_point</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">sample_point</span><span class="p">)</span>
+        
+        <span class="c1"># Basic information measures</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_density_matrix</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="n">von_neumann_entropy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+        
+        <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;von_neumann_entropy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">von_neumann_entropy</span><span class="p">)</span>
+        
+        <span class="c1"># Capacity measures</span>
+        <span class="n">capacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_capacity_measures</span><span class="p">(</span><span class="n">sample_point</span><span class="p">)</span>
+        <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;capacity_measures&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">capacity</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        
+        <span class="c1"># Entanglement analysis</span>
+        <span class="k">if</span> <span class="n">compute_entanglement</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">N</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="c1"># Try different bipartitions</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">N</span>
+            <span class="c1"># Use the most balanced bipartition</span>
+            <span class="n">dim_A</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="n">N</span> <span class="k">else</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span>
+            <span class="n">dim_B</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="n">dim_A</span>
+            
+            <span class="k">if</span> <span class="n">dim_A</span> <span class="o">*</span> <span class="n">dim_B</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+                <span class="n">ent_entropy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_entanglement_entropy</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="p">(</span><span class="n">dim_A</span><span class="p">,</span> <span class="n">dim_B</span><span class="p">))</span>
+                <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;entanglement_entropy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ent_entropy</span><span class="p">)</span>
+                <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;bipartition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dim_A</span><span class="p">,</span> <span class="n">dim_B</span><span class="p">)</span>
+        
+        <span class="c1"># Fisher information</span>
+        <span class="k">if</span> <span class="n">compute_fisher</span><span class="p">:</span>
+            <span class="n">fisher_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_fisher_information_matrix</span><span class="p">(</span><span class="n">sample_point</span><span class="p">)</span>
+            <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;fisher_information&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">fisher_matrix</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+                <span class="s1">&#39;trace&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">fisher_matrix</span><span class="p">)),</span>
+                <span class="s1">&#39;determinant&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">fisher_matrix</span><span class="p">)),</span>
+                <span class="s1">&#39;eigenvalues&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">fisher_matrix</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="p">}</span>
+        
+        <span class="c1"># Coherence measures</span>
+        <span class="k">if</span> <span class="n">compute_coherence</span><span class="p">:</span>
+            <span class="n">coherence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_coherence</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;coherence_measures&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">coherence</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        
+        <span class="c1"># Statistics over all points</span>
+        <span class="n">entropies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">fidelities</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">psi_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+            <span class="n">rho_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_density_matrix</span><span class="p">(</span><span class="n">psi_i</span><span class="p">)</span>
+            <span class="n">S_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho_i</span><span class="p">)</span>
+            <span class="n">entropies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">S_i</span><span class="p">))</span>
+            
+            <span class="c1"># Fidelity with first state</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">fidelity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_fidelity</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">psi_i</span><span class="p">)</span>
+                <span class="n">fidelities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fidelity</span><span class="p">))</span>
+        
+        <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;entropy_statistics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">entropies</span><span class="p">),</span>
+            <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">entropies</span><span class="p">),</span>
+            <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">entropies</span><span class="p">),</span>
+            <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">entropies</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">fidelities</span><span class="p">:</span>
+            <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;fidelity_statistics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fidelities</span><span class="p">),</span>
+                <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fidelities</span><span class="p">),</span>
+                <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">fidelities</span><span class="p">),</span>
+                <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fidelities</span><span class="p">)</span>
+            <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">analysis</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

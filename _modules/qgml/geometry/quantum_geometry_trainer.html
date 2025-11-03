@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qgml.geometry.quantum_geometry_trainer &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">qgml.geometry.quantum_geometry_trainer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qgml.geometry.quantum_geometry_trainer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Quantum Geometry Trainer for QGML</span>
+
+<span class="sd">Advanced quantum geometric analysis with topological and information measures.</span>
+
+<span class="sd">This trainer extends the base QGML framework with comprehensive geometric</span>
+<span class="sd">and topological analysis capabilities:</span>
+
+<span class="sd">Geometric Features:</span>
+<span class="sd">    - Matrix Laplacian operators for geometric structure</span>
+<span class="sd">    - Quantum fluctuation and coherence analysis</span>
+<span class="sd">    - Eigenmap-based dimensionality reduction</span>
+<span class="sd">    - Quantum metric tensor computation</span>
+
+<span class="sd">Topological Analysis:</span>
+<span class="sd">    - Berry curvature field computation</span>
+<span class="sd">    - Chern number calculation for topological invariants</span>
+<span class="sd">    - Quantum phase transition detection</span>
+<span class="sd">    - Topological state characterization</span>
+
+<span class="sd">Information Theory:</span>
+<span class="sd">    - Von Neumann entropy and entanglement measures</span>
+<span class="sd">    - Quantum Fisher information for parameter sensitivity</span>
+<span class="sd">    - Intrinsic dimension estimation via Weyl&#39;s law</span>
+<span class="sd">    - Quantum capacity and coherence measures</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core.base_quantum_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseQuantumMatrixTrainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..topology.topological_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">TopologicalAnalyzer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..information.quantum_information</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumInformationAnalyzer</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="QuantumGeometryTrainer">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QuantumGeometryTrainer</span><span class="p">(</span><span class="n">BaseQuantumMatrixTrainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Advanced QMML trainer with quantum geometric structures.</span>
+<span class="sd">    </span>
+<span class="sd">    Extends the base framework with:</span>
+<span class="sd">    - Matrix Laplacian: Δ = Σₐ [Xₐ, [Xₐ, ·]]</span>
+<span class="sd">    - Quantum fluctuation control: σ²(x) analysis</span>
+<span class="sd">    - Eigenmap analysis and dimension reduction</span>
+<span class="sd">    - Topological invariant computation</span>
+<span class="sd">    - Advanced loss functions with geometric terms</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.__init__">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">D</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">fluctuation_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">topology_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">n_eigenmaps</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize quantum geometry trainer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            N: Hilbert space dimension</span>
+<span class="sd">            D: Feature space dimension</span>
+<span class="sd">            fluctuation_weight: Weight for quantum fluctuation terms</span>
+<span class="sd">            topology_weight: Weight for topological penalty</span>
+<span class="sd">            n_eigenmaps: Number of eigenmaps to compute (None = all)</span>
+<span class="sd">            **kwargs: Additional base class arguments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">fluctuation_weight</span> <span class="o">=</span> <span class="n">fluctuation_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">topology_weight</span> <span class="o">=</span> <span class="n">topology_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_eigenmaps</span> <span class="o">=</span> <span class="n">n_eigenmaps</span>
+        
+        <span class="c1"># Cache for computed geometric structures</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_laplacian_cache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eigenmap_cache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_geometry_valid</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="c1"># Initialize advanced analysis modules</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">topological_analyzer</span> <span class="o">=</span> <span class="n">TopologicalAnalyzer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quantum_info_analyzer</span> <span class="o">=</span> <span class="n">QuantumInformationAnalyzer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+        
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QuantumGeometryTrainer initialized with advanced geometric features&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.invalidate_geometry_cache">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.invalidate_geometry_cache">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">invalidate_geometry_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Invalidate cached geometric structures when operators change.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_laplacian_cache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eigenmap_cache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_geometry_valid</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_matrix_laplacian">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_matrix_laplacian">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_matrix_laplacian</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute matrix Laplacian: Δ = Σₐ [Xₐ, [Xₐ, ·]]</span>
+<span class="sd">        </span>
+<span class="sd">        The matrix Laplacian encodes the quantum geometric structure</span>
+<span class="sd">        and is used for spectral analysis and dimension estimation.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Matrix Laplacian as (N²×N²) tensor representing the operator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_laplacian_cache</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry_valid</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_laplacian_cache</span>
+        
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span>
+        
+        <span class="c1"># Initialize Laplacian operator in vectorized form</span>
+        <span class="n">laplacian</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Identity matrices for Kronecker products</span>
+        <span class="n">eye_N</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
+            <span class="n">X_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+            <span class="n">X_a_squared</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X_a</span><span class="p">,</span> <span class="n">X_a</span><span class="p">)</span>
+            
+            <span class="c1"># Compute [X_a, [X_a, ·]] = X_a² ⊗ I + I ⊗ X_a² - 2 X_a ⊗ X_a</span>
+            <span class="n">term1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X_a_squared</span><span class="p">,</span> <span class="n">eye_N</span><span class="p">)</span>
+            <span class="n">term2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">eye_N</span><span class="p">,</span> <span class="n">X_a_squared</span><span class="p">)</span>
+            <span class="n">term3</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">X_a</span><span class="p">,</span> <span class="n">X_a</span><span class="p">)</span>
+            
+            <span class="n">laplacian</span> <span class="o">+=</span> <span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">-</span> <span class="n">term3</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_laplacian_cache</span> <span class="o">=</span> <span class="n">laplacian</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_geometry_valid</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="k">return</span> <span class="n">laplacian</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_eigenmaps">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_eigenmaps">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_eigenmaps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute eigenmaps of the matrix Laplacian.</span>
+<span class="sd">        </span>
+<span class="sd">        Eigenmaps provide a spectral decomposition of the quantum geometry</span>
+<span class="sd">        and are used for dimension reduction and topological analysis.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple of (eigenvalues, eigenmaps):</span>
+<span class="sd">            - eigenvalues: Real eigenvalues sorted ascending, shape (n_modes,)</span>
+<span class="sd">            - eigenmaps: Eigenmap matrices, shape (n_modes, N, N)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eigenmap_cache</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geometry_valid</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eigenmap_cache</span>
+        
+        <span class="c1"># Compute matrix Laplacian</span>
+        <span class="n">laplacian</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_matrix_laplacian</span><span class="p">()</span>
+        
+        <span class="c1"># Eigendecomposition</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">laplacian</span><span class="p">)</span>
+        
+        <span class="c1"># Sort by eigenvalue (ascending)</span>
+        <span class="n">sorted_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span>
+        <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="n">sorted_indices</span><span class="p">]</span>
+        <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">sorted_indices</span><span class="p">]</span>
+        
+        <span class="c1"># Limit to requested number of eigenmaps</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_eigenmaps</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_modes</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_eigenmaps</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">))</span>
+            <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[:</span><span class="n">n_modes</span><span class="p">]</span>
+            <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="p">:</span><span class="n">n_modes</span><span class="p">]</span>
+        
+        <span class="c1"># Reshape eigenvectors back to matrix form (n_modes, N, N)</span>
+        <span class="n">n_modes</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">eigenmaps</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">n_modes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eigenmap_cache</span> <span class="o">=</span> <span class="p">(</span><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenmaps</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenmaps</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_quantum_fluctuations">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fluctuations">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_fluctuations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum fluctuations σ²(x) = Σₐ (⟨Xₐ²⟩ - ⟨Xₐ⟩²).</span>
+<span class="sd">        </span>
+<span class="sd">        Quantum fluctuations measure the quantum uncertainty in the</span>
+<span class="sd">        encoding and are crucial for the quantum geometric loss function.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with fluctuation analysis:</span>
+<span class="sd">            - total_variance: Total quantum fluctuation σ²(x)</span>
+<span class="sd">            - individual_variances: Per-operator variances σₐ²(x)</span>
+<span class="sd">            - expectations: Operator expectations ⟨Xₐ⟩</span>
+<span class="sd">            - ground_state_energy: 2λ(x) = σ²(x) + d²(x)</span>
+<span class="sd">            - displacement_error: d²(x) = ||⟨X⟩ - x||²</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get ground state</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="n">total_variance</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">variances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">expectations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">X_a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">):</span>
+            <span class="c1"># Compute ⟨ψ|Xₐ|ψ⟩</span>
+            <span class="n">exp_X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_a</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span>
+            <span class="n">expectations</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp_X</span>
+            
+            <span class="c1"># Compute ⟨ψ|Xₐ²|ψ⟩</span>
+            <span class="n">X_a_squared</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X_a</span><span class="p">,</span> <span class="n">X_a</span><span class="p">)</span>
+            <span class="n">exp_X2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_a_squared</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span>
+            
+            <span class="c1"># Variance: σₐ² = ⟨Xₐ²⟩ - ⟨Xₐ⟩²</span>
+            <span class="n">var_a</span> <span class="o">=</span> <span class="n">exp_X2</span> <span class="o">-</span> <span class="n">exp_X</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">variances</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">var_a</span>
+            <span class="n">total_variance</span> <span class="o">+=</span> <span class="n">var_a</span>
+        
+        <span class="c1"># Displacement error</span>
+        <span class="n">displacement_error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">expectations</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        
+        <span class="c1"># Ground state energy (should equal total_variance + displacement_error)</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_eigensystem</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">ground_energy</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Factor of 2 from energy decomposition</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;total_variance&#39;</span><span class="p">:</span> <span class="n">total_variance</span><span class="p">,</span>
+            <span class="s1">&#39;individual_variances&#39;</span><span class="p">:</span> <span class="n">variances</span><span class="p">,</span>
+            <span class="s1">&#39;expectations&#39;</span><span class="p">:</span> <span class="n">expectations</span><span class="p">,</span>
+            <span class="s1">&#39;ground_state_energy&#39;</span><span class="p">:</span> <span class="n">ground_energy</span><span class="p">,</span>
+            <span class="s1">&#39;displacement_error&#39;</span><span class="p">:</span> <span class="n">displacement_error</span><span class="p">,</span>
+            <span class="s1">&#39;energy_decomposition_check&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ground_energy</span> <span class="o">-</span> <span class="p">(</span><span class="n">total_variance</span> <span class="o">+</span> <span class="n">displacement_error</span><span class="p">))</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_quantum_geometry_loss">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_geometry_loss">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_geometry_loss</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum geometry loss: L = Σᵢ [d²(xᵢ) + w·σ²(xᵢ)] + λ·topology.</span>
+<span class="sd">        </span>
+<span class="sd">        This extends the basic QCML loss with quantum fluctuation control</span>
+<span class="sd">        and topological constraints.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Batch of input points, shape (batch_size, D)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with loss components</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">displacement_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">fluctuation_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            
+            <span class="c1"># Get quantum fluctuation analysis</span>
+            <span class="n">fluctuations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_fluctuations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            
+            <span class="c1"># Displacement term: d²(x) = ||⟨X⟩ - x||²</span>
+            <span class="n">displacement_loss</span> <span class="o">+=</span> <span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;displacement_error&#39;</span><span class="p">]</span>
+            
+            <span class="c1"># Fluctuation term: σ²(x)</span>
+            <span class="n">fluctuation_loss</span> <span class="o">+=</span> <span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;total_variance&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Average over batch</span>
+        <span class="n">displacement_loss</span> <span class="o">/=</span> <span class="n">batch_size</span>
+        <span class="n">fluctuation_loss</span> <span class="o">/=</span> <span class="n">batch_size</span>
+        
+        <span class="c1"># Topological penalty (commutator penalty)</span>
+        <span class="n">topology_penalty</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_commutation_penalty</span><span class="p">()</span>
+        
+        <span class="c1"># Total quantum geometry loss</span>
+        <span class="n">total_loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">displacement_loss</span> <span class="o">+</span> 
+                      <span class="bp">self</span><span class="o">.</span><span class="n">fluctuation_weight</span> <span class="o">*</span> <span class="n">fluctuation_loss</span> <span class="o">+</span> 
+                      <span class="bp">self</span><span class="o">.</span><span class="n">topology_weight</span> <span class="o">*</span> <span class="n">topology_penalty</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;total_loss&#39;</span><span class="p">:</span> <span class="n">total_loss</span><span class="p">,</span>
+            <span class="s1">&#39;displacement_loss&#39;</span><span class="p">:</span> <span class="n">displacement_loss</span><span class="p">,</span>
+            <span class="s1">&#39;fluctuation_loss&#39;</span><span class="p">:</span> <span class="n">fluctuation_loss</span><span class="p">,</span>
+            <span class="s1">&#39;topology_penalty&#39;</span><span class="p">:</span> <span class="n">topology_penalty</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.estimate_intrinsic_dimension_weyl">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_intrinsic_dimension_weyl</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">lambda_max</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_points</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimate intrinsic dimension using Weyl&#39;s law: N(λ) ~ λ^(d/2).</span>
+<span class="sd">        </span>
+<span class="sd">        This provides a quantum geometric approach to dimension estimation</span>
+<span class="sd">        based on the eigenvalue density of the matrix Laplacian.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_max: Maximum eigenvalue to consider (None = auto)</span>
+<span class="sd">            n_points: Number of points for eigenvalue counting</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with dimension estimation results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get eigenvalues of matrix Laplacian</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_eigenmaps</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">lambda_max</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lambda_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="c1"># Create grid of lambda values</span>
+        <span class="n">lambda_min</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># Skip zero mode</span>
+        <span class="n">lambda_grid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lambda_min</span><span class="p">,</span> <span class="n">lambda_max</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+        
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">lam</span> <span class="ow">in</span> <span class="n">lambda_grid</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">eigenvalues</span> <span class="o">&lt;=</span> <span class="n">lam</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        
+        <span class="c1"># Fit N(λ) = C·λ^(d/2) by log-linear regression</span>
+        <span class="c1"># log(N) = log(C) + (d/2)·log(λ)</span>
+        
+        <span class="c1"># Filter valid points</span>
+        <span class="n">valid_mask</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">valid_mask</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;estimated_dimension&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Insufficient data&#39;</span><span class="p">}</span>
+        
+        <span class="n">lambda_valid</span> <span class="o">=</span> <span class="n">lambda_grid</span><span class="p">[</span><span class="n">valid_mask</span><span class="p">]</span>
+        <span class="n">counts_valid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">valid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">valid_mask</span><span class="p">)</span> <span class="k">if</span> <span class="n">valid</span><span class="p">],</span> 
+                                   <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        
+        <span class="c1"># Log-linear fit</span>
+        <span class="n">log_lambda</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_valid</span><span class="p">)</span>
+        <span class="n">log_counts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">counts_valid</span><span class="p">)</span>
+        
+        <span class="c1"># Linear regression: log_counts = a + b·log_lambda</span>
+        <span class="n">X_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">log_lambda</span><span class="p">),</span> <span class="n">log_lambda</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">coeffs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">X_matrix</span><span class="p">,</span> <span class="n">log_counts</span><span class="p">)</span><span class="o">.</span><span class="n">solution</span>
+            <span class="n">scaling_exponent</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">dimension_estimate</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">scaling_exponent</span>
+            
+            <span class="c1"># Compute R² for confidence</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">log_lambda</span>
+            <span class="n">ss_res</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">log_counts</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">ss_tot</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">log_counts</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_counts</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">r_squared</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ss_res</span> <span class="o">/</span> <span class="n">ss_tot</span> <span class="k">if</span> <span class="n">ss_tot</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+            
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;estimated_dimension&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dimension_estimate</span><span class="p">),</span>
+                <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">r_squared</span><span class="p">),</span>
+                <span class="s1">&#39;scaling_exponent&#39;</span><span class="p">:</span> <span class="n">scaling_exponent</span><span class="p">,</span>
+                <span class="s1">&#39;lambda_grid&#39;</span><span class="p">:</span> <span class="n">lambda_grid</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+                <span class="s1">&#39;eigenvalue_counts&#39;</span><span class="p">:</span> <span class="n">counts</span><span class="p">,</span>
+                <span class="s1">&#39;n_eigenvalues&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span>
+            <span class="p">}</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;estimated_dimension&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s1">&#39;confidence&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Fitting failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_commutation_penalty">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_commutation_penalty">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_commutation_penalty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enhanced commutation penalty including geometric terms.</span>
+<span class="sd">        </span>
+<span class="sd">        Extends the base commutation penalty with additional geometric</span>
+<span class="sd">        constraints for smoother quantum geometry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">penalty</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compute_commutation_penalty</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">super</span><span class="p">(),</span> <span class="s1">&#39;compute_commutation_penalty&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Add additional geometric smoothness terms</span>
+        <span class="c1"># This could include higher-order commutators, curvature terms, etc.</span>
+        
+        <span class="k">return</span> <span class="n">penalty</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.analyze_quantum_geometry">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_quantum_geometry">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_quantum_geometry</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">compute_berry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Comprehensive quantum geometric analysis.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Sample points for analysis</span>
+<span class="sd">            compute_berry: Whether to compute Berry curvature (expensive)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with complete geometric analysis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Basic fluctuation analysis</span>
+        <span class="n">fluctuation_stats</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;mean_total_variance&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">&#39;mean_displacement_error&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">&#39;mean_ground_energy&#39;</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="p">}</span>
+        
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+                <span class="n">fluct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_fluctuations</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+                <span class="n">fluctuation_stats</span><span class="p">[</span><span class="s1">&#39;mean_total_variance&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fluct</span><span class="p">[</span><span class="s1">&#39;total_variance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="n">fluctuation_stats</span><span class="p">[</span><span class="s1">&#39;mean_displacement_error&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fluct</span><span class="p">[</span><span class="s1">&#39;displacement_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="n">fluctuation_stats</span><span class="p">[</span><span class="s1">&#39;mean_ground_energy&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">fluct</span><span class="p">[</span><span class="s1">&#39;ground_state_energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+        <span class="n">n_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">fluctuation_stats</span><span class="p">:</span>
+            <span class="n">fluctuation_stats</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">/=</span> <span class="n">n_points</span>
+        
+        <span class="c1"># Eigenmap analysis</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenmaps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_eigenmaps</span><span class="p">()</span>
+        
+        <span class="c1"># Dimension estimation</span>
+        <span class="n">dim_analysis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimate_intrinsic_dimension_weyl</span><span class="p">()</span>
+        
+        <span class="c1"># Geometric structure analysis</span>
+        <span class="n">geometry_analysis</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;n_eigenvalues&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">),</span>
+            <span class="s1">&#39;eigenvalue_range&#39;</span><span class="p">:</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])),</span>
+            <span class="s1">&#39;eigenvalue_gaps&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+            <span class="s1">&#39;spectral_dimension&#39;</span><span class="p">:</span> <span class="n">dim_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;estimated_dimension&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="s1">&#39;dimension_confidence&#39;</span><span class="p">:</span> <span class="n">dim_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Combine all analyses</span>
+        <span class="n">analysis</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;fluctuation_statistics&#39;</span><span class="p">:</span> <span class="n">fluctuation_stats</span><span class="p">,</span>
+            <span class="s1">&#39;eigenvalue_spectrum&#39;</span><span class="p">:</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+            <span class="s1">&#39;dimension_analysis&#39;</span><span class="p">:</span> <span class="n">dim_analysis</span><span class="p">,</span>
+            <span class="s1">&#39;geometry_analysis&#39;</span><span class="p">:</span> <span class="n">geometry_analysis</span><span class="p">,</span>
+            <span class="s1">&#39;total_commutation_penalty&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_commutation_penalty</span><span class="p">())</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">analysis</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_berry_curvature_field">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_berry_curvature_field">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_berry_curvature_field</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x_grid</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">mu</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">nu</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute Berry curvature field using topological analyzer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x_grid: Grid of parameter points, shape (N_x, N_y, D)</span>
+<span class="sd">            mu, nu: Parameter directions for curvature</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Berry curvature field, shape (N_x, N_y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">topological_analyzer</span><span class="o">.</span><span class="n">compute_berry_curvature_field</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">nu</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_chern_number">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_chern_number">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_chern_number</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">closed_path</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">mu</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">nu</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute Chern number using topological analyzer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            closed_path: Points defining closed path, shape (N_points, D)</span>
+<span class="sd">            mu, nu: Parameter directions for integration</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Chern number (topological invariant)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">topological_analyzer</span><span class="o">.</span><span class="n">compute_chern_number</span><span class="p">(</span><span class="n">closed_path</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">nu</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.detect_quantum_phase_transitions">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.detect_quantum_phase_transitions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detect_quantum_phase_transitions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parameter_path</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Detect quantum phase transitions using topological analyzer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            parameter_path: Path through parameter space</span>
+<span class="sd">            threshold: Threshold for detecting transitions</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with transition analysis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">topological_analyzer</span><span class="o">.</span><span class="n">detect_quantum_phase_transitions</span><span class="p">(</span><span class="n">parameter_path</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_quantum_fisher_information_matrix">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_quantum_fisher_information_matrix">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_fisher_information_matrix</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum Fisher information matrix using quantum info analyzer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Parameter point</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Fisher information matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantum_info_analyzer</span><span class="o">.</span><span class="n">compute_quantum_fisher_information_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_von_neumann_entropy">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_von_neumann_entropy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_von_neumann_entropy</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute von Neumann entropy of ground state.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Parameter point</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Von Neumann entropy</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantum_info_analyzer</span><span class="o">.</span><span class="n">compute_density_matrix</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantum_info_analyzer</span><span class="o">.</span><span class="n">compute_von_neumann_entropy</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_entanglement_entropy">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_entanglement_entropy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_entanglement_entropy</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">subsystem_dims</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute entanglement entropy between subsystems.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Parameter point</span>
+<span class="sd">            subsystem_dims: Bipartition dimensions (auto-detected if None)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Entanglement entropy</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">subsystem_dims</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Auto-detect reasonable bipartition</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+            <span class="n">dim_A</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="n">N</span> <span class="k">else</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span>
+            <span class="n">dim_B</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="n">dim_A</span>
+            <span class="k">if</span> <span class="n">dim_A</span> <span class="o">*</span> <span class="n">dim_B</span> <span class="o">!=</span> <span class="n">N</span><span class="p">:</span>
+                <span class="c1"># Fallback to simple split</span>
+                <span class="n">dim_A</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="n">dim_B</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">dim_A</span>
+            <span class="n">subsystem_dims</span> <span class="o">=</span> <span class="p">(</span><span class="n">dim_A</span><span class="p">,</span> <span class="n">dim_B</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantum_info_analyzer</span><span class="o">.</span><span class="n">compute_entanglement_entropy</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">subsystem_dims</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.analyze_complete_quantum_geometry">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.analyze_complete_quantum_geometry">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_complete_quantum_geometry</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">compute_topology</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">compute_information</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Complete quantum geometric analysis combining all advanced features.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Sample points for analysis</span>
+<span class="sd">            compute_topology: Whether to compute topological properties</span>
+<span class="sd">            compute_information: Whether to compute quantum information measures</span>
+<span class="sd">            output_dir: Directory for saving visualizations</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Comprehensive analysis dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">analysis</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># Basic quantum geometry analysis</span>
+        <span class="n">basic_analysis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analyze_quantum_geometry</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;basic_geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">basic_analysis</span>
+        
+        <span class="c1"># Topological analysis</span>
+        <span class="k">if</span> <span class="n">compute_topology</span><span class="p">:</span>
+            <span class="n">topo_analysis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">topological_analyzer</span><span class="o">.</span><span class="n">analyze_topological_properties</span><span class="p">(</span>
+                <span class="n">points</span><span class="p">,</span> 
+                <span class="n">compute_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                <span class="n">compute_transitions</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;topology&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">topo_analysis</span>
+            
+            <span class="c1"># Visualize topology if requested</span>
+            <span class="k">if</span> <span class="n">output_dir</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">topological_analyzer</span><span class="o">.</span><span class="n">visualize_topology</span><span class="p">(</span><span class="n">topo_analysis</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">)</span>
+        
+        <span class="c1"># Quantum information analysis</span>
+        <span class="k">if</span> <span class="n">compute_information</span><span class="p">:</span>
+            <span class="n">info_analysis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantum_info_analyzer</span><span class="o">.</span><span class="n">analyze_quantum_information</span><span class="p">(</span>
+                <span class="n">points</span><span class="p">,</span>
+                <span class="n">compute_entanglement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">compute_fisher</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">compute_coherence</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;quantum_information&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">info_analysis</span>
+        
+        <span class="c1"># Cross-correlations and insights</span>
+        <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;insights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_geometric_insights</span><span class="p">(</span><span class="n">analysis</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">analysis</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_geometric_insights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">analysis</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate insights by correlating different geometric measures.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            analysis: Complete analysis dictionary</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with geometric insights</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">insights</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># Correlation between topology and information</span>
+        <span class="k">if</span> <span class="s1">&#39;topology&#39;</span> <span class="ow">in</span> <span class="n">analysis</span> <span class="ow">and</span> <span class="s1">&#39;quantum_information&#39;</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
+            <span class="n">topo</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;topology&#39;</span><span class="p">]</span>
+            <span class="n">info</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;quantum_information&#39;</span><span class="p">]</span>
+            
+            <span class="c1"># Berry curvature vs entropy correlation</span>
+            <span class="k">if</span> <span class="s1">&#39;sample_berry_curvature&#39;</span> <span class="ow">in</span> <span class="n">topo</span> <span class="ow">and</span> <span class="s1">&#39;von_neumann_entropy&#39;</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
+                <span class="n">insights</span><span class="p">[</span><span class="s1">&#39;topology_information_correlation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;berry_curvature&#39;</span><span class="p">:</span> <span class="n">topo</span><span class="p">[</span><span class="s1">&#39;sample_berry_curvature&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;von_neumann_entropy&#39;</span><span class="p">:</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;von_neumann_entropy&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;correlation_strength&#39;</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">topo</span><span class="p">[</span><span class="s1">&#39;sample_berry_curvature&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;von_neumann_entropy&#39;</span><span class="p">])</span>
+                <span class="p">}</span>
+            
+            <span class="c1"># Quantum metric vs Fisher information</span>
+            <span class="k">if</span> <span class="s1">&#39;quantum_metric_trace&#39;</span> <span class="ow">in</span> <span class="n">topo</span> <span class="ow">and</span> <span class="s1">&#39;fisher_information&#39;</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
+                <span class="n">insights</span><span class="p">[</span><span class="s1">&#39;metric_fisher_correlation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;metric_trace&#39;</span><span class="p">:</span> <span class="n">topo</span><span class="p">[</span><span class="s1">&#39;quantum_metric_trace&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;fisher_trace&#39;</span><span class="p">:</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;fisher_information&#39;</span><span class="p">][</span><span class="s1">&#39;trace&#39;</span><span class="p">],</span>
+                    <span class="s1">&#39;ratio&#39;</span><span class="p">:</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;fisher_information&#39;</span><span class="p">][</span><span class="s1">&#39;trace&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">topo</span><span class="p">[</span><span class="s1">&#39;quantum_metric_trace&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+                <span class="p">}</span>
+        
+        <span class="c1"># Geometric complexity measures</span>
+        <span class="n">basic</span> <span class="o">=</span> <span class="n">analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;basic_geometry&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">if</span> <span class="s1">&#39;mean_reconstruction_error&#39;</span> <span class="ow">in</span> <span class="n">basic</span><span class="p">:</span>
+            <span class="n">insights</span><span class="p">[</span><span class="s1">&#39;geometric_complexity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;reconstruction_error&#39;</span><span class="p">:</span> <span class="n">basic</span><span class="p">[</span><span class="s1">&#39;mean_reconstruction_error&#39;</span><span class="p">],</span>
+                <span class="s1">&#39;complexity_class&#39;</span><span class="p">:</span> <span class="s1">&#39;high&#39;</span> <span class="k">if</span> <span class="n">basic</span><span class="p">[</span><span class="s1">&#39;mean_reconstruction_error&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="k">else</span> <span class="s1">&#39;low&#39;</span>
+            <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">insights</span>
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.forward">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.forward">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward pass - returns quantum geometry embedding.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Quantum geometric embedding (expectations + fluctuation info)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fluctuations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_fluctuations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Return enhanced embedding with fluctuation information</span>
+        <span class="n">expectations</span> <span class="o">=</span> <span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;expectations&#39;</span><span class="p">]</span>
+        <span class="n">variance_info</span> <span class="o">=</span> <span class="n">fluctuations</span><span class="p">[</span><span class="s1">&#39;total_variance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># Concatenate expectations with variance for richer representation</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">expectations</span><span class="p">,</span> <span class="n">variance_info</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="QuantumGeometryTrainer.compute_loss">
+<a class="viewcode-back" href="../../../api/quantum_geometry.html#qgml.geometry.quantum_geometry_trainer.QuantumGeometryTrainer.compute_loss">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum geometry loss.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Batch of training points</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Total quantum geometry loss</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">losses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_geometry_loss</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">losses</span><span class="p">[</span><span class="s1">&#39;total_loss&#39;</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

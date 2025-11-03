@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qgml.core.base_quantum_trainer &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">qgml.core.base_quantum_trainer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qgml.core.base_quantum_trainer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Base Quantum Matrix Trainer for QGML</span>
+
+<span class="sd">Foundation class providing core quantum matrix operations for all QGML models.</span>
+
+<span class="sd">This module implements the fundamental quantum geometric machine learning</span>
+<span class="sd">operations shared across all trainer variants:</span>
+
+<span class="sd">Core Operations:</span>
+<span class="sd">    - Hermitian matrix initialization and projection</span>
+<span class="sd">    - Error Hamiltonian construction: H(x) = 1/2 Σₖ (Aₖ - xₖI)²</span>
+<span class="sd">    - Ground state computation via eigendecomposition</span>
+<span class="sd">    - Quantum state expectation values and measurements</span>
+
+<span class="sd">The base trainer provides a unified architecture that specialized trainers</span>
+<span class="sd">extend for specific learning tasks (supervised, unsupervised, geometric).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseQuantumMatrixTrainer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for Quantum Matrix Machine Learning (QMML) models.</span>
+<span class="sd">    </span>
+<span class="sd">    Implements core quantum matrix operations:</span>
+<span class="sd">    - Hermitian matrix initialization and projection</span>
+<span class="sd">    - Error Hamiltonian construction: H(x) = 1/2 Σₖ (Aₖ - xₖI)²</span>
+<span class="sd">    - Ground state computation via eigendecomposition</span>
+<span class="sd">    - Quantum state expectation values</span>
+<span class="sd">    </span>
+<span class="sd">    Subclasses implement specific learning objectives:</span>
+<span class="sd">    - Unsupervised: Manifold learning via reconstruction</span>
+<span class="sd">    - Supervised: Regression/classification via target operators</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.__init__">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">D</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cfloat</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize base quantum matrix trainer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            N: Dimension of Hilbert space (matrix size N×N)</span>
+<span class="sd">            D: Number of features/input dimensions</span>
+<span class="sd">            device: Computation device (&#39;cpu&#39; or &#39;cuda&#39;)</span>
+<span class="sd">            dtype: Matrix data type (torch.cfloat for complex Hermitian matrices)</span>
+<span class="sd">            seed: Random seed for reproducibility</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
+        
+        <span class="c1"># Core feature operators {A_k} - D Hermitian N×N matrices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ParameterList</span><span class="p">([</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_init_hermitian_matrix</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+        <span class="p">])</span>
+        
+        <span class="c1"># Move to specified device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BaseQuantumMatrixTrainer initialized: N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">, D=</span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s2">, device=</span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_hermitian_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a random Hermitian matrix.</span>
+<span class="sd">        </span>
+<span class="sd">        Process:</span>
+<span class="sd">        1. Create random complex matrix</span>
+<span class="sd">        2. Project to Hermitian: H = (A + A†)/2</span>
+<span class="sd">        3. Small random initialization for stable gradients</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            N: Matrix dimension</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Random Hermitian matrix of shape (N, N)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create random complex matrix with small values</span>
+        <span class="n">real_part</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+        <span class="n">imag_part</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+        
+        <span class="c1"># Combine into complex matrix</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">real_part</span><span class="p">,</span> <span class="n">imag_part</span><span class="p">)</span>
+        
+        <span class="c1"># Project to Hermitian space: H = (A + A†)/2</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="k">return</span> <span class="n">H</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_make_matrices_hermitian</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Project all feature operators back to Hermitian space.</span>
+<span class="sd">        </span>
+<span class="sd">        Called during training to maintain Hermitian constraint after gradient updates.</span>
+<span class="sd">        Uses in-place operations to avoid breaking gradient computation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">matrix</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">):</span>
+                <span class="c1"># Project to Hermitian: H = (A + A†)/2</span>
+                <span class="n">H</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">matrix</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.compute_error_hamiltonian">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_error_hamiltonian">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_error_hamiltonian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute error Hamiltonian for input point x.</span>
+<span class="sd">        </span>
+<span class="sd">        The error Hamiltonian encodes the quantum geometric structure:</span>
+<span class="sd">        H(x) = 1/2 Σₖ (Aₖ - xₖI)²</span>
+<span class="sd">        </span>
+<span class="sd">        This Hamiltonian has minimum eigenvalue 0 when the quantum state</span>
+<span class="sd">        perfectly encodes the classical input through operator expectations.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point tensor of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Error Hamiltonian H(x) of shape (N, N)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Ensure input is on correct device</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">device</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Initialize Hamiltonian</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Identity matrix for this device</span>
+        <span class="n">identity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Sum over feature operators: H(x) = 1/2 Σₖ (Aₖ - xₖI)²</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">A_k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">):</span>
+            <span class="c1"># Compute (Aₖ - xₖI)</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="n">A_k</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">identity</span>
+            
+            <span class="c1"># Add 1/2 * (Aₖ - xₖI)² to Hamiltonian</span>
+            <span class="n">H</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="n">term</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">H</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.compute_ground_state">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_ground_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_ground_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute ground state |ψ₀(x)⟩ for input x.</span>
+<span class="sd">        </span>
+<span class="sd">        The ground state minimizes the error Hamiltonian and provides</span>
+<span class="sd">        the optimal quantum encoding of the classical input.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point tensor of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Ground state vector |ψ₀⟩ of shape (N,)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Compute error Hamiltonian</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_error_hamiltonian</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Find eigenvalues and eigenvectors</span>
+        <span class="c1"># torch.linalg.eigh returns eigenvalues in ascending order</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+        
+        <span class="c1"># Ground state is eigenvector with smallest eigenvalue (index 0)</span>
+        <span class="n">ground_state</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">ground_state</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.compute_eigensystem">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_eigensystem">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_eigensystem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute full eigendecomposition of error Hamiltonian.</span>
+<span class="sd">        </span>
+<span class="sd">        Useful for analyzing quantum geometric properties and</span>
+<span class="sd">        excited state contributions.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point tensor of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple of (eigenvalues, eigenvectors):</span>
+<span class="sd">            - eigenvalues: Real eigenvalues sorted ascending, shape (N,)</span>
+<span class="sd">            - eigenvectors: Eigenvector matrix, shape (N, N)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_error_hamiltonian</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.get_feature_expectations">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_feature_expectations">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_feature_expectations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute feature operator expectations ⟨ψ₀|Aₖ|ψ₀⟩.</span>
+<span class="sd">        </span>
+<span class="sd">        These expectation values represent the quantum encoding</span>
+<span class="sd">        of the classical input in the learned matrix representation.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point tensor of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Feature expectations of shape (D,)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get ground state</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Compute expectations for each feature operator</span>
+        <span class="n">expectations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">A_k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">):</span>
+            <span class="c1"># ⟨ψ|Aₖ|ψ⟩ = ψ† Aₖ ψ</span>
+            <span class="n">expectation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span> <span class="o">@</span> <span class="n">A_k</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span>
+            <span class="n">expectations</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">expectation</span>
+        
+        <span class="k">return</span> <span class="n">expectations</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.compute_quantum_fidelity">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_quantum_fidelity">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_quantum_fidelity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum fidelity between ground states of two inputs.</span>
+<span class="sd">        </span>
+<span class="sd">        Fidelity F(ψ₁, ψ₂) = |⟨ψ₁|ψ₂⟩|² measures quantum similarity.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x1, x2: Input points of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Quantum fidelity F ∈ [0, 1]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">psi1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+        <span class="n">psi2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+        
+        <span class="c1"># Fidelity F = |⟨ψ₁|ψ₂⟩|²</span>
+        <span class="n">overlap</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">psi1</span><span class="p">)</span> <span class="o">@</span> <span class="n">psi2</span><span class="p">)</span>
+        <span class="n">fidelity</span> <span class="o">=</span> <span class="n">overlap</span> <span class="o">**</span> <span class="mi">2</span>
+        
+        <span class="k">return</span> <span class="n">fidelity</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.get_quantum_state_properties">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_quantum_state_properties">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_quantum_state_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Analyze quantum properties of the ground state.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns comprehensive quantum information for debugging</span>
+<span class="sd">        and understanding the learned representation.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point tensor of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary containing:</span>
+<span class="sd">            - ground_energy: Minimum eigenvalue</span>
+<span class="sd">            - energy_gap: Gap to first excited state</span>
+<span class="sd">            - feature_expectations: ⟨ψ|Aₖ|ψ⟩ values</span>
+<span class="sd">            - quantum_purity: Tr(ρ²) for ground state</span>
+<span class="sd">            - entanglement_entropy: von Neumann entropy (if applicable)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_eigensystem</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">ground_state</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">feature_expectations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_feature_expectations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ground_energy&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="s1">&#39;energy_gap&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">&#39;feature_expectations&#39;</span><span class="p">:</span> <span class="n">feature_expectations</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+            <span class="s1">&#39;quantum_purity&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># Pure state</span>
+            <span class="s1">&#39;reconstruction_error&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">feature_expectations</span> <span class="o">-</span> <span class="n">x</span><span class="p">))</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">properties</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.forward">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.forward">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward pass - must be implemented by subclasses.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input tensor</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Model output (predictions for supervised, reconstructions for unsupervised)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.compute_loss">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.compute_loss">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute loss function - must be implemented by subclasses.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Loss tensor for backpropagation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+    
+<div class="viewcode-block" id="BaseQuantumMatrixTrainer.get_model_info">
+<a class="viewcode-back" href="../../../api/core.html#qgml.core.base_quantum_trainer.BaseQuantumMatrixTrainer.get_model_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_model_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get comprehensive model information.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with model architecture and parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="n">trainable_params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;model_type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s1">&#39;hilbert_dimension&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span>
+            <span class="s1">&#39;feature_dimension&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+            <span class="s1">&#39;total_parameters&#39;</span><span class="p">:</span> <span class="n">total_params</span><span class="p">,</span>
+            <span class="s1">&#39;trainable_parameters&#39;</span><span class="p">:</span> <span class="n">trainable_params</span><span class="p">,</span>
+            <span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">),</span>
+            <span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="p">}</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>) &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/experimental_results/integration_analysis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p># QCML Model Integration Analysis &amp; Experimental Design</p>
+<p>## ️ <strong>Current Architecture Integration</strong></p>
+<p>### <strong>Class Hierarchy &amp; Integration Map</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+BaseQuantumMatrixTrainer (base quantum operations)</p>
+<blockquote>
+<div><p>├── SupervisedMatrixTrainer (refactored supervised learning)
+│ └── ChromosomalInstabilityTrainer (advanced genomic models)
+└── UnsupervisedMatrixTrainer (manifold learning)</p>
+</div></blockquote>
+<p>QCMLRegressionTrainer (original QCML implementation - parallel branch)
+<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>### <strong>Key Integration Points</strong></p>
+<div class="line-block">
+<div class="line">Component | BaseQuantumMatrix | SupervisedMatrix | ChromosomalInstability | QCMLRegression |</div>
+</div>
+<p><a href="#id107"><span class="problematic" id="id108">|-----------|</span></a>——————-<a href="#id109"><span class="problematic" id="id110">|------------------|</span></a>———————-<a href="#id111"><span class="problematic" id="id112">|----------------|</span></a>
+| <strong>Core Hamiltonian</strong> | Shared | Inherited | Inherited | Duplicate |
+| <strong>Ground State</strong> | Shared | Inherited | Inherited | Duplicate |
+| <strong>Feature Operators</strong> | Shared | Inherited | Inherited | Duplicate |
+| <strong>Target Operator</strong> | None | Single B | Single B | Single B |
+| <strong>Loss Function</strong> | Abstract | MAE/MSE | Mixed Loss | MAE/MSE |
+| <strong>Training Loop</strong> | Abstract | Standard | Mixed | Standard |
+| <strong>POVM Support</strong> | None | None | Full | None |
+| <strong>Classification</strong> | None | Basic | Advanced | None |</p>
+<p>## <strong>Integration Advantages</strong></p>
+<p>### <strong>1. Code Reuse &amp; Consistency</strong>
+- <strong>90% shared quantum operations</strong> between all trainers
+- <strong>Identical mathematical foundations</strong>: Error Hamiltonian H(x) = ½∑ₖ(Aₖ - xₖI)²
+- <strong>Common ground state computation</strong>: <a href="#id7"><span class="problematic" id="id8">|</span></a>ψ⟩ = argmin⟨ψ|H(x)|ψ⟩
+- <strong>Unified quantum state analysis</strong> methods</p>
+<p>### <strong>2. Modular Extensions</strong>
+- <strong>ChromosomalInstabilityTrainer</strong> extends <strong>SupervisedMatrixTrainer</strong>
+- <strong>Adds</strong>: Mixed loss, LST classification, POVM framework
+- <strong>Preserves</strong>: All base quantum operations and standard supervised learning
+- <strong>Compatible</strong>: Can switch between models seamlessly</p>
+<p>### <strong>3. Cross-Model Validation</strong>
+- <strong>Same quantum foundation</strong> allows direct performance comparison
+- <strong>Identical feature encoding</strong> enables model ensembling
+- <strong>Shared evaluation metrics</strong> for fair benchmarking</p>
+<p>## <strong>Proposed Integration Experiments</strong></p>
+<p>### <strong>Experiment 1: Model Performance Tuning</strong></p>
+<p><strong>Objective</strong>: Fix the R² scores and class imbalance issues from our initial results</p>
+<p><strong>Design</strong>:
+<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+def experiment_1_performance_tuning():</p>
+<blockquote>
+<div><p>“””
+Test different configurations to optimize performance:
+1. Learning rate scheduling
+2. Regularization parameters
+3. Training epochs and batch sizes
+4. Class balancing strategies
+“””</p>
+<p># Test configurations
+configs = [</p>
+<blockquote>
+<div><p>{‘lr’: 0.001, ‘epochs’: 500, ‘regularization’: 0.01},
+{‘lr’: 0.01, ‘epochs’: 200, ‘regularization’: 0.1},
+{‘lr’: 0.005, ‘epochs’: 300, ‘regularization’: 0.05},</p>
+</div></blockquote>
+<p>]</p>
+<p># Test class balancing
+class_ratios = [0.3, 0.5, 0.7] # Fraction with LST &gt; 12</p>
+<p># Test different synthetic data complexity
+genomic_features = [5, 10, 15, 20]
+sample_sizes = [100, 200, 500]</p>
+</div></blockquote>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>### <strong>Experiment 2: Model Architecture Comparison</strong></p>
+<p><strong>Objective</strong>: Compare all QCML variants on identical datasets</p>
+<p><strong>Design</strong>:
+<a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python
+def experiment_2_architecture_comparison():</p>
+<blockquote>
+<div><p>“””
+Compare all QCML models on same genomic datasets:
+1. BaseQuantumMatrix + SupervisedMatrix (standard)
+2. ChromosomalInstabilityTrainer (mixed loss)
+3. QCMLRegressionTrainer (original implementation)
+4. Classical ML baselines (Random Forest, XGBoost)
+“””</p>
+<dl class="simple">
+<dt>models = {</dt><dd><p>‘standard_qcml’: SupervisedMatrixTrainer,
+‘chromosomal_qcml’: ChromosomalInstabilityTrainer,
+‘original_qcml’: QCMLRegressionTrainer,
+‘random_forest’: RandomForestRegressor,
+‘xgboost’: XGBRegressor</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p>### <strong>Experiment 3: Real Genomic Data Integration</strong></p>
+<p><strong>Objective</strong>: Test on actual CTC datasets from the chromosomal instability paper</p>
+<p><strong>Design</strong>:
+<a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a>python
+def experiment_3_real_genomic_data():</p>
+<blockquote>
+<div><p>“””
+Test on real genomic datasets:
+1. CTC copy number variation data
+2. Mutation burden features
+3. Expression profiles
+4. Clinical LST measurements
+“””</p>
+<p># Real data sources
+datasets = {</p>
+<blockquote>
+<div><p>‘ctc_cnv’: load_ctc_copy_number_data(),
+‘mutation_burden’: load_mutation_data(),
+‘expression’: load_expression_profiles(),
+‘clinical_lst’: load_clinical_lst_values()</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p><a href="#id29"><span class="problematic" id="id30">``</span></a><a href="#id31"><span class="problematic" id="id32">`</span></a></p>
+<p>### <strong>Experiment 4: Quantum Advantage Analysis</strong></p>
+<p><strong>Objective</strong>: Identify where quantum structure provides advantages</p>
+<p><strong>Design</strong>:
+<a href="#id33"><span class="problematic" id="id34">``</span></a><a href="#id35"><span class="problematic" id="id36">`</span></a>python
+def experiment_4_quantum_advantage():</p>
+<blockquote>
+<div><p>“””
+Analyze quantum vs classical performance:
+1. Entanglement analysis in quantum states
+2. Quantum fidelity for genomic similarity
+3. Hilbert space scaling effects
+4. Quantum geometric features
+“””</p>
+<p># Quantum-specific metrics
+quantum_metrics = {</p>
+<blockquote>
+<div><p>‘entanglement_entropy’: compute_entanglement,
+‘quantum_fidelity_similarity’: quantum_similarity_matrix,
+‘state_space_coverage’: hilbert_space_analysis,
+‘geometric_curvature’: quantum_geometric_tensor</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p><a href="#id37"><span class="problematic" id="id38">``</span></a><a href="#id39"><span class="problematic" id="id40">`</span></a></p>
+<p>### <strong>Experiment 5: Hybrid Classical-Quantum Pipeline</strong></p>
+<p><strong>Objective</strong>: Combine strengths of different approaches</p>
+<p><strong>Design</strong>:
+<a href="#id41"><span class="problematic" id="id42">``</span></a><a href="#id43"><span class="problematic" id="id44">`</span></a>python
+def experiment_5_hybrid_pipeline():</p>
+<blockquote>
+<div><p>“””
+Create hybrid genomic analysis pipeline:
+1. Classical preprocessing (PCA, normalization)
+2. Quantum feature embedding (ChromosomalInstability)
+3. Classical post-processing (ensemble methods)
+4. Clinical decision integration
+“””</p>
+<dl class="simple">
+<dt>pipeline = [</dt><dd><p>(‘preprocess’, classical_genomic_preprocessing),
+(‘quantum_embed’, chromosomal_instability_trainer),
+(‘postprocess’, ensemble_clinical_decision),
+(‘validation’, clinical_outcome_prediction)</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p><a href="#id45"><span class="problematic" id="id46">``</span></a><a href="#id47"><span class="problematic" id="id48">`</span></a></p>
+<p>## <strong>Expected Integration Benefits</strong></p>
+<p>### <strong>1. Performance Improvements</strong>
+- <strong>Better R² scores</strong> through proper hyperparameter tuning
+- <strong>Balanced classification</strong> with stratified sampling
+- <strong>Reduced overfitting</strong> with appropriate regularization
+- <strong>Faster convergence</strong> with learning rate scheduling</p>
+<p>### <strong>2. Scientific Validation</strong>
+- <strong>Real genomic data</strong> validation on CTC datasets
+- <strong>Clinical relevance</strong> for chromosomal instability detection
+- <strong>Quantum advantage</strong> demonstration in specific regimes
+- <strong>Benchmarking</strong> against state-of-the-art classical methods</p>
+<p>### <strong>3. Production Readiness</strong>
+- <strong>Robust architecture</strong> tested across multiple scenarios
+- <strong>Scalable implementation</strong> for large genomic datasets
+- <strong>Clinical integration</strong> pathway for medical applications
+- <strong>Quantum hardware</strong> preparation for future deployment</p>
+<p>## <strong>Detailed Experimental Protocol</strong></p>
+<p>### <strong>Phase 1: Performance Optimization (Weeks 1-2)</strong></p>
+<p><strong>Experiment 1A: Hyperparameter Optimization</strong>
+<a href="#id49"><span class="problematic" id="id50">``</span></a><a href="#id51"><span class="problematic" id="id52">`</span></a>python
+# Grid search for optimal parameters
+param_grid = {</p>
+<blockquote>
+<div><p>‘learning_rate’: [0.001, 0.005, 0.01, 0.05],
+‘commutation_penalty’: [0.01, 0.05, 0.1, 0.5],
+‘n_epochs’: [100, 200, 500, 1000],
+‘batch_size’: [16, 32, 64, 128],
+‘hilbert_dimension’: [4, 8, 16, 32]</p>
+</div></blockquote>
+<p>}</p>
+<p># Stratified cross-validation
+cv_results = stratified_cv_search(</p>
+<blockquote>
+<div><p>chromosomal_trainer,
+param_grid,
+genomic_data,
+lst_values,
+cv_folds=5</p>
+</div></blockquote>
+<section id="id53">
+<h1>)<a class="headerlink" href="#id53" title="Link to this heading"></a></h1>
+<p><strong>Experiment 1B: Data Balancing</strong>
+<a href="#id54"><span class="problematic" id="id55">``</span></a><a href="#id56"><span class="problematic" id="id57">`</span></a>python
+# Class balancing strategies
+balancing_methods = {</p>
+<blockquote>
+<div><p>‘synthetic_undersampling’: reduce_high_lst_samples,
+‘synthetic_oversampling’: generate_low_lst_samples,
+‘weighted_loss’: class_weighted_mixed_loss,
+‘stratified_sampling’: stratified_train_test_split</p>
+</div></blockquote>
+<p>}</p>
+<p># Test each method
+for method_name, method_func in balancing_methods.items():</p>
+<blockquote>
+<div><p>balanced_data = method_func(genomic_data, lst_values)
+results[method_name] = train_and_evaluate(balanced_data)</p>
+</div></blockquote>
+<p><a href="#id58"><span class="problematic" id="id59">``</span></a><a href="#id60"><span class="problematic" id="id61">`</span></a></p>
+<p>### <strong>Phase 2: Model Comparison (Weeks 3-4)</strong></p>
+<p><strong>Experiment 2A: QCML Variant Comparison</strong>
+<a href="#id62"><span class="problematic" id="id63">``</span></a><a href="#id64"><span class="problematic" id="id65">`</span></a>python
+# Compare all QCML implementations
+qcml_models = {</p>
+<blockquote>
+<div><p>‘standard’: SupervisedMatrixTrainer(N=8, D=genomic_features.shape[1]),
+‘chromosomal’: ChromosomalInstabilityTrainer(N=8, D=genomic_features.shape[1], use_mixed_loss=True),
+‘original’: QCMLRegressionTrainer(N=8, D=genomic_features.shape[1]),
+‘povm’: ChromosomalInstabilityTrainer(N=8, D=genomic_features.shape[1], use_povm=True)</p>
+</div></blockquote>
+<p>}</p>
+<p># Unified evaluation protocol
+for model_name, model in qcml_models.items():</p>
+<blockquote>
+<div><p>metrics = evaluate_model_comprehensive(model, test_data)
+results[model_name] = metrics</p>
+</div></blockquote>
+<p><a href="#id66"><span class="problematic" id="id67">``</span></a><a href="#id68"><span class="problematic" id="id69">`</span></a></p>
+<p><strong>Experiment 2B: Classical ML Baselines</strong>
+<a href="#id70"><span class="problematic" id="id71">``</span></a><a href="#id72"><span class="problematic" id="id73">`</span></a>python
+# Classical ML comparison
+classical_models = {</p>
+<blockquote>
+<div><p>‘random_forest’: RandomForestRegressor(n_estimators=100),
+‘xgboost’: XGBRegressor(max_depth=6),
+‘linear_regression’: LinearRegression(),
+‘neural_network’: MLPRegressor(hidden_layers=(64, 32)),
+‘svm’: SVR(kernel=’rbf’)</p>
+</div></blockquote>
+<p>}</p>
+<p># Same evaluation protocol
+for model_name, model in classical_models.items():</p>
+<blockquote>
+<div><p>metrics = evaluate_classical_model(model, test_data)
+classical_results[model_name] = metrics</p>
+</div></blockquote>
+<p><a href="#id74"><span class="problematic" id="id75">``</span></a><a href="#id76"><span class="problematic" id="id77">`</span></a></p>
+<p>### <strong>Phase 3: Real Data Validation (Weeks 5-6)</strong></p>
+<p><strong>Experiment 3A: CTC Dataset Integration</strong>
+<a href="#id78"><span class="problematic" id="id79">``</span></a><a href="#id80"><span class="problematic" id="id81">`</span></a>python
+# Load real CTC data (227 sequenced cells from paper)
+ctc_data = load_ctc_genomic_data()
+real_lst_values = load_clinical_lst_measurements()</p>
+<p># Preprocess genomic features
+genomic_features = preprocess_ctc_features(ctc_data)</p>
+<p># Test best-performing model from Phase 2
+best_model = select_best_qcml_model(phase2_results)
+real_data_results = train_and_evaluate_real_data(</p>
+<blockquote>
+<div><p>best_model,
+genomic_features,
+real_lst_values</p>
+</div></blockquote>
+</section>
+<section id="id82">
+<h1>)<a class="headerlink" href="#id82" title="Link to this heading"></a></h1>
+<p><strong>Experiment 3B: Clinical Validation</strong>
+<a href="#id83"><span class="problematic" id="id84">``</span></a><a href="#id85"><span class="problematic" id="id86">`</span></a>python
+# Clinical relevance testing
+clinical_outcomes = {</p>
+<blockquote>
+<div><p>‘treatment_response’: load_treatment_response_data(),
+‘survival_outcomes’: load_survival_data(),
+‘metastatic_progression’: load_progression_data()</p>
+</div></blockquote>
+<p>}</p>
+<p># Correlate QCML predictions with clinical outcomes
+for outcome_name, outcome_data in clinical_outcomes.items():</p>
+<blockquote>
+<div><dl class="simple">
+<dt>correlation = correlate_qcml_predictions(</dt><dd><p>qcml_predictions,
+outcome_data</p>
+</dd>
+</dl>
+<p>)
+clinical_validation[outcome_name] = correlation</p>
+</div></blockquote>
+<p><a href="#id87"><span class="problematic" id="id88">``</span></a><a href="#id89"><span class="problematic" id="id90">`</span></a></p>
+<p>### <strong>Phase 4: Quantum Advantage Analysis (Weeks 7-8)</strong></p>
+<p><strong>Experiment 4A: Quantum Feature Analysis</strong>
+<a href="#id91"><span class="problematic" id="id92">``</span></a><a href="#id93"><span class="problematic" id="id94">`</span></a>python
+# Analyze quantum geometric properties
+def analyze_quantum_advantages():</p>
+<blockquote>
+<div><p># Quantum state entanglement
+entanglement_scores = compute_state_entanglement(qcml_model, genomic_data)</p>
+<p># Quantum fidelity for similarity
+similarity_matrix = compute_quantum_fidelity_matrix(qcml_model, genomic_data)</p>
+<p># Hilbert space utilization
+state_coverage = analyze_hilbert_space_coverage(qcml_model, genomic_data)</p>
+<p># Compare with classical similarity metrics
+classical_similarity = compute_classical_similarity(genomic_data)</p>
+<dl>
+<dt>return {</dt><dd><p>‘quantum_entanglement’: entanglement_scores,
+‘quantum_vs_classical_similarity’: compare_similarities(</p>
+<blockquote>
+<div><p>similarity_matrix, classical_similarity</p>
+</div></blockquote>
+<p>),
+‘hilbert_space_efficiency’: state_coverage</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p><a href="#id95"><span class="problematic" id="id96">``</span></a><a href="#id97"><span class="problematic" id="id98">`</span></a></p>
+<p>### <strong>Phase 5: Production Pipeline (Weeks 9-10)</strong></p>
+<p><strong>Experiment 5A: End-to-End Genomic Pipeline</strong>
+<a href="#id99"><span class="problematic" id="id100">``</span></a><a href="#id101"><span class="problematic" id="id102">`</span></a>python
+class GenomicAnalysisPipeline:</p>
+<blockquote>
+<div><p>“””Complete genomic analysis pipeline using QCML.”””</p>
+<dl>
+<dt>def __init__(self):</dt><dd><p>self.preprocessor = GenomicPreprocessor()
+self.qcml_model = ChromosomalInstabilityTrainer()
+self.clinical_integrator = ClinicalDecisionSupport()</p>
+</dd>
+<dt>def analyze_patient(self, genomic_data):</dt><dd><p># Preprocess genomic features
+processed_features = self.preprocessor.transform(genomic_data)</p>
+<p># QCML analysis
+lst_prediction = self.qcml_model.predict_lst(processed_features)
+instability_classification = self.qcml_model.classify_instability(processed_features)</p>
+<p># Clinical decision support
+treatment_recommendation = self.clinical_integrator.recommend_treatment(</p>
+<blockquote>
+<div><p>lst_prediction, instability_classification</p>
+</div></blockquote>
+<p>)</p>
+<dl class="simple">
+<dt>return {</dt><dd><p>‘lst_score’: lst_prediction,
+‘high_instability’: instability_classification,
+‘recommended_treatment’: treatment_recommendation,
+‘confidence_intervals’: self.qcml_model.get_uncertainty(processed_features)</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id103"><span class="problematic" id="id104">``</span></a><a href="#id105"><span class="problematic" id="id106">`</span></a></p>
+<p>## <strong>Success Metrics &amp; Validation</strong></p>
+<p>### <strong>Regression Performance</strong>
+- <strong>R² Score</strong>: Target &gt; 0.7 (vs current -2.786)
+- <strong>MAE</strong>: Target &lt; 5.0 LST units (vs current 19.684)
+- <strong>RMSE</strong>: Target &lt; 7.0 LST units</p>
+<p>### <strong>Classification Performance</strong>
+- <strong>Accuracy</strong>: Target &gt; 0.90 (current 0.956 )
+- <strong>AUC-ROC</strong>: Target &gt; 0.85 (fix class imbalance)
+- <strong>Sensitivity</strong>: &gt; 0.85 for high LST detection
+- <strong>Specificity</strong>: &gt; 0.80 for low LST detection</p>
+<p>### <strong>Clinical Relevance</strong>
+- <strong>Treatment Correlation</strong>: &gt; 0.6 correlation with treatment response
+- <strong>Survival Prediction</strong>: Significant p-value &lt; 0.05
+- <strong>Clinical Adoption</strong>: Positive feedback from oncologists</p>
+<p>### <strong>Quantum Advantage</strong>
+- <strong>Entanglement Significance</strong>: Measurable quantum correlations
+- <strong>Similarity Accuracy</strong>: Quantum fidelity &gt; classical similarity
+- <strong>Scalability</strong>: Better performance with larger genomic datasets
+- <strong>Hardware Readiness</strong>: Successful Qiskit implementation</p>
+<p>## <strong>Implementation Timeline</strong></p>
+<p><strong>Week 1-2</strong>: Performance tuning experiments
+<strong>Week 3-4</strong>: Model comparison and baseline benchmarking
+<strong>Week 5-6</strong>: Real genomic data validation
+<strong>Week 7-8</strong>: Quantum advantage analysis
+<strong>Week 9-10</strong>: Production pipeline development</p>
+<p><strong>Deliverables</strong>:
+- Optimized QCML models with R² &gt; 0.7
+- Comprehensive benchmarking results
+- Real genomic data validation study
+- Quantum advantage demonstration
+- Production-ready genomic analysis pipeline</p>
+<p>This comprehensive experimental design will validate the integration benefits and address the performance issues while demonstrating real-world applicability to genomic medicine.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

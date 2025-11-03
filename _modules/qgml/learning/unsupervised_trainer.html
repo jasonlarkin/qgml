@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qgml.learning.unsupervised_trainer &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">qgml.learning.unsupervised_trainer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qgml.learning.unsupervised_trainer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unsupervised Quantum Learning Trainer for QGML</span>
+
+<span class="sd">Quantum geometric manifold learning and dimensionality reduction.</span>
+
+<span class="sd">This module implements unsupervised learning using quantum matrix geometry</span>
+<span class="sd">for discovering intrinsic structure in high-dimensional data:</span>
+
+<span class="sd">Learning Objective:</span>
+<span class="sd">    Minimize: L = ||⟨ψ₀|Aₖ|ψ₀⟩ - xₖ||²</span>
+<span class="sd">    Learn operators {Aₖ} that reconstruct input features from quantum states</span>
+
+<span class="sd">Key Capabilities:</span>
+<span class="sd">    - Manifold learning: Discover low-dimensional structure</span>
+<span class="sd">    - Intrinsic dimension estimation: Via quantum fluctuations</span>
+<span class="sd">    - Feature reconstruction: Quantum state-based encoding</span>
+<span class="sd">    - Geometric analysis: Quantum metric and curvature</span>
+
+<span class="sd">The trainer learns quantum representations that capture the intrinsic</span>
+<span class="sd">geometry of the data manifold, enabling dimension estimation and</span>
+<span class="sd">structure discovery without supervision.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core.base_quantum_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseQuantumMatrixTrainer</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnsupervisedMatrixTrainer</span><span class="p">(</span><span class="n">BaseQuantumMatrixTrainer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unsupervised QMML trainer for manifold learning and dimension estimation.</span>
+<span class="sd">    </span>
+<span class="sd">    Learns feature operators {A_k} that minimize reconstruction error:</span>
+<span class="sd">    L = Σᵢ ||xᵢ - X_A(xᵢ)||² + λ * commutation_penalty</span>
+<span class="sd">    </span>
+<span class="sd">    Where X_A(x) = {⟨ψ₀(x)|A_k|ψ₀(x)⟩} is the quantum point cloud.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.__init__">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">D</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">learning_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">commutation_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">optimizer_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize unsupervised QMML trainer.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            N: Hilbert space dimension</span>
+<span class="sd">            D: Feature space dimension</span>
+<span class="sd">            learning_rate: Learning rate for optimization</span>
+<span class="sd">            commutation_penalty: Weight for commutator penalty term</span>
+<span class="sd">            optimizer_type: Optimizer type (&#39;adam&#39;, &#39;sgd&#39;, &#39;adamw&#39;)</span>
+<span class="sd">            device: Computation device</span>
+<span class="sd">            **kwargs: Additional arguments for base class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commutation_penalty</span> <span class="o">=</span> <span class="n">commutation_penalty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer_type</span> <span class="o">=</span> <span class="n">optimizer_type</span>
+        
+        <span class="c1"># Initialize optimizer</span>
+        <span class="k">if</span> <span class="n">optimizer_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;adam&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">optimizer_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;sgd&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">optimizer_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;adamw&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported optimizer: </span><span class="si">{</span><span class="n">optimizer_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Training history</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;UnsupervisedMatrixTrainer initialized with </span><span class="si">{</span><span class="n">optimizer_type</span><span class="si">}</span><span class="s2"> optimizer&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.forward">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.forward">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward pass: compute quantum point cloud reconstruction.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            x: Input point of shape (D,)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Reconstructed point X_A(x) of shape (D,)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_feature_expectations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.compute_reconstruction_loss">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_reconstruction_loss">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_reconstruction_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute reconstruction loss for a batch of points.</span>
+<span class="sd">        </span>
+<span class="sd">        L_reconstruction = (1/N) Σᵢ ||xᵢ - X_A(xᵢ)||²</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Batch of input points, shape (batch_size, D)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Mean reconstruction loss</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">total_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">x_reconstructed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_reconstructed</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="n">total_loss</span> <span class="o">+=</span> <span class="n">loss</span>
+        
+        <span class="k">return</span> <span class="n">total_loss</span> <span class="o">/</span> <span class="n">batch_size</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.compute_commutation_penalty">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_commutation_penalty">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_commutation_penalty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute commutation penalty to encourage classical structure.</span>
+<span class="sd">        </span>
+<span class="sd">        Penalty = Σᵢⱼ ||[Aᵢ, Aⱼ]||²_F where [A,B] = AB - BA</span>
+<span class="sd">        </span>
+<span class="sd">        Large commutators indicate non-classical quantum correlations.</span>
+<span class="sd">        Small commutators suggest classical geometric structure.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Commutation penalty term</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">penalty</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">):</span>
+                <span class="n">A_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">A_j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_operators</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                
+                <span class="c1"># Compute commutator [A_i, A_j] = A_i A_j - A_j A_i</span>
+                <span class="n">commutator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A_i</span><span class="p">,</span> <span class="n">A_j</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A_j</span><span class="p">,</span> <span class="n">A_i</span><span class="p">)</span>
+                
+                <span class="c1"># Frobenius norm squared</span>
+                <span class="n">penalty</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">commutator</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;fro&#39;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        
+        <span class="k">return</span> <span class="n">penalty</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.compute_loss">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.compute_loss">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute total loss with reconstruction and commutation terms.</span>
+<span class="sd">        </span>
+<span class="sd">        L_total = L_reconstruction + λ * L_commutation</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Batch of training points, shape (batch_size, D)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary containing individual loss components and total loss</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Reconstruction loss</span>
+        <span class="n">reconstruction_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_reconstruction_loss</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        
+        <span class="c1"># Commutation penalty</span>
+        <span class="n">commutation_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_commutation_penalty</span><span class="p">()</span>
+        
+        <span class="c1"># Total loss</span>
+        <span class="n">total_loss</span> <span class="o">=</span> <span class="n">reconstruction_loss</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">commutation_penalty</span> <span class="o">*</span> <span class="n">commutation_loss</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;total_loss&#39;</span><span class="p">:</span> <span class="n">total_loss</span><span class="p">,</span>
+            <span class="s1">&#39;reconstruction_loss&#39;</span><span class="p">:</span> <span class="n">reconstruction_loss</span><span class="p">,</span>
+            <span class="s1">&#39;commutation_loss&#39;</span><span class="p">:</span> <span class="n">commutation_loss</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.train_epoch">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.train_epoch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">train_epoch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Train for one epoch with optional batching.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Training points, shape (n_points, D)</span>
+<span class="sd">            batch_size: Batch size for training (None = full batch)</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with epoch metrics</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">batch_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="n">n_points</span>
+        
+        <span class="n">epoch_losses</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">+</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span>
+        
+        <span class="k">for</span> <span class="n">batch_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_batches</span><span class="p">):</span>
+            <span class="c1"># Get batch</span>
+            <span class="n">start_idx</span> <span class="o">=</span> <span class="n">batch_idx</span> <span class="o">*</span> <span class="n">batch_size</span>
+            <span class="n">end_idx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">batch_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+            <span class="n">batch_points</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+            
+            <span class="c1"># Zero gradients</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            
+            <span class="c1"># Compute loss</span>
+            <span class="n">losses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_loss</span><span class="p">(</span><span class="n">batch_points</span><span class="p">)</span>
+            
+            <span class="c1"># Backward pass</span>
+            <span class="n">losses</span><span class="p">[</span><span class="s1">&#39;total_loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            
+            <span class="c1"># Update parameters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            
+            <span class="c1"># Maintain Hermitian constraint</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_make_matrices_hermitian</span><span class="p">()</span>
+            
+            <span class="c1"># Accumulate losses</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">losses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">epoch_losses</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+        <span class="c1"># Average losses over batches</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">epoch_losses</span><span class="p">:</span>
+            <span class="n">epoch_losses</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">/=</span> <span class="n">n_batches</span>
+        
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">epoch_losses</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.fit">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">n_epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">validation_split</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_history</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Train the unsupervised QMML model.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Training data, shape (n_points, D)</span>
+<span class="sd">            n_epochs: Number of training epochs</span>
+<span class="sd">            batch_size: Batch size (None = full batch)</span>
+<span class="sd">            validation_split: Fraction of data for validation</span>
+<span class="sd">            verbose: Whether to print training progress</span>
+<span class="sd">            save_history: Whether to save training history</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Training history dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Move data to device</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Split data if validation requested</span>
+        <span class="k">if</span> <span class="n">validation_split</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">n_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">validation_split</span> <span class="o">*</span> <span class="n">n_points</span><span class="p">)</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">n_points</span><span class="p">)</span>
+            
+            <span class="n">train_points</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">n_val</span><span class="p">:]]</span>
+            <span class="n">val_points</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">indices</span><span class="p">[:</span><span class="n">n_val</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">train_points</span> <span class="o">=</span> <span class="n">points</span>
+            <span class="n">val_points</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="c1"># Training loop</span>
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+            <span class="c1"># Training step</span>
+            <span class="n">train_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_epoch</span><span class="p">(</span><span class="n">train_points</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+            
+            <span class="c1"># Validation step</span>
+            <span class="k">if</span> <span class="n">val_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                    <span class="n">val_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_loss</span><span class="p">(</span><span class="n">val_points</span><span class="p">)</span>
+                    <span class="n">val_metrics</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;val_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="n">train_metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">val_metrics</span><span class="p">)</span>
+            
+            <span class="c1"># Save history</span>
+            <span class="k">if</span> <span class="n">save_history</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">train_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            
+            <span class="c1"># Print progress</span>
+            <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">loss_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_epochs</span><span class="si">}</span><span class="s2">: &quot;</span>
+                <span class="n">loss_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;loss=</span><span class="si">{</span><span class="n">train_metrics</span><span class="p">[</span><span class="s1">&#39;total_loss&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="n">loss_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;recon=</span><span class="si">{</span><span class="n">train_metrics</span><span class="p">[</span><span class="s1">&#39;reconstruction_loss&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="n">loss_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;comm=</span><span class="si">{</span><span class="n">train_metrics</span><span class="p">[</span><span class="s1">&#39;commutation_loss&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+                
+                <span class="k">if</span> <span class="n">val_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">loss_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; val_loss=</span><span class="si">{</span><span class="n">train_metrics</span><span class="p">[</span><span class="s1">&#39;val_total_loss&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+                
+                <span class="nb">print</span><span class="p">(</span><span class="n">loss_str</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.estimate_intrinsic_dimension">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.estimate_intrinsic_dimension">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_intrinsic_dimension</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">energy_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-3</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimate intrinsic dimension by analyzing eigenvalue gaps.</span>
+<span class="sd">        </span>
+<span class="sd">        The intrinsic dimension corresponds to the number of small</span>
+<span class="sd">        eigenvalues in the average error Hamiltonian spectrum.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Test points for dimension estimation</span>
+<span class="sd">            energy_threshold: Threshold for small eigenvalues</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with dimension estimation results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Collect eigenvalue statistics</span>
+        <span class="n">all_eigenvalues</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+                <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_eigensystem</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+                <span class="n">all_eigenvalues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eigenvalues</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+        
+        <span class="c1"># Average eigenvalue spectrum</span>
+        <span class="n">avg_eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">all_eigenvalues</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">std_eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">all_eigenvalues</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># Count eigenvalues below threshold</span>
+        <span class="n">intrinsic_dim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">avg_eigenvalues</span> <span class="o">&lt;</span> <span class="n">energy_threshold</span><span class="p">)</span>
+        
+        <span class="c1"># Eigenvalue gap analysis</span>
+        <span class="n">eigenvalue_gaps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">avg_eigenvalues</span><span class="p">)</span>
+        <span class="n">largest_gap_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">eigenvalue_gaps</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;estimated_intrinsic_dimension&#39;</span><span class="p">:</span> <span class="n">intrinsic_dim</span><span class="p">,</span>
+            <span class="s1">&#39;average_eigenvalues&#39;</span><span class="p">:</span> <span class="n">avg_eigenvalues</span><span class="p">,</span>
+            <span class="s1">&#39;eigenvalue_std&#39;</span><span class="p">:</span> <span class="n">std_eigenvalues</span><span class="p">,</span>
+            <span class="s1">&#39;largest_gap_position&#39;</span><span class="p">:</span> <span class="n">largest_gap_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;largest_gap_value&#39;</span><span class="p">:</span> <span class="n">eigenvalue_gaps</span><span class="p">[</span><span class="n">largest_gap_idx</span><span class="p">],</span>
+            <span class="s1">&#39;energy_threshold&#39;</span><span class="p">:</span> <span class="n">energy_threshold</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.reconstruct_manifold">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.reconstruct_manifold">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reconstruct_manifold</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reconstruct points using learned quantum embedding.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Input points to reconstruct</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple of (original_points, reconstructed_points)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">reconstructed</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+                <span class="n">reconstructed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">points</span><span class="p">,</span> <span class="n">reconstructed</span></div>
+
+    
+<div class="viewcode-block" id="UnsupervisedMatrixTrainer.get_quantum_geometry_metrics">
+<a class="viewcode-back" href="../../../api/core.html#qgml.learning.unsupervised_trainer.UnsupervisedMatrixTrainer.get_quantum_geometry_metrics">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_quantum_geometry_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute quantum geometric properties of the learned manifold.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            points: Sample points on the manifold</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with geometric metrics</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="c1"># Compute pairwise quantum fidelities</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">fidelities</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">n_points</span><span class="p">,</span> <span class="mi">50</span><span class="p">)):</span>  <span class="c1"># Sample for efficiency</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_points</span><span class="p">,</span> <span class="mi">50</span><span class="p">)):</span>
+                    <span class="n">fidelity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_quantum_fidelity</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                    <span class="n">fidelities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fidelity</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        
+        <span class="c1"># Reconstruction errors</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">reconstructed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reconstruct_manifold</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">reconstruction_errors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">points</span> <span class="o">-</span> <span class="n">reconstructed</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;mean_quantum_fidelity&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fidelities</span><span class="p">),</span>
+            <span class="s1">&#39;std_quantum_fidelity&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fidelities</span><span class="p">),</span>
+            <span class="s1">&#39;mean_reconstruction_error&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">reconstruction_errors</span><span class="p">)),</span>
+            <span class="s1">&#39;max_reconstruction_error&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">reconstruction_errors</span><span class="p">)),</span>
+            <span class="s1">&#39;total_commutation_penalty&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_commutation_penalty</span><span class="p">())</span>
+        <span class="p">}</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

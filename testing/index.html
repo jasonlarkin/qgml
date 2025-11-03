@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QGML Testing and Validation Guide &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">QGML Testing and Validation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/testing/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qgml-testing-and-validation-guide">
+<h1>QGML Testing and Validation Guide<a class="headerlink" href="#qgml-testing-and-validation-guide" title="Link to this heading"></a></h1>
+<p>This section provides comprehensive documentation for testing and validating QGML framework components.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The QGML testing framework ensures:</p>
+<ul class="simple">
+<li><p><strong>Mathematical Correctness</strong>: Quantum state computations and geometric properties</p></li>
+<li><p><strong>Numerical Stability</strong>: Robust behavior across different parameter ranges</p></li>
+<li><p><strong>Performance Validation</strong>: Efficient computation and memory usage</p></li>
+<li><p><strong>Integration Reliability</strong>: Seamless component interactions</p></li>
+</ul>
+</section>
+<section id="test-categories">
+<h2>Test Categories<a class="headerlink" href="#test-categories" title="Link to this heading"></a></h2>
+<section id="integration-tests">
+<h3>Integration Tests<a class="headerlink" href="#integration-tests" title="Link to this heading"></a></h3>
+<p>End-to-end validation of complete workflows:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="integration_tests.html">Integration Tests Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html#test-categories">Test Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html#running-integration-tests">Running Integration Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h3>
+<p>Individual component validation:</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="validation-tests">
+<h3>Validation Tests<a class="headerlink" href="#validation-tests" title="Link to this heading"></a></h3>
+<p>Mathematical and numerical correctness:</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+<section id="running-tests">
+<h2>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading"></a></h2>
+<section id="basic-test-execution">
+<h3>Basic Test Execution<a class="headerlink" href="#basic-test-execution" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests</span>
+pytest
+
+<span class="c1"># Run specific test category</span>
+pytest<span class="w"> </span>tests/test_integration/
+
+<span class="c1"># Run with verbose output</span>
+pytest<span class="w"> </span>-v
+
+<span class="c1"># Run with coverage report</span>
+pytest<span class="w"> </span>--cov<span class="o">=</span>qgml<span class="w"> </span>--cov-report<span class="o">=</span>html
+</pre></div>
+</div>
+</section>
+<section id="test-configuration">
+<h3>Test Configuration<a class="headerlink" href="#test-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pytest.ini configuration</span>
+<span class="p">[</span><span class="n">tool</span><span class="p">:</span><span class="n">pytest</span><span class="p">]</span>
+<span class="n">testpaths</span> <span class="o">=</span> <span class="n">tests</span>
+<span class="n">python_files</span> <span class="o">=</span> <span class="n">test_</span><span class="o">*.</span><span class="n">py</span>
+<span class="n">python_classes</span> <span class="o">=</span> <span class="n">Test</span><span class="o">*</span>
+<span class="n">python_functions</span> <span class="o">=</span> <span class="n">test_</span><span class="o">*</span>
+<span class="n">addopts</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">--</span><span class="n">tb</span><span class="o">=</span><span class="n">short</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h2>
+<section id="github-actions">
+<h3>GitHub Actions<a class="headerlink" href="#github-actions" title="Link to this heading"></a></h3>
+<p>Automated testing on every commit:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QGML Tests</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">3.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.9</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.11</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">pip install -e .</span>
+<span class="w">        </span><span class="no">pip install pytest pytest-cov</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest --cov=qgml</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-benchmarking">
+<h2>Performance Benchmarking<a class="headerlink" href="#performance-benchmarking" title="Link to this heading"></a></h2>
+<section id="benchmark-suite">
+<h3>Benchmark Suite<a class="headerlink" href="#benchmark-suite" title="Link to this heading"></a></h3>
+<p>Comprehensive performance testing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># benchmarks/performance_tests.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.learning.supervised_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupervisedMatrixTrainer</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">benchmark_training_time</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Benchmark training performance.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-profiling">
+<h3>Memory Profiling<a class="headerlink" href="#memory-profiling" title="Link to this heading"></a></h3>
+<p>Memory usage analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_memory.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">memory_profiler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgml.geometry.quantum_geometry_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumGeometryTrainer</span>
+
+<span class="nd">@memory_profiler</span><span class="o">.</span><span class="n">profile</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_memory_usage</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Profile memory usage during training.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="c1"># Training code here</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Import Errors</strong></dt><dd><p>Ensure QGML is properly installed and Python path is correct.</p>
+</dd>
+<dt><strong>Backend Issues</strong></dt><dd><p>Check PyTorch/JAX installation and backend configuration.</p>
+</dd>
+<dt><strong>Memory Issues</strong></dt><dd><p>Reduce batch size or Hilbert space dimension for large models.</p>
+</dd>
+<dt><strong>Numerical Instability</strong></dt><dd><p>Adjust learning rates and regularization parameters.</p>
+</dd>
+</dl>
+</section>
+<section id="debug-mode">
+<h3>Debug Mode<a class="headerlink" href="#debug-mode" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable debug logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="c1"># Run tests with debug output</span>
+<span class="n">pytest</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">cli</span><span class="o">-</span><span class="n">level</span><span class="o">=</span><span class="n">DEBUG</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="test-data">
+<h2>Test Data<a class="headerlink" href="#test-data" title="Link to this heading"></a></h2>
+<section id="synthetic-data">
+<h3>Synthetic Data<a class="headerlink" href="#synthetic-data" title="Link to this heading"></a></h3>
+<p>Standard test datasets for validation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qgml.utils.data_generation</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">generate_spiral_data</span><span class="p">,</span>
+    <span class="n">generate_sphere_data</span><span class="p">,</span>
+    <span class="n">generate_hypercube_data</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate test datasets</span>
+<span class="n">X_spiral</span> <span class="o">=</span> <span class="n">generate_spiral_data</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">X_sphere</span> <span class="o">=</span> <span class="n">generate_sphere_data</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">X_hypercube</span> <span class="o">=</span> <span class="n">generate_hypercube_data</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="real-data-integration">
+<h3>Real Data Integration<a class="headerlink" href="#real-data-integration" title="Link to this heading"></a></h3>
+<p>Integration with real-world datasets:</p>
+<ul class="simple">
+<li><p><strong>Genomics Data</strong>: Chromosomal instability analysis</p></li>
+<li><p><strong>Performance Benchmarks</strong>: Backend comparison data</p></li>
+<li><p><strong>Validation Datasets</strong>: Standard ML benchmarks</p></li>
+</ul>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<section id="test-design">
+<h3>Test Design<a class="headerlink" href="#test-design" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Isolation</strong>: Tests should not depend on each other</p></li>
+<li><p><strong>Determinism</strong>: Use fixed random seeds for reproducible results</p></li>
+<li><p><strong>Coverage</strong>: Aim for &gt;90% code coverage</p></li>
+<li><p><strong>Performance</strong>: Keep test execution time reasonable</p></li>
+</ol>
+</section>
+<section id="test-documentation">
+<h3>Test Documentation<a class="headerlink" href="#test-documentation" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Clear Purpose</strong>: Document what each test validates</p></li>
+<li><p><strong>Expected Behavior</strong>: Specify expected outcomes</p></li>
+<li><p><strong>Edge Cases</strong>: Test boundary conditions and error cases</p></li>
+<li><p><strong>Performance Expectations</strong>: Include timing and memory benchmarks</p></li>
+</ol>
+</section>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<section id="adding-new-tests">
+<h3>Adding New Tests<a class="headerlink" href="#adding-new-tests" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Follow naming convention: <cite>test_&lt;component&gt;_&lt;functionality&gt;.py</cite></p></li>
+<li><p>Include comprehensive docstrings</p></li>
+<li><p>Add to continuous integration pipeline</p></li>
+<li><p>Update documentation</p></li>
+</ol>
+</section>
+<section id="test-review-process">
+<h3>Test Review Process<a class="headerlink" href="#test-review-process" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Code Review</strong>: All test code must be reviewed</p></li>
+<li><p><strong>Coverage Analysis</strong>: Ensure adequate test coverage</p></li>
+<li><p><strong>Performance Impact</strong>: Verify tests don’t slow down CI</p></li>
+<li><p><strong>Documentation Updates</strong>: Update test documentation</p></li>
+</ol>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api/core.html"><span class="doc">Core QGML Framework</span></a> - Core API documentation</p></li>
+<li><p><a class="reference internal" href="../user_guide/installation.html"><span class="doc">QGML Installation Guide</span></a> - Installation guide</p></li>
+<li><p><span class="xref std std-doc">../examples/quickstart</span> - Quickstart tutorial</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

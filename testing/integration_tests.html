@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integration Tests Documentation &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ee88eb95" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Integration Tests Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/testing/integration_tests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="integration-tests-documentation">
+<h1>Integration Tests Documentation<a class="headerlink" href="#integration-tests-documentation" title="Link to this heading"></a></h1>
+<p>Integration tests validate complete workflows and component interactions in the QGML framework.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Integration tests ensure that:</p>
+<ul class="simple">
+<li><p><strong>Complete Workflows</strong>: End-to-end functionality from data input to results</p></li>
+<li><p><strong>Component Interactions</strong>: Proper communication between different modules</p></li>
+<li><p><strong>Error Handling</strong>: Graceful handling of edge cases and failures</p></li>
+<li><p><strong>Performance</strong>: Acceptable execution times and memory usage</p></li>
+</ul>
+</section>
+<section id="test-categories">
+<h2>Test Categories<a class="headerlink" href="#test-categories" title="Link to this heading"></a></h2>
+<section id="trainer-integration-tests">
+<h3>Trainer Integration Tests<a class="headerlink" href="#trainer-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_trainer_integration.py</cite></p>
+<p>Validates complete trainer workflows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_supervised_trainer_integration</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test complete supervised training workflow.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span>
+        <span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="o">=</span><span class="s1">&#39;regression&#39;</span><span class="p">,</span>
+        <span class="n">loss_type</span><span class="o">=</span><span class="s1">&#39;mae&#39;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Generate test data</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+    <span class="c1"># Training phase</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+        <span class="n">n_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+        <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Validation</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;train_loss&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">50</span>
+    <span class="k">assert</span> <span class="n">history</span><span class="p">[</span><span class="s1">&#39;train_loss&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">history</span><span class="p">[</span><span class="s1">&#39;train_loss&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Prediction phase</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">predictions</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">20</span><span class="p">,)</span>
+
+    <span class="c1"># Evaluation</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">&#39;mae&#39;</span> <span class="ow">in</span> <span class="n">metrics</span>
+    <span class="k">assert</span> <span class="s1">&#39;r2_score&#39;</span> <span class="ow">in</span> <span class="n">metrics</span>
+</pre></div>
+</div>
+</section>
+<section id="dimensional-consistency-tests">
+<h3>Dimensional Consistency Tests<a class="headerlink" href="#dimensional-consistency-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_dimensional_consistency.py</cite></p>
+<p>Ensures model dimensions align with input data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_dimensional_consistency</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test that model dimensions match input data requirements.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Test correct dimensions</span>
+    <span class="n">X_correct</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># D=3 matches trainer</span>
+    <span class="n">y_correct</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># Should work without errors</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_correct</span><span class="p">,</span> <span class="n">y_correct</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Test incorrect dimensions</span>
+    <span class="n">X_incorrect</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># D=5 doesn&#39;t match trainer</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_incorrect</span><span class="p">,</span> <span class="n">y_correct</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="backend-integration-tests">
+<h3>Backend Integration Tests<a class="headerlink" href="#backend-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_backend_integration.py</cite></p>
+<p>Validates PyTorch and JAX backend functionality:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_backend_switching</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test switching between PyTorch and JAX backends.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qgml</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_backend</span><span class="p">,</span> <span class="n">get_backend</span>
+
+    <span class="c1"># Test PyTorch backend</span>
+    <span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">get_backend</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span>
+
+    <span class="n">trainer_pt</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># Should work with PyTorch</span>
+    <span class="n">trainer_pt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Test JAX backend (if available)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;jax&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">get_backend</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;jax&#39;</span>
+
+        <span class="n">trainer_jax</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">trainer_jax</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;JAX not available&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quantum-state-integration-tests">
+<h3>Quantum State Integration Tests<a class="headerlink" href="#quantum-state-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_quantum_state_integration.py</cite></p>
+<p>Validates quantum state computation and properties:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_quantum_state_properties</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test quantum state computation and properties.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">UnsupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">])</span>
+
+    <span class="c1"># Compute quantum state</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">compute_ground_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Validate properties</span>
+    <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">psi</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">8</span><span class="p">,)</span>
+
+    <span class="c1"># Test expectation values</span>
+    <span class="n">expectations</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">get_feature_expectations</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">expectations</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,)</span>
+
+    <span class="c1"># Test reconstruction</span>
+    <span class="n">reconstructed</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">reconstruct_manifold</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">reconstructed</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="geometric-analysis-integration-tests">
+<h3>Geometric Analysis Integration Tests<a class="headerlink" href="#geometric-analysis-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_geometric_analysis_integration.py</cite></p>
+<p>Validates geometric analysis workflows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_geometric_analysis_workflow</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test complete geometric analysis workflow.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">QuantumGeometryTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Generate manifold data</span>
+    <span class="n">n_points</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span>
+        <span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Train model</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="c1"># Geometric analysis</span>
+    <span class="n">analysis</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">analyze_complete_quantum_geometry</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">compute_topology</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">compute_information</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Validate results</span>
+    <span class="k">assert</span> <span class="s1">&#39;topology&#39;</span> <span class="ow">in</span> <span class="n">analysis</span>
+    <span class="k">assert</span> <span class="s1">&#39;quantum_information&#39;</span> <span class="ow">in</span> <span class="n">analysis</span>
+    <span class="k">assert</span> <span class="s1">&#39;insights&#39;</span> <span class="ow">in</span> <span class="n">analysis</span>
+
+    <span class="c1"># Check topological properties</span>
+    <span class="n">topology</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;topology&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="s1">&#39;sample_berry_curvature&#39;</span> <span class="ow">in</span> <span class="n">topology</span>
+
+    <span class="c1"># Check quantum information</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;quantum_information&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="s1">&#39;von_neumann_entropy&#39;</span> <span class="ow">in</span> <span class="n">info</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-integration-tests">
+<h3>Performance Integration Tests<a class="headerlink" href="#performance-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_performance_integration.py</cite></p>
+<p>Validates performance characteristics:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_training_performance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test training performance meets expectations.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Generate larger dataset</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="c1"># Time training</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="n">training_time</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="c1"># Should complete within reasonable time</span>
+    <span class="k">assert</span> <span class="n">training_time</span> <span class="o">&lt;</span> <span class="mf">60.0</span>  <span class="c1"># 60 seconds max</span>
+
+    <span class="c1"># Check memory usage</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span>
+    <span class="n">memory_usage</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+
+    <span class="c1"># Should use reasonable memory</span>
+    <span class="k">assert</span> <span class="n">memory_usage</span> <span class="o">&lt;</span> <span class="mi">1000</span>  <span class="c1"># 1GB max</span>
+</pre></div>
+</div>
+</section>
+<section id="error-handling-integration-tests">
+<h3>Error Handling Integration Tests<a class="headerlink" href="#error-handling-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_error_handling_integration.py</cite></p>
+<p>Validates error handling across components:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_error_handling</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test error handling across different scenarios.&quot;&quot;&quot;</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Test invalid input dimensions</span>
+    <span class="n">X_wrong</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Wrong dimension</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Input dimension&quot;</span><span class="p">):</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_wrong</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Test invalid target dimensions</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">y_wrong</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Wrong target shape</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Target dimension&quot;</span><span class="p">):</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_wrong</span><span class="p">)</span>
+
+    <span class="c1"># Test invalid hyperparameters</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Learning rate&quot;</span><span class="p">):</span>
+        <span class="n">trainer</span> <span class="o">=</span> <span class="n">SupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="data-pipeline-integration-tests">
+<h3>Data Pipeline Integration Tests<a class="headerlink" href="#data-pipeline-integration-tests" title="Link to this heading"></a></h3>
+<p><strong>File</strong>: <cite>tests/test_integration/test_data_pipeline_integration.py</cite></p>
+<p>Validates data processing pipelines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_data_pipeline</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test complete data processing pipeline.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qgml.utils.data_generation</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_spiral_data</span>
+
+    <span class="c1"># Generate data</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">generate_spiral_data</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># Data preprocessing</span>
+    <span class="n">X_normalized</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Train model</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">UnsupervisedMatrixTrainer</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_normalized</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="c1"># Test reconstruction</span>
+    <span class="n">reconstructed</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">reconstruct_manifold</span><span class="p">(</span><span class="n">X_normalized</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+
+    <span class="c1"># Validate reconstruction quality</span>
+    <span class="n">reconstruction_error</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X_normalized</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">-</span> <span class="n">reconstructed</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">reconstruction_error</span> <span class="o">&lt;</span> <span class="mf">1.0</span>  <span class="c1"># Reasonable reconstruction error</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-integration-tests">
+<h2>Running Integration Tests<a class="headerlink" href="#running-integration-tests" title="Link to this heading"></a></h2>
+<section id="command-line-execution">
+<h3>Command Line Execution<a class="headerlink" href="#command-line-execution" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all integration tests</span>
+pytest<span class="w"> </span>tests/test_integration/
+
+<span class="c1"># Run specific integration test</span>
+pytest<span class="w"> </span>tests/test_integration/test_trainer_integration.py
+
+<span class="c1"># Run with verbose output</span>
+pytest<span class="w"> </span>tests/test_integration/<span class="w"> </span>-v
+
+<span class="c1"># Run with coverage</span>
+pytest<span class="w"> </span>tests/test_integration/<span class="w"> </span>--cov<span class="o">=</span>qgml
+</pre></div>
+</div>
+</section>
+<section id="python-execution">
+<h3>Python Execution<a class="headerlink" href="#python-execution" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run integration tests programmatically</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+
+<span class="c1"># Run specific test</span>
+<span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">([</span>
+    <span class="s2">&quot;tests/test_integration/test_trainer_integration.py::test_supervised_trainer_integration&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;-v&quot;</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h2>
+<section id="github-actions-integration">
+<h3>GitHub Actions Integration<a class="headerlink" href="#github-actions-integration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Integration Tests</span>
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">integration-tests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.9</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">pip install -e .</span>
+<span class="w">        </span><span class="no">pip install pytest pytest-cov</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run integration tests</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest tests/test_integration/ --cov=qgml</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Test Timeouts</strong></dt><dd><p>Increase timeout values for large datasets or complex models.</p>
+</dd>
+<dt><strong>Memory Issues</strong></dt><dd><p>Reduce dataset sizes or model dimensions for memory-constrained environments.</p>
+</dd>
+<dt><strong>Backend Issues</strong></dt><dd><p>Ensure proper backend configuration and dependencies.</p>
+</dd>
+<dt><strong>Numerical Instability</strong></dt><dd><p>Adjust test tolerances or model parameters.</p>
+</dd>
+</dl>
+</section>
+<section id="debug-mode">
+<h3>Debug Mode<a class="headerlink" href="#debug-mode" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable debug logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="c1"># Run with debug output</span>
+<span class="n">pytest</span> <span class="n">tests</span><span class="o">/</span><span class="n">test_integration</span><span class="o">/</span> <span class="o">-</span><span class="n">s</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">cli</span><span class="o">-</span><span class="n">level</span><span class="o">=</span><span class="n">DEBUG</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><span class="xref std std-doc">unit_tests</span> - Unit test documentation</p></li>
+<li><p><span class="xref std std-doc">validation_tests</span> - Validation test documentation</p></li>
+<li><p><a class="reference internal" href="../api/core.html"><span class="doc">Core QGML Framework</span></a> - Core API documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
