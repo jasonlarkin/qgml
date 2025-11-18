@@ -91,11 +91,11 @@ python gpu_master_test_suite.py --mode quick
 ### 2. **Clone Repositories**
 ```bash
 # Clone the repositories
-!git clone https://github.com/jasonlarkin/qcml.git
+!git clone https://github.com/jasonlarkin/qgml.git
 !git clone https://github.com/jasonlarkin/finance.git
 
-# Navigate to qcml
-cd qcml
+# Navigate to qgml
+cd qgml
 ```
 
 ### 3. **Run Quick Validation**
@@ -188,7 +188,7 @@ test_results/
 1. **CUDA Out of Memory**: Reduce batch sizes or matrix dimensions
 2. **Slow Convergence**: Lower learning rates, increase epochs
 3. **Unstable Training**: Check quantum weights, reduce learning rates
-4. **Import Errors**: Ensure QCML framework is properly installed
+4. **Import Errors**: Ensure QGML framework is properly installed
 
 ### **Performance Tips**
 - **GPU Memory**: Monitor with `nvidia-smi`

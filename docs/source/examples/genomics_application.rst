@@ -1,8 +1,8 @@
-# Chromosomal Instability QCML Implementation Summary
+# Chromosomal Instability QGML Implementation Summary
 
 ## **Overview**
 
-We have successfully extracted the mathematical models from the chromosomal instability paper and implemented them as extensions to your existing QCML framework. This creates a comprehensive quantum machine learning system for genomic analysis.
+We have successfully extracted the mathematical models from the chromosomal instability paper and implemented them as extensions to your existing QGML framework. This creates a comprehensive quantum machine learning system for genomic analysis.
 
 ## **Mathematical Models Extracted**
 
@@ -73,7 +73,7 @@ BaseQuantumMatrixTrainer (base quantum operations)
 2. **Synthetic Genomic Data** - Realistic LST distributions and genomic features
 3. **Model Comparison** - Mixed loss vs standard supervised learning
 4. **POVM Functionality** - Probability density estimation
-5. **Integration** - Works with existing QCML base classes
+5. **Integration** - Works with existing QGML base classes
 
 **Sample Results:**
 ```
@@ -183,8 +183,8 @@ plt.title('Chromosomal Instability Probability Distribution')
 
 | Method | LST MAE | Classification Acc | AUC-ROC | Special Features |
 |--------|---------|-------------------|---------|------------------|
-| **Standard QCML** | 2.45 | N/A | N/A | Regression only |
-| **Mixed Loss QCML** | 2.35 | 0.87 | 0.91 | Simultaneous tasks |
+| **Standard QGML** | 2.45 | N/A | N/A | Regression only |
+| **Mixed Loss QGML** | 2.35 | 0.87 | 0.91 | Simultaneous tasks |
 | **Classical ML** | 2.89 | 0.82 | 0.86 | No quantum structure |
 
 **Key Advantages:**
@@ -197,13 +197,13 @@ plt.title('Chromosomal Instability Probability Distribution')
 
 ### **File Structure**
 ```
-qcml/quantum/
+qgml/quantum/
 ├── base_quantum_matrix_trainer.py # Core quantum operations
 ├── supervised_matrix_trainer.py # Basic supervised learning 
 ├── unsupervised_matrix_trainer.py # Manifold learning
 └── chromosomal_instability_trainer.py # Advanced genomic models
 
-doc/qognitive_math/chromosomal_instability/
+doc/qgml_math/chromosomal_instability/
 ├── chromosomal_instability_math_extraction.tex # Mathematical derivations
 └── chromosomal_instability_math_extraction.pdf # Compiled PDF
 
@@ -222,7 +222,7 @@ test_chromosomal_instability_trainer.py # Comprehensive testing
 - Validate on 227 sequenced cells from paper
 - Compare with clinical LST measurements
 
-### **2. Advanced QCML Features**
+### **2. Advanced QGML Features**
 - Implement more sophisticated POVM parametrizations
 - Add quantum error correction for noisy genomic data
 - Explore quantum entanglement for feature correlations
@@ -248,13 +248,13 @@ test_chromosomal_instability_trainer.py # Comprehensive testing
  **Full implementation** of mixed loss function with gradient-free normalization
  **LST threshold classification** with learnable scale parameter
  **POVM framework** for probability density estimation
- **Seamless integration** with existing QCML base classes
+ **Seamless integration** with existing QGML base classes
  **Comprehensive testing** with synthetic genomic data
  **Performance improvements** over standard approaches
 
 ## **Ready for Production**
 
-The chromosomal instability QCML trainer is now ready for:
+The chromosomal instability QGML trainer is now ready for:
 - **Real genomic datasets**
 - **Clinical validation studies** 
 - **Quantum hardware deployment**

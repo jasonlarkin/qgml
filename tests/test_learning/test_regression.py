@@ -72,7 +72,7 @@ def test_qgml_regression():
     print(f"  Target operator shape: {model.target_operator.shape}")
     
     # Train model
-    print("\nTraining QCML model...")
+    print("\nTraining QGML model...")
     history = model.fit(
         X_train, y_train,
         epochs=500,
@@ -177,7 +177,7 @@ def plot_training_history(history):
     axes[1, 1].grid(True)
     
     plt.tight_layout()
-    plt.savefig('qcml_training_history.png', dpi=300, bbox_inches='tight')
+    plt.savefig('qgml_training_history.png', dpi=300, bbox_inches='tight')
     plt.show()
 
 def plot_predictions(y_true, y_pred, title="Predictions"):
@@ -202,12 +202,12 @@ def plot_predictions(y_true, y_pred, title="Predictions"):
     plt.text(0.05, 0.95, f'R² = {r_squared:.3f}', transform=plt.gca().transAxes, 
              bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    plt.savefig(f'qcml_predictions_{title.lower().replace(" ", "_")}.png', 
+    plt.savefig(f'qgml_predictions_{title.lower().replace(" ", "_")}.png', 
                 dpi=300, bbox_inches='tight')
     plt.show()
 
 def compare_with_classical():
-    """Compare QCML regression with classical methods."""
+    """Compare QGML regression with classical methods."""
     from sklearn.linear_model import Ridge
     from sklearn.ensemble import RandomForestRegressor
     
@@ -238,25 +238,25 @@ def compare_with_classical():
     print(f"Ridge Regression - MAE: {ridge_mae:.4f}, RMSE: {ridge_rmse:.4f}")
     print(f"Random Forest - MAE: {rf_mae:.4f}, RMSE: {rf_rmse:.4f}")
     
-    # Train QCML for comparison
+    # Train QGML for comparison
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     X_train_torch = torch.tensor(X_train, dtype=torch.float32, device=device)
     y_train_torch = torch.tensor(y_train, dtype=torch.float32, device=device)
     X_test_torch = torch.tensor(X_test, dtype=torch.float32, device=device)
     y_test_torch = torch.tensor(y_test, dtype=torch.float32, device=device)
     
-    qcml_model = QCMLRegressionTrainer(N=8, D=X_train.shape[1], learning_rate=0.01, device=device)
-    qcml_model.fit(X_train_torch, y_train_torch, epochs=300, verbose=False)
-    qcml_pred = qcml_model.predict(X_test_torch).cpu().numpy()
+    qgml_model = QGMLRegressionTrainer(N=8, D=X_train.shape[1], learning_rate=0.01, device=device)
+    qgml_model.fit(X_train_torch, y_train_torch, epochs=300, verbose=False)
+    qgml_pred = qgml_model.predict(X_test_torch).cpu().numpy()
     
-    qcml_mae = np.mean(np.abs(qcml_pred - y_test))
-    qcml_rmse = np.sqrt(np.mean((qcml_pred - y_test) ** 2))
+    qgml_mae = np.mean(np.abs(qgml_pred - y_test))
+    qgml_rmse = np.sqrt(np.mean((qgml_pred - y_test) ** 2))
     
-    print(f"QCML Regression - MAE: {qcml_mae:.4f}, RMSE: {qcml_rmse:.4f}")
+    print(f"QGML Regression - MAE: {qgml_mae:.4f}, RMSE: {qgml_rmse:.4f}")
 
 if __name__ == "__main__":
-    # Test QCML regression
-    model, history = test_qcml_regression()
+    # Test QGML regression
+    model, history = test_qgml_regression()
     
     # Compare with classical methods
     compare_with_classical()

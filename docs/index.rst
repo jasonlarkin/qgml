@@ -63,7 +63,7 @@ Installation
 .. code-block:: bash
 
    git clone <repository-url>
-   cd qcml_new
+   cd qgml
    pip install -e .
 
 Basic Usage
@@ -72,7 +72,7 @@ Basic Usage
 .. code-block:: python
 
    import torch
-   from qcml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
+   from qgml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
    
    # Create trainer with advanced quantum geometric features
    trainer = QuantumGeometryTrainer(

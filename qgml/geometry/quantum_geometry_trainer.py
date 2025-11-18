@@ -234,7 +234,7 @@ class QuantumGeometryTrainer(BaseQuantumMatrixTrainer):
         """
         Compute quantum geometry loss: L = Σᵢ [d²(xᵢ) + w·σ²(xᵢ)] + λ·topology.
         
-        This extends the basic QCML loss with quantum fluctuation control
+        This extends the basic QGML loss with quantum fluctuation control
         and topological constraints.
         
         Args:
@@ -301,10 +301,10 @@ class QuantumGeometryTrainer(BaseQuantumMatrixTrainer):
         eigenvalues, _ = self.compute_eigenmaps()
         
         if lambda_max is None:
-            lambda_max = float(eigenvalues[-1])
+            lambda_max = float(eigenvalues[-1].detach())
         
         # Create grid of lambda values
-        lambda_min = max(0.01, float(eigenvalues[1]))  # Skip zero mode
+        lambda_min = max(0.01, float(eigenvalues[1].detach()))  # Skip zero mode
         lambda_grid = torch.linspace(lambda_min, lambda_max, n_points)
         
         counts = []
@@ -417,7 +417,7 @@ class QuantumGeometryTrainer(BaseQuantumMatrixTrainer):
         # Geometric structure analysis
         geometry_analysis = {
             'n_eigenvalues': len(eigenvalues),
-            'eigenvalue_range': (float(eigenvalues[0]), float(eigenvalues[-1])),
+            'eigenvalue_range': (float(eigenvalues[0].detach()), float(eigenvalues[-1].detach())),
             'eigenvalue_gaps': torch.diff(eigenvalues).detach().cpu().numpy(),
             'spectral_dimension': dim_analysis.get('estimated_dimension', 0),
             'dimension_confidence': dim_analysis.get('confidence', 0.0)

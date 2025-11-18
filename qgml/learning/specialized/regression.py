@@ -1,6 +1,6 @@
 """QGML Univariate Regression Trainer for Quantum Geometric Machine Learning.
 
-This implements the algorithm from the Qognitive AI paper:
+This implements the QGML regression algorithm:
 • Randomly initialize feature operators {Ak} and target operator B.
 • Iterate over training data and operators until desired convergence:
   1: Generate error Hamiltonian H(xt)

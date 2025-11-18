@@ -50,7 +50,7 @@ check:
 
 # Generate API documentation from source code
 apidoc:
-	sphinx-apidoc -f -o api/ ../qcml/
+	sphinx-apidoc -f -o api/ ../qgml/
 
 # Full documentation pipeline
 all: clean install-deps apidoc html pdf

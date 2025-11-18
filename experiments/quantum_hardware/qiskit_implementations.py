@@ -11,7 +11,7 @@ Experiments implemented:
 3. Quantum feature encoding and observable measurement
 4. Hybrid quantum-classical QGML training for chromosomal instability
 
-Author: Based on Qognitive AI QGML framework
+Author: Based on QGML framework
 Date: 2024
 """
 

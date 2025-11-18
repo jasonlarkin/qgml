@@ -37,7 +37,9 @@ dependencies = [
 jax = ["jax>=0.4.0", "jaxlib>=0.4.0"]
 pytorch = ["torch>=2.0.0", "torchvision>=0.15.0"]
 quantum = ["qiskit>=0.45.0"]
-full = ["jax>=0.4.0", "jaxlib>=0.4.0", "qiskit>=0.45.0"]
+mnist = ["tensorflow>=2.10.0", "keras>=2.10.0"]
+full = ["jax>=0.4.0", "jaxlib>=0.4.0", "qiskit>=0.45.0", "tensorflow>=2.10.0", "keras>=2.10.0"]
+jupyter = ["jupyter>=1.0.0", "jupyterlab>=4.0.0", "ipykernel>=6.0.0", "jedi>=0.18.0"]
 dev = ["pytest>=7.0.0", "pytest-cov>=4.0.0", "black>=23.0.0", "flake8>=6.0.0"]
 
 [project.urls]
