@@ -49,7 +49,7 @@ class MatrixTrainerConfig:
 
 class JAXMatrixTrainer:
     """
-    JAX-based Matrix Configuration Trainer for QCML.
+    JAX-based Matrix Configuration Trainer for QGML.
     
     Trains a matrix configuration A = {A₁,...,Aₐ} on data X using JAX for
     improved performance and GPU utilization.

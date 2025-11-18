@@ -43,7 +43,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class ChromosomalInstabilityTrainer(SupervisedMatrixTrainer):
     """
-    Advanced QCML trainer for chromosomal instability prediction.
+    Advanced QGML trainer for chromosomal instability prediction.
     
     Implements features from the chromosomal instability paper:
     - Mixed regression + classification loss
@@ -66,7 +66,7 @@ class ChromosomalInstabilityTrainer(SupervisedMatrixTrainer):
         **kwargs
     ):
         """
-        Initialize chromosomal instability QCML trainer.
+        Initialize chromosomal instability QGML trainer.
         
         Args:
             N: Hilbert space dimension

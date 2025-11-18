@@ -1,7 +1,7 @@
 """
 Migration validation tests for QGML.
 
-Tests to validate that the QCML -> QGML migration was successful.
+Tests to validate that the migration from QCML to QGML was successful.
 """
 
 import pytest
