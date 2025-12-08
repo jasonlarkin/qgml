@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reproducing Figure 1 &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experimental_results/index.html">QGML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reproducing Figure 1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/figure1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="reproducing-figure-1">
+<h1>Reproducing Figure 1<a class="headerlink" href="#reproducing-figure-1" title="Link to this heading"></a></h1>
+<p>This document tracks the effort to reproduce Figure 1 from the paper using the <code class="docutils literal notranslate"><span class="pre">test_fuzzy_figure1.py</span></code> script.</p>
+<section id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Link to this heading"></a></h2>
+<p>The main goal was to match the results shown in Figure 1, which displays:</p>
+<ul class="simple">
+<li><p><strong>(a, c):</strong> Scatter plots of the input data (noiseless sphere vs. noisy sphere).</p></li>
+<li><p><strong>(b, d):</strong> Plots of the eigenvalues (<code class="docutils literal notranslate"><span class="pre">e0</span></code>, <code class="docutils literal notranslate"><span class="pre">e1</span></code>, <code class="docutils literal notranslate"><span class="pre">e2</span></code>) of the quantum metric <code class="docutils literal notranslate"><span class="pre">g(x)</span></code> for the trained configurations corresponding to the noiseless (b) and noisy (d) cases.</p></li>
+</ul>
+</section>
+<section id="approach-settings-tried">
+<h2>Approach &amp; Settings Tried<a class="headerlink" href="#approach-settings-tried" title="Link to this heading"></a></h2>
+<p>We split the original test into two functions: <code class="docutils literal notranslate"><span class="pre">test_generate_figure1ab</span></code> (for noise=0.0) and <code class="docutils literal notranslate"><span class="pre">test_generate_figure1cd</span></code> (for noise=0.2).</p>
+<p>Several settings were tried, mainly adjusting the <code class="docutils literal notranslate"><span class="pre">quantum_fluctuation_weight</span></code> (<code class="docutils literal notranslate"><span class="pre">w_qf</span></code>) and trying training <em>with</em> and <em>without</em> the explicit <code class="docutils literal notranslate"><span class="pre">commutation_penalty</span></code> term (<code class="docutils literal notranslate"><span class="pre">self.commutation_penalty</span> <span class="pre">*</span> <span class="pre">commutation_norm</span></code>) being included in the loss function that the optimizer uses for backpropagation.</p>
+<p>The “best” results so far (closest match, especially for the noisy case) were obtained using the following setup:</p>
+<ul class="simple">
+<li><p><strong>Loss Function:</strong> Matching Equation (5) from the paper: <code class="docutils literal notranslate"><span class="pre">Loss</span> <span class="pre">=</span> <span class="pre">Reconstruction</span> <span class="pre">Error</span> <span class="pre">+</span> <span class="pre">w_qf</span> <span class="pre">*</span> <span class="pre">Quantum</span> <span class="pre">Fluctuation</span></code>. The explicit <code class="docutils literal notranslate"><span class="pre">commutation_penalty</span></code> term was <strong>NOT</strong> included in the loss used for backpropagation (though its value was still logged).</p></li>
+<li><p><strong>Noise = 0.0 (<code class="docutils literal notranslate"><span class="pre">test_generate_figure1ab</span></code>):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">w_qf</span> <span class="pre">=</span> <span class="pre">0.25</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">learning_rate</span> <span class="pre">=</span> <span class="pre">0.01</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_epochs</span> <span class="pre">=</span> <span class="pre">100</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Noise = 0.2 (<code class="docutils literal notranslate"><span class="pre">test_generate_figure1cd</span></code>):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">w_qf</span> <span class="pre">=</span> <span class="pre">0.1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">learning_rate</span> <span class="pre">=</span> <span class="pre">0.001</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_epochs</span> <span class="pre">=</span> <span class="pre">200</span></code> (or possibly 300 based on last plot)</p></li>
+</ul>
+</li>
+<li><p><strong>Other:</strong> Hermiticity of matrices was enforced after each optimizer step using <code class="docutils literal notranslate"><span class="pre">_make_matrices_hermitian()</span></code>.</p></li>
+</ul>
+</section>
+<section id="comparison-of-current-results-vs-papers-figure-1">
+<h2>Comparison of Current Results vs. Paper’s Figure 1<a class="headerlink" href="#comparison-of-current-results-vs-papers-figure-1" title="Link to this heading"></a></h2>
+<p><strong>(Referencing plots generated around the time of this writing)</strong></p>
+<ul class="simple">
+<li><p><strong>Noise = 0.0 Case (Target: Fig 1b):</strong></p>
+<ul>
+<li><p><strong>Does NOT match well.</strong></p></li>
+<li><p>Our simulation consistently shows the top two eigenvalues (<code class="docutils literal notranslate"><span class="pre">e0</span></code>, <code class="docutils literal notranslate"><span class="pre">e1</span></code>) overlapping significantly, forming a single wide band.</p></li>
+<li><p>The paper’s Figure 1b shows a clear separation: <code class="docutils literal notranslate"><span class="pre">e0</span></code> is high, <code class="docutils literal notranslate"><span class="pre">e1</span></code> is in the middle, and <code class="docutils literal notranslate"><span class="pre">e2</span></code> is near zero. We are missing this separation between <code class="docutils literal notranslate"><span class="pre">e0</span></code> and <code class="docutils literal notranslate"><span class="pre">e1</span></code>.</p></li>
+<li><p>Training seems converged, but the resulting geometric structure (as reflected by metric eigenvalues) is wrong.</p></li>
+</ul>
+</li>
+<li><p><strong>Noise = 0.2 Case (Target: Fig 1d):</strong></p>
+<ul>
+<li><p><strong>Matches reasonably well!</strong> (Even with w_qf=0.5 instead of 10.0)</p></li>
+<li><p>Our simulation shows three distinct (though overlapping) bands for the eigenvalues, with <code class="docutils literal notranslate"><span class="pre">e2</span></code> clearly separated from zero.</p></li>
+<li><p>This qualitative structure (three bands, <code class="docutils literal notranslate"><span class="pre">e2</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>) matches Figure 1d. The exact spacing or spread might differ slightly, but the key features are there.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="discussion-why-the-difference">
+<h2>Discussion &amp; Why the Difference?<a class="headerlink" href="#discussion-why-the-difference" title="Link to this heading"></a></h2>
+<p>The big puzzle is why the <strong>noiseless case fails</strong> to reproduce the eigenvalue structure, while the <strong>noisy case succeeds</strong> (more or less), even when both are using the loss function from Equation (5).</p>
+<p>Our current thinking:</p>
+<ol class="arabic simple">
+<li><p><strong>Missing Commutation Term:</strong> The most likely culprit is the <strong>absence of the explicit <code class="docutils literal notranslate"><span class="pre">commutation_penalty</span></code> term</strong> in the loss function used for training the noiseless case.</p></li>
+<li><p><strong>Why it Matters (Hypothesis):</strong> Even though the paper says forcing commutation is bad, and the penalty term <code class="docutils literal notranslate"><span class="pre">sum</span> <span class="pre">||[A_i,</span> <span class="pre">A_j]||</span></code> seems to push towards commutation, it might be essential as a <strong>regularizer</strong>. For the ideal fuzzy sphere (noise=0.0), this term might gently force the learned matrices <code class="docutils literal notranslate"><span class="pre">A</span></code> to adopt the correct SU(2) algebraic structure <em>without</em> completely killing the non-commutation needed for reconstruction. Without this guiding term, the optimizer just minimizes reconstruction + fluctuation, finding <em>some</em> non-commuting solution, but not necessarily the <em>right</em> one that gives the eigenvalue structure of Figure 1b.</p></li>
+<li><p><strong>Why Noisy Case Works Better:</strong> Interestingly, the noisy case (<code class="docutils literal notranslate"><span class="pre">noise=0.2</span></code>) produced results qualitatively similar to Figure 1d even with a relatively small <code class="docutils literal notranslate"><span class="pre">w_qf</span> <span class="pre">=</span> <span class="pre">0.5</span></code> (compared to the paper’s likely value of 10.0). This might suggest that the noise itself, combined with the QF term, provides enough structure or implicit regularization in this regime. However, using <code class="docutils literal notranslate"><span class="pre">w_qf</span> <span class="pre">=</span> <span class="pre">10.0</span></code> (as originally intended in the script) might yield results even closer to the paper.</p></li>
+</ol>
+<p><strong>Next Steps:</strong> The logical next step to confirm this would be to re-introduce the <code class="docutils literal notranslate"><span class="pre">commutation_penalty</span></code> term into the loss calculation for the <code class="docutils literal notranslate"><span class="pre">noise=0.0</span></code> case and see if it helps reproduce Figure 1b. Alternatively, running the <code class="docutils literal notranslate"><span class="pre">noise=0.2</span></code> case with the intended <code class="docutils literal notranslate"><span class="pre">w_qf</span> <span class="pre">=</span> <span class="pre">10.0</span></code> could be checked.</p>
+</section>
+<section id="generated-plots-based-on-ls-output">
+<h2>Generated Plots (Based on <code class="docutils literal notranslate"><span class="pre">ls</span></code> output)<a class="headerlink" href="#generated-plots-based-on-ls-output" title="Link to this heading"></a></h2>
+<p>Note: These plots correspond to specific runs. The parameters used might differ slightly from the ideal ones discussed above or in the scripts, especially for 1c/1d. Ensure the filenames match the runs intended for comparison.</p>
+<section id="figure-1a-input-data-noise-0-0">
+<h3>Figure 1a: Input Data (Noise = 0.0)<a class="headerlink" href="#figure-1a-input-data-noise-0-0" title="Link to this heading"></a></h3>
+<p><img alt="Figure 1a" src="../test_outputs/figure1/N3_D3_pts2500_noise0.0_eps100_w0.0_lr0.010_pen0.000/fig1_a_input_points.png" /></p>
+</section>
+<section id="figure-1b-metric-eigenvalues-noise-0-0-w-0-0">
+<h3>Figure 1b: Metric Eigenvalues (Noise = 0.0, w=0.0)<a class="headerlink" href="#figure-1b-metric-eigenvalues-noise-0-0-w-0-0" title="Link to this heading"></a></h3>
+<p><img alt="Figure 1b" src="../test_outputs/figure1/N3_D3_pts2500_noise0.0_eps100_w0.0_lr0.010_pen0.000/fig1_b_metric_eigenvalues.png" />
+<em>(Note: This run used w=0.0 as requested, but still shows noisy eigenvalues, not matching the clean separation in the paper’s Figure 1b.)</em></p>
+</section>
+<section id="figure-1c-input-data-noise-0-2">
+<h3>Figure 1c: Input Data (Noise = 0.2?)<a class="headerlink" href="#figure-1c-input-data-noise-0-2" title="Link to this heading"></a></h3>
+<p><img alt="Figure 1c" src="../test_outputs/figure1/N3_D3_pts2500_noise0.0_eps100_w0.1_lr0.010_pen0.000/fig1_c_input_points.png" />
+<em>(Note: Check parameters for this run. Filename suggests noise=0.0, w=0.1, which differs from Fig 1c.)</em></p>
+</section>
+<section id="figure-1d-metric-eigenvalues-noise-0-2-w-0-1">
+<h3>Figure 1d: Metric Eigenvalues (Noise = 0.2?, w=0.1?)<a class="headerlink" href="#figure-1d-metric-eigenvalues-noise-0-2-w-0-1" title="Link to this heading"></a></h3>
+<p><img alt="Figure 1d" src="../test_outputs/figure1/N3_D3_pts2500_noise0.0_eps100_w0.1_lr0.010_pen0.000/fig1_d_metric_eigenvalues.png" />
+<em>(Note: Shows structure similar to paper Fig 1d, but parameters may differ. Run corresponds to filename above.)</em></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

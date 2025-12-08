@@ -4,7 +4,7 @@ Quantum Geometric Machine Learning (QGML) Documentation
 
 Welcome to the comprehensive documentation for **Quantum Geometric Machine Learning (QGML)**, an advanced framework that combines quantum geometric principles with machine learning for intrinsic dimension estimation, manifold learning, and data analysis.
 
-.. image:: _static/qmml_logo.png
+# Logo removed
    :alt: QGML Framework
    :width: 400
    :align: center
@@ -63,7 +63,7 @@ Installation
 .. code-block:: bash
 
    git clone <repository-url>
-   cd qcml_new
+   cd qgml
    pip install -e .
 
 Basic Usage
@@ -72,7 +72,7 @@ Basic Usage
 .. code-block:: python
 
    import torch
-   from qcml.quantum.quantum_geometry_trainer import QuantumGeometryTrainer
+   from qgml.geometry.quantum_geometry_trainer import QuantumGeometryTrainer
    
    # Create trainer with advanced quantum geometric features
    trainer = QuantumGeometryTrainer(
@@ -102,7 +102,7 @@ Architecture Overview
 
 .. graphviz::
 
-   digraph qmml_architecture {
+   digraph qgml_architecture {
        rankdir=TB;
        node [shape=box, style=rounded];
        

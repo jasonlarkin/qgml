@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyTorch Performance Notes for QGML &mdash; Quantum Geometric Machine Learning (QGML) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]], "macros": {"ket": ["|#1\\rangle", 1], "bra": ["\\langle#1|", 1], "braket": ["\\langle#1|#2\\rangle", 2], "tr": "\\text{Tr}", "argmin": "\\text{argmin}", "argmax": "\\text{argmax}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Quantum Geometric Machine Learning (QGML)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/installation.html">QGML Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/quickstart.html">QGML Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="visualization_gallery.html">QGML Visualization Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/core.html">Core QGML Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/quantum_geometry.html">Quantum Geometry Trainer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/topological_analysis.html">Topological Analysis API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/quantum_information.html">Quantum Information Analysis API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experimental_results/index.html">QGML Integration Experimental Results</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Quantum Geometric Machine Learning (QGML)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">PyTorch Performance Notes for QGML</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/torch_performance.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="pytorch-performance-notes-for-qgml">
+<h1>PyTorch Performance Notes for QGML<a class="headerlink" href="#pytorch-performance-notes-for-qgml" title="Link to this heading"></a></h1>
+<p>This document summarizes observations and potential optimizations related to the performance of PyTorch components within the QGML library, particularly the <code class="docutils literal notranslate"><span class="pre">MatrixConfigurationTrainer</span></code>.\n\n## Observations (April 2024)During testing on Google Colab with an NVIDIA A100 GPU and comparison with local CPU runs, the following was observed:</p>
+<p><strong>Initial GPU Slowness:</strong></p>
+<p>Initial tests using small default parameters (e.g., <code class="docutils literal notranslate"><span class="pre">N=8</span></code>, <code class="docutils literal notranslate"><span class="pre">n_points=200</span></code>, <code class="docutils literal notranslate"><span class="pre">batch_size=64</span></code>, <code class="docutils literal notranslate"><span class="pre">n_epochs=50</span></code>) in <code class="docutils literal notranslate"><span class="pre">qgml/quantum/test_training.py</span></code> ran <em>significantly slower</em> on the A100 (~77 seconds) compared to a local CPU run (~19 minutes for the <em>same</em> parameters, though earlier potentially misleading faster local times were observed for different/smaller runs).</p>
+<p><strong>GPU Correctness Confirmed:</strong></p>
+<p>Diagnostic prints confirmed that PyTorch correctly detected the A100, set the device to <code class="docutils literal notranslate"><span class="pre">'cuda'</span></code>, and successfully moved the model parameters (<code class="docutils literal notranslate"><span class="pre">MatrixConfigurationTrainer.matrices</span></code>) and input tensors to the GPU.</p>
+<p><strong>Profiler Analysis (CPU Bottleneck):</strong></p>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">torch.profiler</span></code> (for short runs like <code class="docutils literal notranslate"><span class="pre">N=3</span></code>, 5 epochs) revealed that while CUDA kernels (<code class="docutils literal notranslate"><span class="pre">aten::mm</span></code>, <code class="docutils literal notranslate"><span class="pre">aten::_linalg_eigh</span></code>, etc.) were executing on the GPU, the <strong>total self-CPU time vastly exceeded the total self-CUDA time</strong>.</p></li>
+<li><p>Trace analysis using Perfetto (<code class="docutils literal notranslate"><span class="pre">chrome://tracing</span></code>) confirmed this visually: long, dense blocks of CPU activity corresponding to Python loops orchestrating the computation, interspersed with very short GPU kernel executions and significant GPU idle time (white gaps).</p></li>
+<li><p>The bottleneck for <strong>small <code class="docutils literal notranslate"><span class="pre">N</span></code></strong> (e.g., N=3, N=8) is primarily the <strong>CPU overhead</strong> associated with executing Python loops (e.g., iterating per point in <code class="docutils literal notranslate"><span class="pre">compute_ground_state</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_quantum_fluctuation</span></code>) and dispatching a large number of very fast, small kernels to the GPU.</p></li>
+</ul>
+<p><strong>Profiler Overhead/Hangs:</strong> Attempting to use <code class="docutils literal notranslate"><span class="pre">torch.profiler</span></code> for longer runs (e.g., 50 epochs) or with more detailed settings (<code class="docutils literal notranslate"><span class="pre">profile_memory=True</span></code>, <code class="docutils literal notranslate"><span class="pre">with_stack=True</span></code>) caused the profiler’s post-processing step (<code class="docutils literal notranslate"><span class="pre">key_averages()</span></code>, <code class="docutils literal notranslate"><span class="pre">export_chrome_trace()</span></code>) to hang or take an exceptionally long time, likely due to the overwhelming number of small events being recorded.</p>
+<p><strong>Scaling with <code class="docutils literal notranslate"><span class="pre">N</span></code>:</strong> Although not fully timed due to the interrupt, running with larger <code class="docutils literal notranslate"><span class="pre">N</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">N=32</span></code>) takes substantially longer, as expected due to the computational scaling (e.g., $<span class="math notranslate nohighlight">\(\(O(N^3)\$\)</span>) for <code class="docutils literal notranslate"><span class="pre">eigh</span></code>), indicating the workload increases significantly.</p>
+<section id="potential-optimizations-deferred-while-the-current-priority-is-correctness-and-verification-the-following-optimizations-could-be-explored-later-to-improve-performance-especially-for-larger-n-or-batch-sizes">
+<h2>Potential Optimizations (Deferred) ## While the current priority is correctness and verification, the following optimizations could be explored later to improve performance, especially for larger <code class="docutils literal notranslate"><span class="pre">N</span></code> or batch sizes:.<a class="headerlink" href="#potential-optimizations-deferred-while-the-current-priority-is-correctness-and-verification-the-following-optimizations-could-be-explored-later-to-improve-performance-especially-for-larger-n-or-batch-sizes" title="Link to this heading"></a></h2>
+<p><strong>Vectorization / Batching:</strong></p>
+<p><strong>Goal:</strong> Eliminate Python <code class="docutils literal notranslate"><span class="pre">for</span></code> loops over batch items or dimensions within performance-critical functions like <code class="docutils literal notranslate"><span class="pre">compute_ground_state</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_quantum_fluctuation</span></code>, <code class="docutils literal notranslate"><span class="pre">forward</span></code>.</p>
+<ul class="simple">
+<li><p><strong>Method:</strong> Rewrite these functions to operate on entire batches simultaneously using optimized PyTorch tensor operations (e.g., <code class="docutils literal notranslate"><span class="pre">torch.bmm</span></code>, broadcasting, <code class="docutils literal notranslate"><span class="pre">torch.einsum</span></code>, batched <code class="docutils literal notranslate"><span class="pre">torch.linalg.eigh</span></code>).</p></li>
+<li><p><strong>Impact:</strong> Likely the most significant speedup, as it reduces Python overhead and kernel launch counts, allowing the GPU to process larger chunks of data more efficiently.</p></li>
+<li><p><strong>Effort:</strong> Requires substantial code refactoring.  <strong><code class="docutils literal notranslate"><span class="pre">torch.compile()</span></code>:</strong></p></li>
+<li><p><strong>Goal:</strong> Automatically optimize Python code and fuse operations using PyTorch’s JIT compiler.</p></li>
+<li><p><strong>Method:</strong> Add the <code class="docutils literal notranslate"><span class="pre">&#64;torch.compile()</span></code> decorator to <code class="docutils literal notranslate"><span class="pre">MatrixConfigurationTrainer</span></code> or specific methods.</p></li>
+<li><p><strong>Impact:</strong> May reduce Python overhead. Performance benefit was not reliably measured in initial tests due to incompatibility with <code class="docutils literal notranslate"><span class="pre">add_graph</span></code> and focus on small <code class="docutils literal notranslate"><span class="pre">N</span></code>. May be more beneficial for larger <code class="docutils literal notranslate"><span class="pre">N</span></code> or after vectorization.</p></li>
+<li><p><strong>Effort:</strong> Low code change effort. Can be controlled via environment variables (see discussion on conditional compilation).</p></li>
+<li><p><strong>Reference:</strong> A detailed guide and debugging manual for <code class="docutils literal notranslate"><span class="pre">torch.compile</span></code> can be found here: <a class="reference external" href="https://docs.google.com/document/d/1y5CRfMLdwEoF1nTk9q8qEu1mgMUuUtvhklPKJ2emLU8/edit">torch.compile: the missing manual</a>.</p></li>
+</ul>
+<p><strong>GPU-Specific Profiling Tools:</strong> Instead of <code class="docutils literal notranslate"><span class="pre">torch.profiler</span></code> which struggled, use NVIDIA’s Nsight Systems or Nsight Compute for more detailed GPU-centric profiling if deep optimization becomes necessary.</p>
+</section>
+<section id="current-focus-the-immediate-focus-is-on-ensuring-the-correctness-of-the-implementation-particularly-for-reproducing-figures-1-and-2-from-the-reference-paper-and-cleaning-up-the-codebase-and-tests-performance-optimization-using-the-methods-above-is-deferred">
+<h2>Current Focus ## The immediate focus is on ensuring the correctness of the implementation, particularly for reproducing Figures 1 and 2 from the reference paper, and cleaning up the codebase and tests. Performance optimization using the methods above is deferred.<a class="headerlink" href="#current-focus-the-immediate-focus-is-on-ensuring-the-correctness-of-the-implementation-particularly-for-reproducing-figures-1-and-2-from-the-reference-paper-and-cleaning-up-the-codebase-and-tests-performance-optimization-using-the-methods-above-is-deferred" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, QGML Research Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

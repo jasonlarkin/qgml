@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ee88eb95" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -60,7 +60,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../experimental_results/index.html">QGML Integration Experimental Results</a></li>
 </ul>
 
         </div>
@@ -161,10 +161,10 @@ python gpu_master_test_suite.py –mode quick
 <p>### 2. <strong>Clone Repositories</strong>
 <a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>bash
 # Clone the repositories
-!git clone <a class="reference external" href="https://github.com/jasonlarkin/qcml.git">https://github.com/jasonlarkin/qcml.git</a>
+!git clone <a class="reference external" href="https://github.com/jasonlarkin/qgml.git">https://github.com/jasonlarkin/qgml.git</a>
 !git clone <a class="reference external" href="https://github.com/jasonlarkin/finance.git">https://github.com/jasonlarkin/finance.git</a></p>
-<p># Navigate to qcml
-cd qcml
+<p># Navigate to qgml
+cd qgml
 <a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
 <p>### 3. <strong>Run Quick Validation</strong>
 <code class="docutils literal notranslate"><span class="pre">`bash</span>
@@ -242,7 +242,7 @@ test_results/
 1. <strong>CUDA Out of Memory</strong>: Reduce batch sizes or matrix dimensions
 2. <strong>Slow Convergence</strong>: Lower learning rates, increase epochs
 3. <strong>Unstable Training</strong>: Check quantum weights, reduce learning rates
-4. <strong>Import Errors</strong>: Ensure QCML framework is properly installed</p>
+4. <strong>Import Errors</strong>: Ensure QGML framework is properly installed</p>
 <p>### <strong>Performance Tips</strong>
 - <strong>GPU Memory</strong>: Monitor with <cite>nvidia-smi</cite>
 - <strong>Batch Processing</strong>: Use smaller batch sizes for high-dimensional problems

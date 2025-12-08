@@ -30,14 +30,14 @@ We have discovered **THREE DISTINCT PHASES** with **EXACT BOUNDARIES**:
 - **Parameters**: D=3, QW=0.5, n_points=100, n_epochs=50
 - **Output**: Success/failure status and quick performance comparison
 - **Use**: Run first to ensure both implementations are working
-- **Location**: Both PyTorch and JAX implementations are now in `qcml_new`
+- **Location**: Both PyTorch and JAX implementations are now in `qgml`
 
 ### **2. `jax_pytorch_quantum_scaling_comparison.py`**
 - **Purpose**: Comprehensive comparison across all quantum scaling law phases
 - **Parameters**: Multiple D and QW combinations, n_points=1000, n_epochs=500
 - **Output**: Detailed results, performance metrics, and comparison report
 - **Use**: Run after validation to get full comparison results
-- **Location**: Both PyTorch and JAX implementations are now in `qcml_new`
+- **Location**: Both PyTorch and JAX implementations are now in `qgml`
 
 ## TEST CASES
 

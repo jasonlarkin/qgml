@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ee88eb95" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -60,7 +60,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Experimental Results</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../experimental_results/index.html">QCML Integration Experimental Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../experimental_results/index.html">QGML Integration Experimental Results</a></li>
 </ul>
 
         </div>
@@ -87,7 +87,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p># QCML Model Integration Analysis &amp; Experimental Design</p>
+  <p># QGML Model Integration Analysis &amp; Experimental Design</p>
 <p>## ️ <strong>Current Architecture Integration</strong></p>
 <p>### <strong>Class Hierarchy &amp; Integration Map</strong></p>
 <p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
@@ -97,11 +97,11 @@ BaseQuantumMatrixTrainer (base quantum operations)</p>
 │ └── ChromosomalInstabilityTrainer (advanced genomic models)
 └── UnsupervisedMatrixTrainer (manifold learning)</p>
 </div></blockquote>
-<p>QCMLRegressionTrainer (original QCML implementation - parallel branch)
+<p>QGMLRegressionTrainer (original QGML implementation - parallel branch)
 <a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
 <p>### <strong>Key Integration Points</strong></p>
 <div class="line-block">
-<div class="line">Component | BaseQuantumMatrix | SupervisedMatrix | ChromosomalInstability | QCMLRegression |</div>
+<div class="line">Component | BaseQuantumMatrix | SupervisedMatrix | ChromosomalInstability | QGMLRegression |</div>
 </div>
 <p><a href="#id107"><span class="problematic" id="id108">|-----------|</span></a>——————-<a href="#id109"><span class="problematic" id="id110">|------------------|</span></a>———————-<a href="#id111"><span class="problematic" id="id112">|----------------|</span></a>
 | <strong>Core Hamiltonian</strong> | Shared | Inherited | Inherited | Duplicate |
@@ -157,22 +157,22 @@ sample_sizes = [100, 200, 500]</p>
 </div></blockquote>
 <p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
 <p>### <strong>Experiment 2: Model Architecture Comparison</strong></p>
-<p><strong>Objective</strong>: Compare all QCML variants on identical datasets</p>
+<p><strong>Objective</strong>: Compare all QGML variants on identical datasets</p>
 <p><strong>Design</strong>:
 <a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python
 def experiment_2_architecture_comparison():</p>
 <blockquote>
 <div><p>“””
-Compare all QCML models on same genomic datasets:
+Compare all QGML models on same genomic datasets:
 1. BaseQuantumMatrix + SupervisedMatrix (standard)
 2. ChromosomalInstabilityTrainer (mixed loss)
-3. QCMLRegressionTrainer (original implementation)
+3. QGMLRegressionTrainer (original implementation)
 4. Classical ML baselines (Random Forest, XGBoost)
 “””</p>
 <dl class="simple">
-<dt>models = {</dt><dd><p>‘standard_qcml’: SupervisedMatrixTrainer,
-‘chromosomal_qcml’: ChromosomalInstabilityTrainer,
-‘original_qcml’: QCMLRegressionTrainer,
+<dt>models = {</dt><dd><p>‘standard_qgml’: SupervisedMatrixTrainer,
+‘chromosomal_qgml’: ChromosomalInstabilityTrainer,
+‘original_qgml’: QGMLRegressionTrainer,
 ‘random_forest’: RandomForestRegressor,
 ‘xgboost’: XGBRegressor</p>
 </dd>
@@ -311,19 +311,19 @@ results[method_name] = train_and_evaluate(balanced_data)</p>
 </div></blockquote>
 <p><a href="#id58"><span class="problematic" id="id59">``</span></a><a href="#id60"><span class="problematic" id="id61">`</span></a></p>
 <p>### <strong>Phase 2: Model Comparison (Weeks 3-4)</strong></p>
-<p><strong>Experiment 2A: QCML Variant Comparison</strong>
+<p><strong>Experiment 2A: QGML Variant Comparison</strong>
 <a href="#id62"><span class="problematic" id="id63">``</span></a><a href="#id64"><span class="problematic" id="id65">`</span></a>python
-# Compare all QCML implementations
-qcml_models = {</p>
+# Compare all QGML implementations
+qgml_models = {</p>
 <blockquote>
 <div><p>‘standard’: SupervisedMatrixTrainer(N=8, D=genomic_features.shape[1]),
 ‘chromosomal’: ChromosomalInstabilityTrainer(N=8, D=genomic_features.shape[1], use_mixed_loss=True),
-‘original’: QCMLRegressionTrainer(N=8, D=genomic_features.shape[1]),
+‘original’: QGMLRegressionTrainer(N=8, D=genomic_features.shape[1]),
 ‘povm’: ChromosomalInstabilityTrainer(N=8, D=genomic_features.shape[1], use_povm=True)</p>
 </div></blockquote>
 <p>}</p>
 <p># Unified evaluation protocol
-for model_name, model in qcml_models.items():</p>
+for model_name, model in qgml_models.items():</p>
 <blockquote>
 <div><p>metrics = evaluate_model_comprehensive(model, test_data)
 results[model_name] = metrics</p>
@@ -357,7 +357,7 @@ real_lst_values = load_clinical_lst_measurements()</p>
 <p># Preprocess genomic features
 genomic_features = preprocess_ctc_features(ctc_data)</p>
 <p># Test best-performing model from Phase 2
-best_model = select_best_qcml_model(phase2_results)
+best_model = select_best_qgml_model(phase2_results)
 real_data_results = train_and_evaluate_real_data(</p>
 <blockquote>
 <div><p>best_model,
@@ -377,11 +377,11 @@ clinical_outcomes = {</p>
 ‘metastatic_progression’: load_progression_data()</p>
 </div></blockquote>
 <p>}</p>
-<p># Correlate QCML predictions with clinical outcomes
+<p># Correlate QGML predictions with clinical outcomes
 for outcome_name, outcome_data in clinical_outcomes.items():</p>
 <blockquote>
 <div><dl class="simple">
-<dt>correlation = correlate_qcml_predictions(</dt><dd><p>qcml_predictions,
+<dt>correlation = correlate_qgml_predictions(</dt><dd><p>qgml_predictions,
 outcome_data</p>
 </dd>
 </dl>
@@ -396,11 +396,11 @@ clinical_validation[outcome_name] = correlation</p>
 def analyze_quantum_advantages():</p>
 <blockquote>
 <div><p># Quantum state entanglement
-entanglement_scores = compute_state_entanglement(qcml_model, genomic_data)</p>
+entanglement_scores = compute_state_entanglement(qgml_model, genomic_data)</p>
 <p># Quantum fidelity for similarity
-similarity_matrix = compute_quantum_fidelity_matrix(qcml_model, genomic_data)</p>
+similarity_matrix = compute_quantum_fidelity_matrix(qgml_model, genomic_data)</p>
 <p># Hilbert space utilization
-state_coverage = analyze_hilbert_space_coverage(qcml_model, genomic_data)</p>
+state_coverage = analyze_hilbert_space_coverage(qgml_model, genomic_data)</p>
 <p># Compare with classical similarity metrics
 classical_similarity = compute_classical_similarity(genomic_data)</p>
 <dl>
@@ -421,17 +421,17 @@ classical_similarity = compute_classical_similarity(genomic_data)</p>
 <a href="#id99"><span class="problematic" id="id100">``</span></a><a href="#id101"><span class="problematic" id="id102">`</span></a>python
 class GenomicAnalysisPipeline:</p>
 <blockquote>
-<div><p>“””Complete genomic analysis pipeline using QCML.”””</p>
+<div><p>“””Complete genomic analysis pipeline using QGML.”””</p>
 <dl>
 <dt>def __init__(self):</dt><dd><p>self.preprocessor = GenomicPreprocessor()
-self.qcml_model = ChromosomalInstabilityTrainer()
+self.qgml_model = ChromosomalInstabilityTrainer()
 self.clinical_integrator = ClinicalDecisionSupport()</p>
 </dd>
 <dt>def analyze_patient(self, genomic_data):</dt><dd><p># Preprocess genomic features
 processed_features = self.preprocessor.transform(genomic_data)</p>
-<p># QCML analysis
-lst_prediction = self.qcml_model.predict_lst(processed_features)
-instability_classification = self.qcml_model.classify_instability(processed_features)</p>
+<p># QGML analysis
+lst_prediction = self.qgml_model.predict_lst(processed_features)
+instability_classification = self.qgml_model.classify_instability(processed_features)</p>
 <p># Clinical decision support
 treatment_recommendation = self.clinical_integrator.recommend_treatment(</p>
 <blockquote>
@@ -442,7 +442,7 @@ treatment_recommendation = self.clinical_integrator.recommend_treatment(</p>
 <dt>return {</dt><dd><p>‘lst_score’: lst_prediction,
 ‘high_instability’: instability_classification,
 ‘recommended_treatment’: treatment_recommendation,
-‘confidence_intervals’: self.qcml_model.get_uncertainty(processed_features)</p>
+‘confidence_intervals’: self.qgml_model.get_uncertainty(processed_features)</p>
 </dd>
 </dl>
 <p>}</p>
@@ -476,7 +476,7 @@ treatment_recommendation = self.clinical_integrator.recommend_treatment(</p>
 <strong>Week 7-8</strong>: Quantum advantage analysis
 <strong>Week 9-10</strong>: Production pipeline development</p>
 <p><strong>Deliverables</strong>:
-- Optimized QCML models with R² &gt; 0.7
+- Optimized QGML models with R² &gt; 0.7
 - Comprehensive benchmarking results
 - Real genomic data validation study
 - Quantum advantage demonstration
