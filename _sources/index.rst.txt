@@ -4,11 +4,6 @@ Quantum Geometric Machine Learning (QGML) Documentation
 
 Welcome to the comprehensive documentation for **Quantum Geometric Machine Learning (QGML)**, an advanced framework that combines quantum geometric principles with machine learning for intrinsic dimension estimation, manifold learning, and data analysis.
 
-# Logo removed
-   :alt: QGML Framework
-   :width: 400
-   :align: center
-
 Quick Links
 ===========
 
